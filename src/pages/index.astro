@@ -97,28 +97,15 @@ const jsonLd = {
     <FilterBar series={series} sagas={sagas} roles={roles} statuses={statuses} total={fighters.length} />
   </section>
 
-  {/* ----------------------- Toggle Personajes / Trajes ----------------------- */}
-  <div id="type-toggle" class="mx-auto mb-6 flex max-w-6xl justify-center gap-2 px-5">
-    <button
-      type="button"
-      data-type="fighters"
-      class="title-slant rounded-full border px-5 py-2 text-sm transition aria-pressed:border-ice aria-pressed:bg-ice/15 aria-pressed:text-ice border-neon/40 text-white/60 hover:border-ice"
-      aria-pressed="true"
-    >
-      {t('filter.typeCharacters') as string}
-    </button>
-    <button
-      type="button"
-      data-type="outfits"
-      class="title-slant rounded-full border px-5 py-2 text-sm transition aria-pressed:border-ice aria-pressed:bg-ice/15 aria-pressed:text-ice border-neon/40 text-white/60 hover:border-ice"
-      aria-pressed="false"
-    >
-      {t('filter.typeOutfits') as string} ({allOutfits.length})
-    </button>
-  </div>
-
   {/* ----------------------------- Panal personajes ----------------------------- */}
-  <section class="pb-20" id="section-fighters">
+  <section class="pt-4 pb-8" id="section-fighters">
+    <h2 class="title-slant mb-6 text-center text-3xl text-white sm:text-5xl">
+      <span class="text-ice">»</span> {t('filter.typeCharacters') as string} <span class="text-ice">«</span>
+    </h2>
+    <FilterBar series={series} sagas={sagas} roles={roles} statuses={statuses} total={fighters.length} />
+  </section>
+
+  <section class="pb-20">
     <div id="hive" class="hive">
       {fighters.map((fighter, i) => <HexTile fighter={fighter} index={i} />)}
     </div>
@@ -129,15 +116,27 @@ const jsonLd = {
   </section>
 
   {/* ----------------------------- Panal trajes ----------------------------- */}
-  <section class="pb-20" id="section-outfits" hidden>
-    <div id="hive-outfits" class="hive">
-      {allOutfits.map((outfit, i) => <OutfitTile outfit={outfit} index={i} />)}
-    </div>
+  {
+    allOutfits.length > 0 && (
+      <>
+        <section class="pt-4 pb-8">
+          <h2 class="title-slant mb-6 text-center text-3xl text-white sm:text-5xl">
+            <span class="text-ice">»</span> {t('filter.typeOutfits') as string} ({allOutfits.length}) <span class="text-ice">«</span>
+          </h2>
+        </section>
 
-    <p id="hive-outfits-empty" hidden class="mt-10 text-center text-sm text-white/50" set:html="Ningun traje encaja con esos filtros." />
+        <section class="pb-20" id="section-outfits">
+          <div id="hive-outfits" class="hive">
+            {allOutfits.map((outfit, i) => <OutfitTile outfit={outfit} index={i} />)}
+          </div>
 
-    <p class="mt-14 text-center text-xs text-white/40" set:html={t('hive.hint')} />
-  </section>
+          <p id="hive-outfits-empty" hidden class="mt-10 text-center text-sm text-white/50" set:html={t('hive.empty')} />
+
+          <p class="mt-14 text-center text-xs text-white/40" set:html={t('hive.hint')} />
+        </section>
+      </>
+    )
+  }
 
   {/* ---------------------------- Overlay ---------------------------- */}
   <div
@@ -177,18 +176,4 @@ const jsonLd = {
 
   initRoster();
   initLooks();
-
-  /* Toggle personajes / trajes */
-  const toggleBtns = document.querySelectorAll<HTMLButtonElement>('#type-toggle [data-type]');
-  const sectionFighters = document.getElementById('section-fighters')!;
-  const sectionOutfits = document.getElementById('section-outfits')!;
-
-  toggleBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const type = btn.dataset.type!;
-      toggleBtns.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-      sectionFighters.hidden = type !== 'fighters';
-      sectionOutfits.hidden = type !== 'outfits';
-    });
-  });
 </script>
