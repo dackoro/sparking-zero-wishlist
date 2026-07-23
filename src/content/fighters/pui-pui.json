@@ -20,7 +20,9 @@
     "Campo de gravedad",
     "Puño relámpago"
   ],
-  "variants": [],
+  "portrait": "/fighters/pui-pui-portrait.webp",
+  "render": "/fighters/pui-pui.webp",
+  "scene": "/fighters/pui-pui-scene.webp",
   "tags": [
     "babidi",
     "nivel bajo"

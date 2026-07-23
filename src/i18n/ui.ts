@@ -70,7 +70,7 @@ export const ui = {
 
     // Hive
     'hive.empty': 'Ningún personaje encaja con esos filtros. Prueba a limpiarlos… o proponlo tú mismo.',
-    'hive.hint': 'Pulsa cualquier hexágono para ver su ficha completa.',
+
 
     // Modal
     'modal.close': 'Cerrar ficha',
@@ -237,7 +237,7 @@ export const ui = {
     // Hive
     'hive.empty':
       'No characters match those filters. Try clearing them… or propose one yourself.',
-    'hive.hint': 'Tap any hexagon to view the full profile.',
+
 
     // Modal
     'modal.close': 'Close profile',
@@ -405,7 +405,7 @@ export const ui = {
     // Hive
     'hive.empty':
       'Nenhum personagem corresponde a esses filtros. Tente limpá-los… ou proponha você mesmo.',
-    'hive.hint': 'Toque em qualquer hexágono para ver a ficha completa.',
+
 
     // Modal
     'modal.close': 'Fechar ficha',

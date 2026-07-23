@@ -13,13 +13,16 @@
   "hype": 3,
   "accent": "#a3e635",
   "quote": "Soy inmortal, no podéis hacerme nada.",
-  "description": "Demonio inmortal que reclama el puesto de Dios de la Tierra y abre la Zona Muerta. Su inmortalidad lo condena a flotar eternamente en esa dimensión.",
+  "description": "Demonio inmortal que reclama el puesto de Dios de la Tierra y abre la Zona Muerta. Su inmortalidad lo condena a flotar eternamente en esa dimensión. Ya está en el juego en su forma base y Super Garlic Jr., se pide como personaje adicional con moveset propio de la película.",
   "whyWanted": "Es el villano de la primera película de la franquicia y protagonista de su propia saga en el anime. La Zona Muerta sería un ultimate icónico.",
   "signatureMoves": [
     "Zona Muerta",
     "Transformación gigante",
     "Ráfaga demoníaca"
   ],
+  "portrait": "/fighters/garlic-jr-portrait.webp",
+  "render": "/fighters/garlic-jr.webp",
+  "scene": "/fighters/garlic-jr-scene.webp",
   "variants": [
     {
       "name": "Forma base",

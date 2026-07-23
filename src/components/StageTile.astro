@@ -27,12 +27,12 @@ const d = stage.data;
   data-hype={d.hype}
   data-status={d.status}
 >
-  <span class="stage-inner" style={`background:linear-gradient(160deg, ${d.accent}33, #150a2b 70%)`}>
+  <span class="stage-inner" style={`background:linear-gradient(160deg, ${d.accent}22, #150a2b 70%)`}>
 
     {
       d.scene ? (
         <span
-          class="absolute inset-0 bg-cover bg-center opacity-30 transition group-hover:opacity-45"
+          class="absolute inset-0 bg-cover bg-center"
           style={`background-image:url(${d.scene})`}
           aria-hidden="true"
         />
@@ -52,6 +52,11 @@ const d = stage.data;
         </span>
       )
     }
+
+    <span
+      class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-void via-void/70 to-transparent"
+      aria-hidden="true"
+    />
 
     <span class="absolute inset-x-0 bottom-3 z-10 px-2 text-center">
       <span class="block text-xs leading-tight font-bold text-white uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] sm:text-sm">

@@ -13,23 +13,23 @@
   "hype": 5,
   "accent": "#ec4899",
   "quote": "Tengo un hambre que no puedo controlar.",
-  "description": "Científica androide creada a partir del ADN de los guerreros más fuertes, con el instinto de Majin Buu de convertir en dulces a sus víctimas. Villana original de FighterZ.",
-  "whyWanted": "Es la villana moderna más popular fuera del anime y su rayo transformador daría un ultimate con efecto de estado único.",
+  "description": "Bio-androide creada por el Dr. Gero a partir del ADN de los guerreros más fuertes, incluyendo células de Majin Buu. En su forma base conserva apariencia humana con bata y gafas, pero al liberar su instinto Majin se transforma en una versión de piel rosa con cola y orejas puntiagudas. Antagonista principal de Dragon Ball FighterZ.",
+  "whyWanted": "Es la villana moderna más popular fuera del anime y su rayo transformador daría un ultimate con efecto de estado único. Además tendría dos skins completas: base y Majin.",
   "signatureMoves": [
     "Rayo transformador",
     "Absorción de dulces",
     "Photon Wave"
   ],
+  "portrait": "/fighters/androide-21-portrait.webp",
+  "render": "/fighters/androide-21.webp",
+  "scene": "/fighters/androide-21-scene.webp",
   "variants": [
     {
-      "name": "Humana",
+      "name": "Forma Majin",
       "source": "FighterZ",
-      "description": "Bata de laboratorio y gafas."
-    },
-    {
-      "name": "Forma maligna",
-      "source": "FighterZ",
-      "description": "Piel rosa, cola y orejas de Majin.",
+      "description": "Piel rosa, cola y orejas de Majin. Su verdadera forma al liberar el instinto de Buu.",
+      "image": "/fighters/androide-21-forma-maligna.webp",
+      "scene": "/fighters/androide-21-forma-maligna-scene.webp",
       "accent": "#db2777"
     }
   ],

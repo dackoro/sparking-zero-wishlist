@@ -1,0 +1,15 @@
+{
+  "name": "Planeta de Bills",
+  "series": "Dragon Ball Super",
+  "saga": "Batalla de los Dioses",
+  "firstAppearance": {
+    "year": 2013,
+    "work": "Película 14: La batalla de los dioses",
+    "medium": "Película"
+  },
+  "description": "El hogar del Dios de la Destrucción Beerus y su asistente Whis. Un planeta con forma de árbol invertido coronado por un templo, rodeado de un lago con criaturas marinas y varias lunas. Escenario de entrenamiento de Goku y Vegeta bajo la tutela de Whis.",
+  "hype": 5,
+  "accent": "#a855f7",
+  "scene": "/fighters/planeta-bills-scene.webp",
+  "tags": ["dioses", "entrenamiento", "dbs"]
+}

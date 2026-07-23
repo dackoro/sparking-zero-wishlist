@@ -4,7 +4,6 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import FilterBar from '../../components/FilterBar.astro';
 import HexTile from '../../components/HexTile.astro';
-import OutfitTile from '../../components/OutfitTile.astro';
 import FighterPanel from '../../components/FighterPanel.astro';
 import logo from '../../assets/dbsz-logo.png';
 import { useTranslations, getLangFromUrl } from '../../i18n/utils';
@@ -19,17 +18,6 @@ const fighters = (await getCollection('fighters')).sort(
 
 const fighterFighters = fighters.filter((f) => f.data.section !== 'outfits');
 const outfitFighters = fighters.filter((f) => f.data.section === 'outfits');
-
-const allOutfits = fighters.flatMap((f) =>
-  f.data.variants.map((v) => ({
-    parentSlug: f.id,
-    parentName: f.data.name,
-    parentAccent: f.data.accent,
-    variantName: v.name,
-    variantSource: v.source,
-    variantAccent: v.accent,
-  })),
-);
 
 const uniq = (values: string[]) => [...new Set(values)].sort((a, b) => a.localeCompare(b, 'es'));
 const series = uniq(fighters.map((f) => f.data.series));
@@ -111,23 +99,18 @@ const jsonLd = {
 
   {/* ----------------------------- Panal trajes ----------------------------- */}
   {
-    (outfitFighters.length > 0 || allOutfits.length > 0) && (
+    outfitFighters.length > 0 && (
       <>
         <section class="pt-4 pb-8">
           <h2 class="title-slant mb-6 text-center text-3xl text-white sm:text-5xl">
-            <span class="text-ice">»</span> {t('filter.typeOutfits') as string} ({outfitFighters.length + allOutfits.length}) <span class="text-ice">«</span>
+            <span class="text-ice">»</span> {t('filter.typeOutfits') as string} ({outfitFighters.length}) <span class="text-ice">«</span>
           </h2>
         </section>
 
         <section class="pb-20" id="section-outfits">
           <div id="hive-outfits" class="hive">
             {outfitFighters.map((fighter, i) => <HexTile fighter={fighter} index={i} />)}
-            {allOutfits.map((outfit, i) => <OutfitTile outfit={outfit} index={outfitFighters.length + i} />)}
           </div>
-
-          <p id="hive-outfits-empty" hidden class="mt-10 text-center text-sm text-white/50" set:html={t('hive.empty')} />
-
-          <p class="mt-14 text-center text-xs text-white/40" set:html={t('hive.hint')} />
         </section>
       </>
     )

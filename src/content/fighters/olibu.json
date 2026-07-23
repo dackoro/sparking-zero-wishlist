@@ -20,7 +20,9 @@
     "Placaje heroico",
     "Grito de guerra"
   ],
-  "variants": [],
+  "portrait": "/fighters/olibu-portrait.webp",
+  "render": "/fighters/olibu.webp",
+  "scene": "/fighters/olibu-scene.webp",
   "tags": [
     "otro mundo",
     "relleno",

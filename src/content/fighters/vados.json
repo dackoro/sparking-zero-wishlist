@@ -20,7 +20,9 @@
     "Barrera temporal",
     "Ultra Instinto"
   ],
-  "variants": [],
+  "portrait": "/fighters/vados-portrait.webp",
+  "render": "/fighters/vados.webp",
+  "scene": "/fighters/vados-scene.webp",
   "tags": [
     "ángel",
     "universo 6",

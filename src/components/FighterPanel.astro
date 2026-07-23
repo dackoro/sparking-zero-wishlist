@@ -22,7 +22,6 @@ const L = (field: string) => localize(d, field, lang as Lang);
 const LA = (field: string) => localizeArray(d, field, lang as Lang);
 
 const description = L('description') ?? '';
-const quote = L('quote') as string | undefined;
 const moves = LA('signatureMoves');
 const fighterName = (d.name as string) ?? '';
 
@@ -33,6 +32,7 @@ const looks = [
     description,
     image: d.render as string | undefined,
     accent: d.accent as string,
+    scene: d.scene as string | undefined,
   },
   ...((d.variants as any[]) ?? []).map((v: Record<string, unknown>) => ({
     name: localize(v, 'name', lang as Lang) ?? v.name as string ?? '',
@@ -40,6 +40,7 @@ const looks = [
     description: localize(v, 'description', lang as Lang) ?? v.description as string | undefined,
     image: v.image as string | undefined,
     accent: v.accent as string | undefined,
+    scene: v.scene as string | undefined,
   })),
 ];
 
@@ -53,59 +54,55 @@ const meta = [
 ---
 
 <article
-  class="overflow-hidden rounded-xl border border-neon/40 bg-abyss/95 shadow-[0_0_60px_-15px] shadow-neon/60"
-  style={`--accent:${d.accent}`}
+  class="overflow-hidden rounded-xl border border-neon/40 shadow-[0_0_60px_-15px] shadow-neon/60"
+  style={`--accent:${d.accent};background:linear-gradient(180deg, rgba(50,20,110,0.96), rgba(28,11,62,0.97) 55%, rgba(17,7,40,0.98))`}
   data-panel
   data-slug={fighter.id}
 >
   {/* ---------- Cabecera visual ---------- */}
-  <div class="relative grid h-[42vh] max-h-[420px] min-h-[240px] grid-cols-[38%_62%]">
-    <div
-      class="relative flex items-end justify-center overflow-hidden"
-      style={`background:radial-gradient(120% 90% at 50% 100%, ${d.accent}66, #1b0b3a 65%, #0b0616)`}
-    >
-      {
-        looks.map((look, i) => (
-          <div class="absolute inset-0 flex items-center justify-center p-4" data-look={i} hidden={i !== 0}>
-            <FighterArt name={fighterName} accent={look.accent ?? d.accent as string} image={look.image} eager={i === 0} />
-          </div>
-        ))
-      }
-      <span
-        class="absolute top-3 left-3 rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-        style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
-      >
-        {el(d.status as string)}
-      </span>
-    </div>
-
-    <div class="shard relative overflow-hidden">
-      <div
-        class="absolute inset-0 scale-105 bg-cover bg-center"
-        style={`background-image:url(${d.scene ?? newsBg.src})`}
-      >
-      </div>
-      <div class="absolute inset-0" style={`background:linear-gradient(100deg, #150a2b 4%, ${d.accent}33 45%, transparent)`}>
-      </div>
-      <div class="absolute inset-0 flex items-center justify-end overflow-hidden opacity-90">
-        <div class="h-[135%] w-[85%] translate-x-[8%] translate-y-[6%]">
-          {
-            looks.map((look, i) => (
-              <div class="h-full w-full" data-look={i} hidden={i !== 0}>
-                <FighterArt name={fighterName} accent={look.accent ?? d.accent as string} image={look.image} eager={i === 0} />
-              </div>
-            ))
-          }
+  <div class="relative aspect-[2072/1166] w-full overflow-hidden bg-abyss">
+    {/* Fondo: escena, visible por la ventana derecha del marco */}
+    {
+      looks.map((look, i) => (
+        <div
+          class="absolute inset-0 bg-cover bg-center"
+          style={`background-image:url(${look.scene ?? newsBg.src})`}
+          aria-hidden="true"
+          data-look={i}
+          hidden={i !== 0}
+        >
         </div>
-      </div>
-      {
-        quote && (
-          <p class="title-slant absolute bottom-4 left-[18%] max-w-[55%] text-sm text-white/85 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:text-base">
-            «{quote}»
-          </p>
-        )
-      }
-    </div>
+      ))
+    }
+
+    {/* Marco oficial: panel morado a la izquierda, transparente a la derecha */}
+    <img
+      src="/ui/shard-frame.webp"
+      alt=""
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 h-full w-full select-none"
+      style="object-fit:fill"
+    />
+
+    {/* Render transparente sobre el panel morado */}
+    {
+      looks.map((look, i) => (
+        <div
+          class="absolute inset-y-0 left-[2%] flex w-[36%] items-center justify-center py-[3%]"
+          data-look={i}
+          hidden={i !== 0}
+        >
+          <FighterArt name={fighterName} accent={look.accent ?? d.accent as string} image={look.image} eager={i === 0} />
+        </div>
+      ))
+    }
+
+    <span
+      class="absolute top-[4%] left-[3%] z-10 rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+      style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
+    >
+      {el(d.status as string)}
+    </span>
   </div>
 
   {/* ---------- Ficha ---------- */}

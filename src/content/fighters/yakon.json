@@ -20,7 +20,9 @@
     "Garra sombría",
     "Oscuridad total"
   ],
-  "variants": [],
+  "portrait": "/fighters/yakon-portrait.webp",
+  "render": "/fighters/yakon.webp",
+  "scene": "/fighters/yakon-scene.webp",
   "tags": [
     "babidi",
     "monstruo"

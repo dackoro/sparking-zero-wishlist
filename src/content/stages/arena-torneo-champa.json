@@ -1,0 +1,15 @@
+{
+  "name": "Arena del Torneo de Champa",
+  "series": "Dragon Ball Super",
+  "saga": "Universo 6",
+  "firstAppearance": {
+    "year": 2016,
+    "work": "Dragon Ball Super, ep. 32",
+    "medium": "Anime"
+  },
+  "description": "El estadio flotante en el vacío espacial donde se enfrentaron los equipos del Universo 6 y Universo 7. Plataformas de piedra suspendidas sobre un abismo galáctico, con un cielo teñido de púrpura y estrellas de fondo.",
+  "hype": 4,
+  "accent": "#ea580c",
+  "scene": "/fighters/arena-torneo-champa-scene.webp",
+  "tags": ["torneo", "universo 6", "dbs"]
+}

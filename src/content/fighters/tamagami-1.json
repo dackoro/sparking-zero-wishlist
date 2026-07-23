@@ -1,0 +1,26 @@
+{
+  "name": "Tamagami N.º 1",
+  "nameJa": "タマガミ ナンバー1",
+  "series": "Dragon Ball Daima",
+  "saga": "Daima",
+  "firstAppearance": {
+    "year": 2024,
+    "work": "Dragon Ball Daima, ep. 11",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#16a34a",
+  "description": "Uno de los tres Tamagamis creados por Neva para proteger las Esferas del Dragón del Reino Demoníaco. Este guardián verde custodia la esfera de una estrella en el Primer Mundo Demoníaco. Fue derrotado por Majin Duu tras superar una prueba mental de sumas aritméticas.",
+  "whyWanted": "Dragon Ball Daima es la serie más reciente de la franquicia y los Tamagamis son los guardianes más carismáticos del Reino Demoníaco. Su diseño único y su rol como protectores de las esferas los convierten en una adición perfecta al roster.",
+  "signatureMoves": [
+    "Ráfaga de ki demoníaco",
+    "Puño potenciado",
+    "Defensa esférica"
+  ],
+  "portrait": "/fighters/tamagami-1-portrait.webp",
+  "render": "/fighters/tamagami-1.webp",
+  "scene": "/fighters/tamagami-1-scene.webp",
+  "tags": ["daima", "demonio", "guardian", "nuevo"]
+}

@@ -14,32 +14,18 @@
   "accent": "#38bdf8",
   "quote": "Soy un héroe en mi universo.",
   "description": "La contraparte del Universo 6 de Freezer, que finge ser un héroe galáctico mientras hace trampas con un aguijón venenoso. Un estafador con clase.",
-  "whyWanted": "Es el eco perfecto de Freezer con sus propias formas y ya peleó en dos torneos. El Universo 6 necesita más representación.",
+  "whyWanted": "Su forma final ya está en el juego pero la primera forma (elegante, cornuda) no. Sería un skin perfecto con otro moveset y su aguijón venenoso como mecánica única.",
   "signatureMoves": [
     "Aguijón venenoso",
     "Rayo mortal",
-    "Forma final"
+    "Esfera de energía"
   ],
-  "variants": [
-    {
-      "name": "Primera forma",
-      "source": "Torneo U6",
-      "description": "Aspecto elegante y cornudo."
-    },
-    {
-      "name": "Forma final",
-      "source": "Torneo del Poder",
-      "description": "Silueta esbelta, como Freezer final."
-    },
-    {
-      "name": "Forma asesina",
-      "source": "Torneo del Poder",
-      "description": "Musculada y con armadura pesada.",
-      "accent": "#7dd3fc"
-    }
-  ],
+  "portrait": "/fighters/frost-portrait.webp",
+  "render": "/fighters/frost.webp",
+  "scene": "/fighters/frost-scene.webp",
   "tags": [
     "universo 6",
-    "freezer"
+    "freezer",
+    "primera forma"
   ]
 }
