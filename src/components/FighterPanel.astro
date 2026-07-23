@@ -22,7 +22,6 @@ const L = (field: string) => localize(d, field, lang as Lang);
 const LA = (field: string) => localizeArray(d, field, lang as Lang);
 
 const description = L('description') ?? '';
-const whyWanted = L('whyWanted') ?? '';
 const quote = L('quote') as string | undefined;
 const moves = LA('signatureMoves');
 const fighterName = (d.name as string) ?? '';
@@ -120,13 +119,6 @@ const meta = [
       </div>
 
       <p class="text-sm leading-relaxed text-white/80">{description}</p>
-
-      <div class="rounded-lg border-l-2 bg-white/5 p-3" style={`border-color:${d.accent}`}>
-        <p class="title-slant mb-1 text-xs tracking-widest" style={`color:${d.accent}`}>
-          {t('panel.whyWanted') as string}
-        </p>
-        <p class="text-sm leading-relaxed text-white/80">{whyWanted}</p>
-      </div>
 
       {
         moves.length > 0 && (
