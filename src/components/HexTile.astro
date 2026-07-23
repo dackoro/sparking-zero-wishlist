@@ -16,6 +16,7 @@ const d = fighter.data;
 ---
 
 <a
+  id={`hex-${fighter.id}`}
   href={`/fighters/${fighter.id}/`}
   class="hex-cell hive-anim group"
   style={`--accent:${d.accent}; animation-delay:${Math.min(index * 18, 600)}ms`}

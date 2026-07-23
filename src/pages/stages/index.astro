@@ -44,7 +44,7 @@ const jsonLd = {
   </section>
 
   {/* ----------------------------- Grid ----------------------------- */}
-  <section class="pb-20">
+  <section class="min-h-dvh pb-20">
     <div id="stage-grid" class="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-5 sm:grid-cols-2 lg:grid-cols-3">
       {stages.map((stage, i) => <StageTile stage={stage} index={i} />)}
     </div>
@@ -63,15 +63,21 @@ const jsonLd = {
     aria-modal="true"
     aria-label={t('modal.close') as string}
   >
-    <div data-backdrop class="fixed inset-0 bg-void/85 backdrop-blur-sm"></div>
+    <div
+      data-backdrop
+      class="fixed inset-0 backdrop-blur-[2px]"
+      style="background:radial-gradient(125% 95% at 50% 0%, rgba(109,40,217,0.90), rgba(59,13,120,0.94) 55%, rgba(20,6,45,0.96))"
+    ></div>
     <div class="relative mx-auto my-6 w-full max-w-5xl px-4 sm:my-10">
       <button
         type="button"
         data-stage-close
-        class="mb-3 ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-2xl leading-none text-white/70 transition hover:border-ice hover:text-ice"
+        class="mb-3 ml-auto flex h-12 w-12 items-center justify-center text-ice drop-shadow-[0_0_10px_rgba(34,211,238,0.55)] transition hover:scale-110 hover:text-white"
         aria-label={t('modal.close') as string}
-      >
-        ×
+        >
+          <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <path d="M5 5 19 19M19 5 5 19" />
+          </svg>
       </button>
       <div id="stage-modal-content"></div>
     </div>

@@ -62,6 +62,12 @@ export const ui = {
     'filter.countOf': ({ total }: { total: number }) =>
       ` de ${total} personajes en la lista de deseos.`,
 
+    'filter.typeCharacters': 'Personajes',
+    'filter.typeOutfits': 'Trajes',
+    'outfitTile.from': (parent: string) => `de ${parent}`,
+    'hive.outfitCount': ({ shown, total }: { shown: number; total: number }) =>
+      `${shown} de ${total} trajes pendientes.`,
+
     // Hive
     'hive.empty': 'Ningún personaje encaja con esos filtros. Prueba a limpiarlos… o proponlo tú mismo.',
     'hive.hint': 'Pulsa cualquier hexágono para ver su ficha completa.',
@@ -221,6 +227,12 @@ export const ui = {
     'filter.clear': 'Clear',
     'filter.countOf': ({ total }: { total: number }) =>
       ` of ${total} characters on the wishlist.`,
+
+    'filter.typeCharacters': 'Characters',
+    'filter.typeOutfits': 'Outfits',
+    'outfitTile.from': (parent: string) => `from ${parent}`,
+    'hive.outfitCount': ({ shown, total }: { shown: number; total: number }) =>
+      `${shown} of ${total} outfits pending.`,
 
     // Hive
     'hive.empty':
@@ -383,6 +395,12 @@ export const ui = {
     'filter.clear': 'Limpar',
     'filter.countOf': ({ total }: { total: number }) =>
       ` de ${total} personagens na lista de desejos.`,
+
+    'filter.typeCharacters': 'Personagens',
+    'filter.typeOutfits': 'Trajes',
+    'outfitTile.from': (parent: string) => `de ${parent}`,
+    'hive.outfitCount': ({ shown, total }: { shown: number; total: number }) =>
+      `${shown} de ${total} trajes pendentes.`,
 
     // Hive
     'hive.empty':

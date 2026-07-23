@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import FilterBar from '../../components/FilterBar.astro';
 import HexTile from '../../components/HexTile.astro';
+import OutfitTile from '../../components/OutfitTile.astro';
 import FighterPanel from '../../components/FighterPanel.astro';
 import logo from '../../assets/dbsz-logo.png';
 import { useTranslations, getLangFromUrl } from '../../i18n/utils';
@@ -14,6 +15,17 @@ const t = useTranslations(lang);
 const fighters = (await getCollection('fighters')).sort(
   (a, b) =>
     b.data.importance - a.data.importance || a.data.firstAppearance.year - b.data.firstAppearance.year,
+);
+
+const allOutfits = fighters.flatMap((f) =>
+  f.data.variants.map((v) => ({
+    parentSlug: f.id,
+    parentName: f.data.name,
+    parentAccent: f.data.accent,
+    variantName: v.name,
+    variantSource: v.source,
+    variantAccent: v.accent,
+  })),
 );
 
 const uniq = (values: string[]) => [...new Set(values)].sort((a, b) => a.localeCompare(b, 'es'));
@@ -83,16 +95,49 @@ const jsonLd = {
     <FilterBar series={series} sagas={sagas} roles={roles} statuses={statuses} total={fighters.length} />
   </section>
 
-  <section class="pb-20">
+  {/* ----------------------- Toggle ----------------------- */}
+  <div id="type-toggle" class="mx-auto mb-6 flex max-w-6xl justify-center gap-2 px-5">
+    <button
+      type="button"
+      data-type="fighters"
+      class="title-slant rounded-full border px-5 py-2 text-sm transition aria-pressed:border-ice aria-pressed:bg-ice/15 aria-pressed:text-ice border-neon/40 text-white/60 hover:border-ice"
+      aria-pressed="true"
+    >
+      {t('filter.typeCharacters') as string}
+    </button>
+    <button
+      type="button"
+      data-type="outfits"
+      class="title-slant rounded-full border px-5 py-2 text-sm transition aria-pressed:border-ice aria-pressed:bg-ice/15 aria-pressed:text-ice border-neon/40 text-white/60 hover:border-ice"
+      aria-pressed="false"
+    >
+      {t('filter.typeOutfits') as string} ({allOutfits.length})
+    </button>
+  </div>
+
+  {/* ----------------------------- Panal personajes ----------------------------- */}
+  <section class="pb-20" id="section-fighters">
     <div id="hive" class="hive">
       {fighters.map((fighter, i) => <HexTile fighter={fighter} index={i} />)}
     </div>
 
     <p id="hive-empty" hidden class="mt-10 text-center text-sm text-white/50" set:html={t('hive.empty')} />
 
+    <p class="mt-14 text-center text-xs text-white/40" id="hive-hint" set:html={t('hive.hint')} />
+  </section>
+
+  {/* ----------------------------- Panal trajes ----------------------------- */}
+  <section class="pb-20" id="section-outfits" hidden>
+    <div id="hive-outfits" class="hive">
+      {allOutfits.map((outfit, i) => <OutfitTile outfit={outfit} index={i} />)}
+    </div>
+
+    <p id="hive-outfits-empty" hidden class="mt-10 text-center text-sm text-white/50" set:html={t('hive.empty')} />
+
     <p class="mt-14 text-center text-xs text-white/40" set:html={t('hive.hint')} />
   </section>
 
+  {/* ---------------------------- Overlay ---------------------------- */}
   <div
     id="fighter-modal"
     hidden
@@ -101,15 +146,21 @@ const jsonLd = {
     aria-modal="true"
     aria-label={t('modal.close') as string}
   >
-    <div data-backdrop class="fixed inset-0 bg-void/85 backdrop-blur-sm"></div>
+    <div
+      data-backdrop
+      class="fixed inset-0 backdrop-blur-[2px]"
+      style="background:radial-gradient(125% 95% at 50% 0%, rgba(109,40,217,0.90), rgba(59,13,120,0.94) 55%, rgba(20,6,45,0.96))"
+    ></div>
     <div class="relative mx-auto my-6 w-full max-w-5xl px-4 sm:my-10">
       <button
         type="button"
         data-close
-        class="mb-3 ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-2xl leading-none text-white/70 transition hover:border-ice hover:text-ice"
+        class="mb-3 ml-auto flex h-12 w-12 items-center justify-center text-ice drop-shadow-[0_0_10px_rgba(34,211,238,0.55)] transition hover:scale-110 hover:text-white"
         aria-label={t('modal.close') as string}
-      >
-        ×
+        >
+          <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <path d="M5 5 19 19M19 5 5 19" />
+          </svg>
       </button>
       <div id="fighter-modal-content"></div>
     </div>
