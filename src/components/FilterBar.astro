@@ -1,0 +1,102 @@
+---
+interface Props {
+  series: string[];
+  sagas: string[];
+  roles: string[];
+  statuses: string[];
+  total: number;
+}
+
+const { series, sagas, roles, statuses, total } = Astro.props;
+
+const selectClass =
+  'w-full rounded-md border border-neon/40 bg-abyss/80 px-3 py-2 text-sm text-white/90 outline-none transition focus:border-ice focus:ring-1 focus:ring-ice';
+const labelClass = 'title-slant mb-1 block text-[10px] tracking-widest text-white/45';
+---
+
+<form id="filtros" class="mx-auto max-w-6xl scroll-mt-24 px-5" autocomplete="off">
+  <div class="rounded-xl border border-neon/25 bg-void/70 p-4 backdrop-blur-sm sm:p-5">
+    <div class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+      <div class="col-span-2 md:col-span-3 lg:col-span-2">
+        <label class={labelClass} for="f-q">Buscar</label>
+        <input
+          id="f-q"
+          name="q"
+          type="search"
+          placeholder="Nombre o saga…"
+          class={selectClass}
+          enterkeyhint="search"
+        />
+      </div>
+
+      <div>
+        <label class={labelClass} for="f-series">Serie</label>
+        <select id="f-series" name="series" class={selectClass}>
+          <option value="">Todas</option>
+          {series.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label class={labelClass} for="f-role">Rol</label>
+        <select id="f-role" name="role" class={selectClass}>
+          <option value="">Cualquiera</option>
+          {roles.map((r) => <option value={r}>{r}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label class={labelClass} for="f-importance">Importancia mínima</label>
+        <select id="f-importance" name="importance" class={selectClass}>
+          <option value="0">Cualquiera</option>
+          <option value="2">2+ · con papel propio</option>
+          <option value="3">3+ · relevantes</option>
+          <option value="4">4+ · clave en su saga</option>
+          <option value="5">5 · capitales</option>
+        </select>
+      </div>
+
+      <div>
+        <label class={labelClass} for="f-sort">Ordenar por</label>
+        <select id="f-sort" name="sort" class={selectClass}>
+          <option value="importance-desc">Más importantes primero</option>
+          <option value="importance-asc">Más secundarios primero</option>
+          <option value="hype-desc">Más pedidos por los fans</option>
+          <option value="year-asc">Primera aparición (antiguos)</option>
+          <option value="year-desc">Primera aparición (recientes)</option>
+          <option value="series">Serie</option>
+          <option value="name-asc">Nombre (A-Z)</option>
+        </select>
+      </div>
+
+      <div class="col-span-2 md:col-span-2 lg:col-span-4">
+        <label class={labelClass} for="f-saga">Saga</label>
+        <select id="f-saga" name="saga" class={selectClass}>
+          <option value="">Todas las sagas</option>
+          {sagas.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label class={labelClass} for="f-status">Estado</label>
+        <select id="f-status" name="status" class={selectClass}>
+          <option value="">Todos</option>
+          {statuses.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </div>
+
+      <div class="flex items-end">
+        <button
+          type="reset"
+          class="title-slant w-full rounded-md border border-white/20 px-3 py-2 text-sm text-white/70 transition hover:border-ice hover:text-ice"
+        >
+          Limpiar
+        </button>
+      </div>
+    </div>
+
+    <p class="mt-3 text-xs text-white/50" aria-live="polite">
+      <strong class="text-ice" id="hive-count">{total}</strong> de {total} personajes en la lista de deseos.
+    </p>
+  </div>
+</form>

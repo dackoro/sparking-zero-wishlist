@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-void: #0b0616;
+  --color-abyss: #150a2b;
+  --color-grape: #2a1155;
+  --color-royal: #4c1d95;
+  --color-neon: #8b5cf6;
+  --color-ice: #22d3ee;
+  --color-sun: #fbbf24;
+  --color-blood: #ef4444;
+
+  --font-display: 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: #e9e4ff;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-neon);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-royal);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neon);
+  }
+}
+
+@utility title-slant {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------
+   Panal de hexágonos (estilo "All Fighters" de la web oficial).
+   Hexágono de punta arriba: alto = ancho * 1.1547.
+   Las filas se solapan un 25% y las filas pares se desplazan medio
+   hexágono. El número de columnas es fijo por breakpoint para poder
+   señalar las filas con :nth-child; por eso el filtrado reordena
+   nodos en vez de ocultarlos.
+--------------------------------------------------------------- */
+.hive {
+  --cols: 4;
+  --hex-w: clamp(74px, 20vw, 120px);
+  --hex-h: calc(var(--hex-w) * 1.1547);
+  --hex-gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--hex-w));
+  /* Fila = 75% del alto del hexágono: así las filas engranan solas
+     sin márgenes negativos (que aplastarían la celda del grid). */
+  grid-auto-rows: calc(var(--hex-h) * 0.75);
+  column-gap: var(--hex-gap);
+  justify-content: center;
+  padding-inline: 0.75rem;
+  padding-bottom: calc(var(--hex-h) * 0.35);
+}
+
+.hive > * {
+  width: var(--hex-w);
+  height: var(--hex-h);
+  align-self: start;
+}
+
+/* cols = 4 -> desplaza medio hexágono los hijos 5-8, 13-16, ... */
+.hive > :is(:nth-child(8n + 5), :nth-child(8n + 6), :nth-child(8n + 7), :nth-child(8n + 8)) {
+  --shift: calc(50% + var(--hex-gap) / 2);
+}
+
+@media (min-width: 640px) {
+  .hive {
+    --cols: 6;
+    --hex-w: clamp(76px, 13vw, 112px);
+  }
+  .hive > :nth-child(n) {
+    --shift: 0px;
+  }
+  .hive
+    > :is(
+      :nth-child(12n + 7),
+      :nth-child(12n + 8),
+      :nth-child(12n + 9),
+      :nth-child(12n + 10),
+      :nth-child(12n + 11),
+      :nth-child(12n + 12)
+    ) {
+    --shift: calc(50% + var(--hex-gap) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hive {
+    --cols: 9;
+    --hex-w: clamp(82px, 9vw, 118px);
+  }
+  .hive > :nth-child(n) {
+    --shift: 0px;
+  }
+  .hive
+    > :is(
+      :nth-child(18n + 10),
+      :nth-child(18n + 11),
+      :nth-child(18n + 12),
+      :nth-child(18n + 13),
+      :nth-child(18n + 14),
+      :nth-child(18n + 15),
+      :nth-child(18n + 16),
+      :nth-child(18n + 17),
+      :nth-child(18n + 18)
+    ) {
+    --shift: calc(50% + var(--hex-gap) / 2);
+  }
+}
+
+.hex-clip {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Borde del hexágono: capa exterior coloreada + interior recortado */
+/* El tamaño lo pone `.hive > *`: la celda es hija directa del panal. */
+.hex-cell {
+  position: relative;
+  display: block;
+  background: linear-gradient(160deg, #a855f7, #4c1d95 55%, #22d3ee);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transform: translateX(var(--shift, 0px)) scale(var(--hex-scale, 1));
+  transition: filter 0.18s ease, transform 0.18s ease;
+  cursor: pointer;
+}
+
+.hex-cell:hover,
+.hex-cell:focus-visible {
+  filter: brightness(1.25) saturate(1.2)
+    drop-shadow(0 0 12px color-mix(in srgb, var(--accent, #8b5cf6) 75%, transparent));
+  --hex-scale: 1.06;
+  z-index: 5;
+  outline: none;
+}
+
+.hex-inner {
+  position: absolute;
+  inset: 3px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--color-abyss);
+  overflow: hidden;
+}
+
+/* Recorte diagonal tipo "glitch" del panel de personaje */
+.shard {
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Solo opacidad: `transform` lo usa el escalonado del panal. */
+@keyframes hive-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.hive-anim {
+  animation: hive-in 0.35s ease backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hive-anim {
+    animation: none;
+  }
+  .hex-cell {
+    transition: none;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}

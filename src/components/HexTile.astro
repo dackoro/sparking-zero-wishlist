@@ -1,0 +1,53 @@
+---
+import FighterArt from './FighterArt.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  fighter: CollectionEntry<'fighters'>;
+  index?: number;
+}
+
+const { fighter, index = 0 } = Astro.props;
+const d = fighter.data;
+---
+
+<a
+  href={`/fighters/${fighter.id}/`}
+  class="hex-cell hive-anim group"
+  style={`--accent:${d.accent}; animation-delay:${Math.min(index * 18, 600)}ms`}
+  data-hex
+  data-slug={fighter.id}
+  data-name={d.name.toLowerCase()}
+  data-series={d.series}
+  data-saga={d.saga}
+  data-role={d.role}
+  data-year={d.firstAppearance.year}
+  data-importance={d.importance}
+  data-hype={d.hype}
+  data-status={d.status}
+  aria-label={`${d.name} — ${d.series}, ${d.firstAppearance.year}`}
+>
+  <span class="hex-inner" style={`background:linear-gradient(165deg, ${d.accent}55, #150a2b 60%)`}>
+    <span class="absolute inset-0 flex items-center justify-center pt-[8%]">
+      <FighterArt name={d.name} accent={d.accent} image={d.portrait ?? d.render} class="scale-110" />
+    </span>
+
+    {
+      d.status !== 'Wishlist' && (
+        <span class="absolute top-[14%] left-1/2 -translate-x-1/2 rounded-sm bg-ice px-1.5 py-px text-[9px] font-bold tracking-wider text-void uppercase">
+          {d.status === 'Ya es DLC' ? 'DLC' : 'Nuevo'}
+        </span>
+      )
+    }
+
+    <span
+      class="absolute inset-x-0 bottom-[12%] px-1 text-center text-[10px] leading-tight font-bold tracking-tight text-white uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] sm:text-[11px]"
+    >
+      {d.name}
+    </span>
+
+    <span
+      class="absolute inset-0 bg-white/0 transition group-hover:bg-white/10"
+      aria-hidden="true"></span>
+  </span>
+</a>

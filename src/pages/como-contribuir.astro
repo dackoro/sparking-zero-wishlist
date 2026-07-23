@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+import { SERIES, ROLES, MEDIA, STATUS } from '../content.config';
+
+const ejemplo = `{
+  "name": "Pikkon",
+  "nameJa": "パイクーハン",
+  "series": "Dragon Ball Z",
+  "saga": "Torneo del Otro Mundo",
+  "firstAppearance": {
+    "year": 1999,
+    "work": "Dragon Ball Z, ep. 195",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 4,
+  "hype": 5,
+  "status": "Wishlist",
+  "accent": "#22c55e",
+  "quote": "Quítate el peso y hablamos.",
+  "description": "Campeón de la Galaxia del Oeste y rival de Goku en el Otro Mundo.",
+  "whyWanted": "El personaje de relleno más querido de la franquicia...",
+  "signatureMoves": ["Trueno Explosivo", "Hyper Tornado"],
+  "variants": [
+    {
+      "name": "Sin pesos",
+      "source": "Torneo del Otro Mundo",
+      "description": "Camiseta sin mangas, velocidad desatada.",
+      "image": "/fighters/pikkon-sin-pesos.webp",
+      "accent": "#16a34a"
+    }
+  ],
+  "render": "/fighters/pikkon.webp",
+  "portrait": "/fighters/pikkon-portrait.webp",
+  "tags": ["relleno", "otro mundo"]
+}`;
+
+const campos = [
+  ['name', 'sí', 'Nombre en español tal y como se conoce en la comunidad.'],
+  ['nameJa', 'no', 'Nombre original en japonés.'],
+  ['series', 'sí', `Uno de: ${SERIES.join(' · ')}`],
+  ['saga', 'sí', 'Arco o saga donde aparece por primera vez.'],
+  ['firstAppearance.year', 'sí', 'Año de la primera aparición (1984-2030).'],
+  ['firstAppearance.work', 'sí', 'Obra concreta: capítulo, episodio o película.'],
+  ['firstAppearance.medium', 'sí', `Uno de: ${MEDIA.join(' · ')}`],
+  ['role', 'sí', `Uno de: ${ROLES.join(' · ')}`],
+  ['importance', 'sí', '1 = figurante olvidado · 5 = personaje capital de su arco.'],
+  ['hype', 'sí', '1 = petición de nicho · 5 = clamor popular.'],
+  ['status', 'no', `Uno de: ${STATUS.join(' · ')}. Por defecto "Wishlist".`],
+  ['accent', 'sí', 'Color hex de 6 dígitos que tiñe su ficha. Ej: #22c55e'],
+  ['quote', 'no', 'Frase corta del personaje.'],
+  ['description', 'sí', 'Quién es, en una o dos frases (mínimo 20 caracteres).'],
+  ['whyWanted', 'sí', 'Por qué merece entrar al juego (mínimo 20 caracteres).'],
+  ['signatureMoves', 'no', 'Lista de técnicas.'],
+  ['variants', 'no', 'Trajes o formas que también faltan.'],
+  ['render', 'no', 'Ruta en /public/fighters. Si falta se dibuja un placeholder.'],
+  ['portrait', 'no', 'Retrato para el hexágono.'],
+  ['scene', 'no', 'Imagen de fondo para el lado derecho de la ficha.'],
+  ['tags', 'no', 'Etiquetas libres en minúscula.'],
+];
+
+const title = 'Cómo añadir un personaje a la wishlist';
+const description =
+  'Guía para proponer personajes de Dragon Ball que faltan en Sparking! ZERO: crea un JSON en src/content/fighters y abre un pull request.';
+---
+
+<Base title={title} description={description}>
+  <div class="mx-auto max-w-4xl space-y-10 px-5 py-12">
+    <header>
+      <h1 class="title-slant text-4xl text-white sm:text-5xl">
+        <span class="text-ice">»</span> Añade tu personaje <span class="text-ice">«</span>
+      </h1>
+      <p class="mt-4 text-sm leading-relaxed text-white/70">
+        Cada personaje es un archivo JSON independiente dentro de <code
+          class="rounded bg-white/10 px-1.5 py-0.5 text-ice">src/content/fighters/</code
+        >. Así dos pull requests nunca chocan entre sí y el sitio se regenera solo. Si el JSON no cumple el
+        esquema, el build falla y lo verás en el propio PR antes de que nadie lo revise.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">1. Los pasos</h2>
+      <ol class="list-inside list-decimal space-y-2 text-sm text-white/75">
+        <li>Haz fork del repositorio y crea una rama, por ejemplo <code class="text-ice">add/pikkon</code>.</li>
+        <li>
+          Crea <code class="text-ice">src/content/fighters/&lt;slug&gt;.json</code> — el nombre del archivo, en
+          minúsculas y con guiones, es la URL del personaje.
+        </li>
+        <li>
+          Si tienes arte propio, déjalo en <code class="text-ice">public/fighters/</code> en formato WebP. Si no,
+          no pongas nada: la página dibuja un placeholder con su color.
+        </li>
+        <li>Ejecuta <code class="text-ice">npm run build</code> para validar el esquema.</li>
+        <li>Abre el pull request describiendo de dónde salen los datos.</li>
+      </ol>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">2. Reglas de la casa</h2>
+      <ul class="list-inside list-disc space-y-2 text-sm text-white/75">
+        <li>Solo personajes que <strong class="text-white">no estén ya</strong> en el juego.</li>
+        <li>Si un personaje llega como DLC, no se borra: se cambia su <code class="text-ice">status</code> a "Ya es DLC".</li>
+        <li>Nada de arte robado. Sube solo trabajo propio o con licencia que lo permita.</li>
+        <li>
+          <code class="text-ice">importance</code> mide su peso en la historia; <code class="text-ice">hype</code> mide
+          cuánto lo pide la gente. No son lo mismo y no pasa nada por que no coincidan.
+        </li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">3. Los campos</h2>
+      <div class="overflow-x-auto rounded-lg border border-neon/25">
+        <table class="w-full min-w-[36rem] text-left text-sm">
+          <thead class="bg-white/5 text-[11px] tracking-widest text-white/50 uppercase">
+            <tr>
+              <th class="px-3 py-2">Campo</th>
+              <th class="px-3 py-2">Obligatorio</th>
+              <th class="px-3 py-2">Qué es</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5">
+            {
+              campos.map(([campo, req, desc]) => (
+                <tr>
+                  <td class="px-3 py-2 font-mono text-xs whitespace-nowrap text-ice">{campo}</td>
+                  <td class="px-3 py-2 text-white/50">{req}</td>
+                  <td class="px-3 py-2 text-white/75">{desc}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">4. Ejemplo completo</h2>
+      <pre
+        class="overflow-x-auto rounded-lg border border-neon/25 bg-void/80 p-4 text-xs leading-relaxed text-white/80"><code>{ejemplo}</code></pre>
+    </section>
+
+    <a href="/" class="title-slant inline-block rounded-md border border-neon/50 px-4 py-2 text-sm transition hover:border-ice hover:text-ice">
+      ← Volver al panal
+    </a>
+  </div>
+</Base>

@@ -1,0 +1,28 @@
+{
+  "name": "Pui Pui",
+  "nameJa": "プイプイ",
+  "series": "Dragon Ball Z",
+  "saga": "Babidi",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Dragon Ball, cap. 448",
+    "medium": "Manga"
+  },
+  "role": "Secundario",
+  "importance": 2,
+  "hype": 3,
+  "accent": "#f43f5e",
+  "quote": "En mi planeta la gravedad es diez veces mayor.",
+  "description": "Guerrero de Babidi del planeta Zoon, que reta a Vegeta en una sala con gravedad multiplicada. Vegeta lo aniquila sin despeinarse.",
+  "whyWanted": "Es el chiste recurrente favorito del fandom y su nivel bajo lo hace ideal para modos de historia y combates asimétricos.",
+  "signatureMoves": [
+    "Ráfaga de Zoon",
+    "Campo de gravedad",
+    "Puño relámpago"
+  ],
+  "variants": [],
+  "tags": [
+    "babidi",
+    "nivel bajo"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Rey Cold",
+  "nameJa": "コルド大王",
+  "series": "Dragon Ball Z",
+  "saga": "Trunks del futuro",
+  "firstAppearance": {
+    "year": 1991,
+    "work": "Dragon Ball, cap. 330",
+    "medium": "Manga"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#8b5cf6",
+  "quote": "Deja que tu padre se encargue.",
+  "description": "Padre de Freezer y Cooler, emperador del universo antes que ellos. Llega a la Tierra con Mecha Freezer y es partido por Trunks del futuro en segundos.",
+  "whyWanted": "Completa la familia Cold junto a Freezer y Cooler, y su diseño de forma final permanente lo hace visualmente único.",
+  "signatureMoves": [
+    "Rayo mortal",
+    "Espada de Trunks robada",
+    "Supernova"
+  ],
+  "variants": [
+    {
+      "name": "Forma final",
+      "source": "Saga Trunks",
+      "description": "Su aspecto habitual, con capa."
+    }
+  ],
+  "tags": [
+    "familia cold",
+    "emperador"
+  ]
+}

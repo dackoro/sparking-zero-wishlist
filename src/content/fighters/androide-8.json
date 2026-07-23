@@ -1,0 +1,28 @@
+{
+  "name": "Androide 8",
+  "nameJa": "人造人間8号",
+  "series": "Dragon Ball",
+  "saga": "Ejército de la Red Ribbon",
+  "firstAppearance": {
+    "year": 1985,
+    "work": "Dragon Ball, cap. 63",
+    "medium": "Manga"
+  },
+  "role": "Secundario",
+  "importance": 2,
+  "hype": 3,
+  "accent": "#22c55e",
+  "quote": "No me gusta pelear.",
+  "description": "Androide pacifista de la Red Ribbon, apodado Octavio por Goku, que se niega a cumplir órdenes de matar. Un Frankenstein bonachón con una bomba en el pecho.",
+  "whyWanted": "Es el corazón de la saga Red Ribbon y su gigantesco tamaño con estilo de pelea a regañadientes daría un personaje muy distinto al resto.",
+  "signatureMoves": [
+    "Puñetazo de titán",
+    "Placaje",
+    "Escudo humano"
+  ],
+  "variants": [],
+  "tags": [
+    "androide",
+    "red ribbon"
+  ]
+}

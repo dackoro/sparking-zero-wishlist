@@ -1,0 +1,41 @@
+{
+  "name": "Garlic Jr.",
+  "nameJa": "ガーリックJr.",
+  "series": "Películas",
+  "saga": "La leyenda de Shen Long",
+  "firstAppearance": {
+    "year": 1988,
+    "work": "Película 1: La leyenda de Shen Long",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 3,
+  "accent": "#a3e635",
+  "quote": "Soy inmortal, no podéis hacerme nada.",
+  "description": "Demonio inmortal que reclama el puesto de Dios de la Tierra y abre la Zona Muerta. Su inmortalidad lo condena a flotar eternamente en esa dimensión.",
+  "whyWanted": "Es el villano de la primera película de la franquicia y protagonista de su propia saga en el anime. La Zona Muerta sería un ultimate icónico.",
+  "signatureMoves": [
+    "Zona Muerta",
+    "Transformación gigante",
+    "Ráfaga demoníaca"
+  ],
+  "variants": [
+    {
+      "name": "Forma base",
+      "source": "Película 1",
+      "description": "Pequeño, con capa y pelo blanco."
+    },
+    {
+      "name": "Forma gigante",
+      "source": "Saga Garlic Jr.",
+      "description": "Musculado y con cuernos.",
+      "accent": "#4d7c0f"
+    }
+  ],
+  "tags": [
+    "película",
+    "demonio",
+    "relleno"
+  ]
+}

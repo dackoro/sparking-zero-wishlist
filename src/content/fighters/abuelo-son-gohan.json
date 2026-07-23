@@ -1,0 +1,35 @@
+{
+  "name": "Abuelo Son Gohan",
+  "nameJa": "孫悟飯",
+  "series": "Dragon Ball",
+  "saga": "21º Torneo de las Artes Marciales",
+  "firstAppearance": {
+    "year": 1985,
+    "work": "Dragon Ball, cap. 10",
+    "medium": "Manga"
+  },
+  "role": "Secundario",
+  "importance": 2,
+  "hype": 3,
+  "accent": "#a16207",
+  "quote": "Cuida bien de esa esfera de cuatro estrellas.",
+  "description": "Anciano artista marcial que encontró y crió a Goku, alumno del Maestro Roshi. Murió aplastado por su propio nieto convertido en Ozaru.",
+  "whyWanted": "Es el origen de toda la historia y regresó desde el Otro Mundo para pelear en el 21º Torneo, así que tiene precedente jugable directo.",
+  "signatureMoves": [
+    "Kamehameha",
+    "Puño del anciano",
+    "Aureola del Otro Mundo"
+  ],
+  "variants": [
+    {
+      "name": "Otro Mundo",
+      "source": "21º Torneo",
+      "description": "Con aureola, disfrazado durante el torneo."
+    }
+  ],
+  "tags": [
+    "clásico",
+    "anciano",
+    "humano"
+  ]
+}

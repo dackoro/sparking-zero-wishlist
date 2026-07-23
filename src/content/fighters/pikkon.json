@@ -1,0 +1,41 @@
+{
+  "name": "Pikkon",
+  "nameJa": "パイクーハン",
+  "series": "Dragon Ball Z",
+  "saga": "Torneo del Otro Mundo",
+  "firstAppearance": {
+    "year": 1999,
+    "work": "Dragon Ball Z, ep. 195",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 4,
+  "hype": 5,
+  "accent": "#22c55e",
+  "quote": "Quítate el peso y hablamos.",
+  "description": "Campeón de la Galaxia del Oeste y rival directo de Goku en el Otro Mundo. Pelea con chaqueta y turbante lastrados que se quita para desatar una velocidad absurda.",
+  "whyWanted": "Es el personaje de relleno más querido de toda la franquicia y lleva pedido desde Budokai Tenkaichi 3. Su mecánica de quitarse los pesos encaja perfecto con el sistema de transformaciones del juego.",
+  "signatureMoves": [
+    "Trueno Explosivo",
+    "Hyper Tornado",
+    "Quitarse los pesos"
+  ],
+  "variants": [
+    {
+      "name": "Con pesos",
+      "source": "Torneo del Otro Mundo",
+      "description": "Chaqueta y turbante puestos: menos velocidad, más defensa.",
+      "accent": "#16a34a"
+    },
+    {
+      "name": "Sin pesos",
+      "source": "Torneo del Otro Mundo",
+      "description": "Camiseta sin mangas, velocidad desatada."
+    }
+  ],
+  "tags": [
+    "relleno",
+    "otro mundo",
+    "rival"
+  ]
+}

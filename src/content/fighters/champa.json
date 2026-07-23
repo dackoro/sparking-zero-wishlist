@@ -1,0 +1,28 @@
+{
+  "name": "Champa",
+  "nameJa": "シャンパ",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo entre Universos (6 vs 7)",
+  "firstAppearance": {
+    "year": 2015,
+    "work": "Dragon Ball Super, ep. 28",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#a855f7",
+  "quote": "¡Beerus, esto no se queda así!",
+  "description": "Dios de la Destrucción del Universo 6 y hermano gemelo de Beerus, tan glotón como rencoroso. Organizó el torneo entre universos por unas Súper Esferas.",
+  "whyWanted": "Es el único Dios de la Destrucción con rivalidad directa contra un personaje ya jugable. Un duelo Beerus vs Champa se pide solo.",
+  "signatureMoves": [
+    "Hakai",
+    "Esfera de destrucción",
+    "Ráfaga divina"
+  ],
+  "variants": [],
+  "tags": [
+    "universo 6",
+    "dios de la destrucción"
+  ]
+}

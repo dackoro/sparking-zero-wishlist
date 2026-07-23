@@ -1,0 +1,142 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import FilterBar from '../components/FilterBar.astro';
+import HexTile from '../components/HexTile.astro';
+import FighterPanel from '../components/FighterPanel.astro';
+import logo from '../assets/dbsz-logo.png';
+
+const fighters = (await getCollection('fighters')).sort(
+  (a, b) =>
+    b.data.importance - a.data.importance || a.data.firstAppearance.year - b.data.firstAppearance.year,
+);
+
+const uniq = (values: string[]) => [...new Set(values)].sort((a, b) => a.localeCompare(b, 'es'));
+const series = uniq(fighters.map((f) => f.data.series));
+const sagas = uniq(fighters.map((f) => f.data.saga));
+const roles = uniq(fighters.map((f) => f.data.role));
+const statuses = uniq(fighters.map((f) => f.data.status));
+
+const variantCount = fighters.reduce((acc, f) => acc + f.data.variants.length, 0);
+const oldest = Math.min(...fighters.map((f) => f.data.firstAppearance.year));
+
+const title = 'Personajes que faltan en Sparking! ZERO — Wishlist de la comunidad';
+const description = `Lista de deseos hecha por fans: ${fighters.length} personajes de Dragon Ball que aún no están en Sparking! ZERO, con su saga, año de primera aparición, nivel de importancia y los trajes que también faltan.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Personajes que faltan en DRAGON BALL: Sparking! ZERO',
+  description,
+  numberOfItems: fighters.length,
+  itemListElement: fighters.map((f, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: f.data.name,
+    url: new URL(`/fighters/${f.id}/`, Astro.site).href,
+  })),
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  {/* ------------------------------ Hero ------------------------------ */}
+  <section class="relative overflow-hidden px-5 pt-14 pb-10 text-center">
+    <Image
+      src={logo}
+      alt="DRAGON BALL: Sparking! ZERO"
+      width={420}
+      densities={[1, 2]}
+      class="mx-auto w-64 sm:w-80"
+    />
+
+    <h1 class="title-slant mt-8 text-4xl leading-none text-white sm:text-6xl lg:text-7xl">
+      <span class="text-ice">»</span> Los que faltan <span class="text-ice">«</span>
+    </h1>
+
+    <p class="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base">
+      El roster de <strong class="text-white">Sparking! ZERO</strong> es enorme, pero todavía deja fuera a medio
+      Dragon Ball. Esta es la lista de deseos de la comunidad: personajes que nos gustaría ver como DLC,
+      ordenables por saga, por año en que los vimos por primera vez o por lo secundarios que son. Al abrir una
+      ficha verás también los <strong class="text-white">trajes y variantes</strong> que faltan.
+    </p>
+
+    <dl class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-x-10 gap-y-4">
+      {
+        [
+          { k: 'Personajes propuestos', v: fighters.length },
+          { k: 'Trajes y variantes', v: variantCount },
+          { k: 'Sagas cubiertas', v: sagas.length },
+          { k: 'Desde el año', v: oldest },
+        ].map((s) => (
+          <div>
+            <dd class="title-slant text-3xl text-ice">{s.v}</dd>
+            <dt class="text-[10px] tracking-widest text-white/45 uppercase">{s.k}</dt>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  {/* ---------------------------- Filtros ---------------------------- */}
+  <section class="pt-4 pb-8">
+    <h2 class="title-slant mb-6 text-center text-3xl text-white sm:text-5xl">
+      <span class="text-neon">»</span> Todos los candidatos <span class="text-neon">«</span>
+    </h2>
+    <FilterBar series={series} sagas={sagas} roles={roles} statuses={statuses} total={fighters.length} />
+  </section>
+
+  {/* ----------------------------- Panal ----------------------------- */}
+  <section class="pb-20">
+    <div id="hive" class="hive">
+      {fighters.map((fighter, i) => <HexTile fighter={fighter} index={i} />)}
+    </div>
+
+    <p id="hive-empty" hidden class="mt-10 text-center text-sm text-white/50">
+      Ningún personaje encaja con esos filtros. Prueba a limpiarlos… o proponlo tú mismo.
+    </p>
+
+    <p class="mt-14 text-center text-xs text-white/40">
+      Pulsa cualquier hexágono para ver su ficha completa.
+    </p>
+  </section>
+
+  {/* ---------------------------- Overlay ---------------------------- */}
+  <div
+    id="fighter-modal"
+    hidden
+    class="fixed inset-0 z-50 overflow-y-auto"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Ficha de personaje"
+  >
+    <div data-backdrop class="fixed inset-0 bg-void/85 backdrop-blur-sm"></div>
+    <div class="relative mx-auto my-6 w-full max-w-5xl px-4 sm:my-10">
+      <button
+        type="button"
+        data-close
+        class="mb-3 ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-2xl leading-none text-white/70 transition hover:border-ice hover:text-ice"
+        aria-label="Cerrar ficha"
+      >
+        ×
+      </button>
+      <div id="fighter-modal-content"></div>
+    </div>
+  </div>
+
+  {
+    fighters.map((fighter) => (
+      <template data-panel-for={fighter.id}>
+        <FighterPanel fighter={fighter} />
+      </template>
+    ))
+  }
+</Base>
+
+<script>
+  import { initRoster } from '../scripts/roster';
+  import { initLooks } from '../scripts/looks';
+
+  initRoster();
+  initLooks();
+</script>

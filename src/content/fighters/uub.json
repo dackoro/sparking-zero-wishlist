@@ -1,0 +1,46 @@
+{
+  "name": "Uub",
+  "nameJa": "ウーブ",
+  "series": "Dragon Ball Z",
+  "saga": "28º Torneo de las Artes Marciales",
+  "firstAppearance": {
+    "year": 1995,
+    "work": "Dragon Ball, cap. 517",
+    "medium": "Manga"
+  },
+  "role": "Secundario",
+  "importance": 4,
+  "hype": 5,
+  "accent": "#d97706",
+  "quote": "No sé por qué, pero siento que te conozco.",
+  "description": "Reencarnación humana de Buu, nacida gracias al deseo de Goku. Un niño con un poder descomunal y sin ningún control, al que Goku se lleva para entrenar en el último capítulo del manga.",
+  "whyWanted": "Cierra literalmente la historia de Dragon Ball y no está jugable. Su versión Majuub además trae un moveset único con el rayo de chocolate.",
+  "signatureMoves": [
+    "Kamehameha",
+    "Ráfaga instintiva",
+    "Rayo de chocolate (Majuub)"
+  ],
+  "variants": [
+    {
+      "name": "Uub niño",
+      "source": "28º Torneo",
+      "description": "Su debut, sin entrenar."
+    },
+    {
+      "name": "Uub adulto",
+      "source": "Dragon Ball GT",
+      "description": "Ya entrenado por Goku, con gi naranja."
+    },
+    {
+      "name": "Majuub",
+      "source": "Dragon Ball GT",
+      "description": "Fusionado con Buu: piel rosada y traje de Buu.",
+      "accent": "#ec4899"
+    }
+  ],
+  "tags": [
+    "buu",
+    "sucesor",
+    "gt"
+  ]
+}

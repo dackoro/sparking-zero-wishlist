@@ -1,0 +1,40 @@
+{
+  "name": "Bojack",
+  "nameJa": "ボージャック",
+  "series": "Películas",
+  "saga": "Los guerreros de plata",
+  "firstAppearance": {
+    "year": 1993,
+    "work": "Película 9: Los guerreros de plata",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "importance": 4,
+  "hype": 5,
+  "accent": "#14b8a6",
+  "quote": "Los Kaio ya no pueden encerrarme.",
+  "description": "Pirata espacial hera liberado tras la muerte de los Kaio, líder de los Guerreros Galácticos. Es el villano que obliga a Gohan a desatar su Súper Saiyan 2 tras la saga de Cell.",
+  "whyWanted": "Su combate contra Gohan SS2 es uno de los duelos más recordados de las películas y su transformación Full Power cambia por completo su silueta.",
+  "signatureMoves": [
+    "Galactic Buster",
+    "Grand Smasher",
+    "Full Power"
+  ],
+  "variants": [
+    {
+      "name": "Bojack",
+      "source": "Película 9",
+      "description": "Piel verde y pelo naranja recogido."
+    },
+    {
+      "name": "Full Power",
+      "source": "Película 9",
+      "description": "Piel azulada, musculatura enorme y pelo suelto.",
+      "accent": "#0891b2"
+    }
+  ],
+  "tags": [
+    "película",
+    "pirata espacial"
+  ]
+}

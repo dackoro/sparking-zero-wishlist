@@ -1,0 +1,45 @@
+{
+  "name": "Bulma",
+  "nameJa": "ブルマ",
+  "series": "Dragon Ball",
+  "saga": "Búsqueda de las Dragon Balls",
+  "firstAppearance": {
+    "year": 1984,
+    "work": "Dragon Ball, cap. 1",
+    "medium": "Manga"
+  },
+  "role": "Apoyo",
+  "importance": 5,
+  "hype": 3,
+  "accent": "#06b6d4",
+  "quote": "Sin mí no habría radar, ni nave, ni nada.",
+  "description": "Genio de la Corporación Cápsula y la primera persona que conoció a Goku. Sin sus inventos no habría radar del dragón, ni viaje a Namek, ni máquina del tiempo.",
+  "whyWanted": "Es la segunda protagonista de la franquicia y jamás ha sido jugable aquí. Un moveset de gadgets y cápsulas sería un soplo de aire fresco.",
+  "signatureMoves": [
+    "Cápsula Hoi Poi",
+    "Pistola de rayos",
+    "Radar del dragón"
+  ],
+  "variants": [
+    {
+      "name": "Dragon Ball",
+      "source": "Saga inicial",
+      "description": "Con su vestido y pelo corto."
+    },
+    {
+      "name": "Namek",
+      "source": "Saga Freezer",
+      "description": "Traje de exploración y pañuelo."
+    },
+    {
+      "name": "Dragon Ball Super",
+      "source": "Saga Super",
+      "description": "Look moderno con pelo corto."
+    }
+  ],
+  "tags": [
+    "humano",
+    "femenino",
+    "soporte"
+  ]
+}

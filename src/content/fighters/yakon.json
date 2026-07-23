@@ -1,0 +1,28 @@
+{
+  "name": "Yakon",
+  "nameJa": "ヤコン",
+  "series": "Dragon Ball Z",
+  "saga": "Babidi",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Dragon Ball, cap. 452",
+    "medium": "Manga"
+  },
+  "role": "Secundario",
+  "importance": 2,
+  "hype": 2,
+  "accent": "#16a34a",
+  "quote": "La luz es mi alimento.",
+  "description": "Monstruo del planeta oscuro que devora la luz y pelea a ciegas. Estalla cuando Goku le da más energía de la que puede tragar.",
+  "whyWanted": "Su mecánica de absorber luz y oscurecer el escenario sería de lo más original que podría llegar al juego.",
+  "signatureMoves": [
+    "Devorar la luz",
+    "Garra sombría",
+    "Oscuridad total"
+  ],
+  "variants": [],
+  "tags": [
+    "babidi",
+    "monstruo"
+  ]
+}

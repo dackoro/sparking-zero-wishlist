@@ -1,0 +1,28 @@
+{
+  "name": "Zangya",
+  "nameJa": "ザンギャ",
+  "series": "Películas",
+  "saga": "Los guerreros de plata",
+  "firstAppearance": {
+    "year": 1993,
+    "work": "Película 9: Los guerreros de plata",
+    "medium": "Película"
+  },
+  "role": "Secundario",
+  "importance": 2,
+  "hype": 3,
+  "accent": "#f59e0b",
+  "quote": "No te confíes por mi aspecto.",
+  "description": "La única mujer de los Guerreros Galácticos de Bojack, rápida y burlona. Muere a manos de su propio líder cuando deja de serle útil.",
+  "whyWanted": "El roster tiene muy pocas luchadoras y ninguna de las películas clásicas. Es de las villanas más pedidas junto a Towa.",
+  "signatureMoves": [
+    "Ráfaga de energía",
+    "Golpe giratorio",
+    "Ataque en pareja"
+  ],
+  "variants": [],
+  "tags": [
+    "película",
+    "femenino"
+  ]
+}

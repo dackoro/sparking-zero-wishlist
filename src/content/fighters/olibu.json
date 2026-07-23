@@ -1,0 +1,29 @@
+{
+  "name": "Olibu",
+  "nameJa": "オリブー",
+  "series": "Dragon Ball Z",
+  "saga": "Torneo del Otro Mundo",
+  "firstAppearance": {
+    "year": 1999,
+    "work": "Dragon Ball Z, ep. 195",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 1,
+  "hype": 2,
+  "accent": "#facc15",
+  "quote": "En vida derroté a un ejército entero.",
+  "description": "Héroe humano de la Galaxia del Norte, un coloso rubio al estilo Hércules que compitió en el Torneo del Otro Mundo. Cayó contra Pikkon.",
+  "whyWanted": "Es el complemento natural de Pikkon y uno de los pocos humanos puros capaces de aguantar en el Otro Mundo.",
+  "signatureMoves": [
+    "Puño de luz",
+    "Placaje heroico",
+    "Grito de guerra"
+  ],
+  "variants": [],
+  "tags": [
+    "otro mundo",
+    "relleno",
+    "humano"
+  ]
+}

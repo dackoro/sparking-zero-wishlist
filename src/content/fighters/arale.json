@@ -1,0 +1,40 @@
+{
+  "name": "Arale Norimaki",
+  "nameJa": "アラレちゃん",
+  "series": "Spin-off",
+  "saga": "Crossover con Dr. Slump",
+  "firstAppearance": {
+    "year": 1986,
+    "work": "Dragon Ball, cap. 57 (crossover)",
+    "medium": "Manga"
+  },
+  "role": "Cameo",
+  "importance": 2,
+  "hype": 5,
+  "accent": "#38bdf8",
+  "quote": "¡N’cha!",
+  "description": "Robot con forma de niña creada por el Dr. Slump, capaz de partir el planeta de un puñetazo. Apareció en Dragon Ball y volvió en Super para pelear contra Goku y Bofa.",
+  "whyWanted": "Su fuerza absurda y su humor la convierten en el personaje invitado soñado. Ya peleó en Dragon Ball Super, así que es canon jugable.",
+  "signatureMoves": [
+    "N’cha Cannon",
+    "Kiiin",
+    "Puño rompeplanetas"
+  ],
+  "variants": [
+    {
+      "name": "Clásica",
+      "source": "Dr. Slump",
+      "description": "Con su gorro alado y peto."
+    },
+    {
+      "name": "Dragon Ball Super",
+      "source": "Saga Super",
+      "description": "Rediseño moderno."
+    }
+  ],
+  "tags": [
+    "crossover",
+    "robot",
+    "femenino"
+  ]
+}

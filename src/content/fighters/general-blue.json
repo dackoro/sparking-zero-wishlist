@@ -1,0 +1,28 @@
+{
+  "name": "General Blue",
+  "nameJa": "ブルー将軍",
+  "series": "Dragon Ball",
+  "saga": "Ejército de la Red Ribbon",
+  "firstAppearance": {
+    "year": 1985,
+    "work": "Dragon Ball, cap. 72",
+    "medium": "Manga"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 3,
+  "accent": "#2563eb",
+  "quote": "No puedes moverte, ¿verdad?",
+  "description": "Oficial de élite de la Red Ribbon con poderes telequinéticos capaces de paralizar a cualquiera. Murió por la lengua de Tao Pai Pai tras fracasar.",
+  "whyWanted": "Su parálisis psíquica sería una mecánica de control totalmente nueva, y es el oficial más recordado del ejército.",
+  "signatureMoves": [
+    "Parálisis psíquica",
+    "Rayo telequinético",
+    "Combate submarino"
+  ],
+  "variants": [],
+  "tags": [
+    "red ribbon",
+    "psíquico"
+  ]
+}

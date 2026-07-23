@@ -1,0 +1,46 @@
+{
+  "name": "Mercenario Tao",
+  "nameJa": "桃白白",
+  "series": "Dragon Ball",
+  "saga": "Ejército de la Red Ribbon",
+  "firstAppearance": {
+    "year": 1985,
+    "work": "Dragon Ball, cap. 93",
+    "medium": "Manga"
+  },
+  "role": "Antagonista",
+  "importance": 4,
+  "hype": 4,
+  "accent": "#dc2626",
+  "quote": "Mi tarifa es de mil millones de zeni.",
+  "description": "El asesino a sueldo más caro del mundo y hermano del Maestro Tsuru. Viaja lanzando un pilar de piedra y mató a Bora de un solo golpe frente a Goku.",
+  "whyWanted": "Es el primer villano que de verdad da miedo en la serie y su versión cyborg añade una segunda forma con cuchilla y cañón. Le falta a toda la línea de la Red Ribbon.",
+  "signatureMoves": [
+    "Dodonpa",
+    "Cuchilla de la muerte",
+    "Viaje en pilar"
+  ],
+  "variants": [
+    {
+      "name": "Tao original",
+      "source": "Saga Red Ribbon",
+      "description": "Traje amarillo con el kanji de \"asesino\"."
+    },
+    {
+      "name": "Cyborg Tao",
+      "source": "23º Torneo",
+      "description": "Cuerpo mecánico con cuchilla y cañón en el brazo.",
+      "accent": "#94a3b8"
+    },
+    {
+      "name": "Tao GT",
+      "source": "Dragon Ball GT",
+      "description": "Reaparición como maestro venido a menos."
+    }
+  ],
+  "tags": [
+    "red ribbon",
+    "asesino",
+    "clásico"
+  ]
+}

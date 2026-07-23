@@ -1,0 +1,40 @@
+{
+  "name": "Yajirobe",
+  "nameJa": "ヤジロベー",
+  "series": "Dragon Ball",
+  "saga": "Piccolo Daimaō",
+  "firstAppearance": {
+    "year": 1986,
+    "work": "Dragon Ball, cap. 148",
+    "medium": "Manga"
+  },
+  "role": "Apoyo",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#84cc16",
+  "quote": "Yo solo vine por la comida.",
+  "description": "Espadachín gruñón y cobarde que vive en la Torre de Karin. Aun así le cortó la cola a Vegeta en su forma de mono gigante y salvó la Tierra sin querer.",
+  "whyWanted": "Es el rey de los momentos clave por accidente y el único luchador de la serie con espada corta y semillas del ermitaño como recurso. Un personaje cómico con utilidad real.",
+  "signatureMoves": [
+    "Corte de katana",
+    "Semilla del ermitaño",
+    "Huida estratégica"
+  ],
+  "variants": [
+    {
+      "name": "Dragon Ball",
+      "source": "Saga Piccolo Daimaō",
+      "description": "Su túnica naranja de siempre."
+    },
+    {
+      "name": "Saga Saiyan",
+      "source": "Llegada de los Saiyan",
+      "description": "Con espada al hombro, listo para cortar colas."
+    }
+  ],
+  "tags": [
+    "humano",
+    "espada",
+    "cómico"
+  ]
+}

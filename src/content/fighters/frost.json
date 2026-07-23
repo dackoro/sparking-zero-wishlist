@@ -1,0 +1,45 @@
+{
+  "name": "Frost",
+  "nameJa": "フロスト",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo entre Universos (6 vs 7)",
+  "firstAppearance": {
+    "year": 2015,
+    "work": "Dragon Ball Super, ep. 32",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#38bdf8",
+  "quote": "Soy un héroe en mi universo.",
+  "description": "La contraparte del Universo 6 de Freezer, que finge ser un héroe galáctico mientras hace trampas con un aguijón venenoso. Un estafador con clase.",
+  "whyWanted": "Es el eco perfecto de Freezer con sus propias formas y ya peleó en dos torneos. El Universo 6 necesita más representación.",
+  "signatureMoves": [
+    "Aguijón venenoso",
+    "Rayo mortal",
+    "Forma final"
+  ],
+  "variants": [
+    {
+      "name": "Primera forma",
+      "source": "Torneo U6",
+      "description": "Aspecto elegante y cornudo."
+    },
+    {
+      "name": "Forma final",
+      "source": "Torneo del Poder",
+      "description": "Silueta esbelta, como Freezer final."
+    },
+    {
+      "name": "Forma asesina",
+      "source": "Torneo del Poder",
+      "description": "Musculada y con armadura pesada.",
+      "accent": "#7dd3fc"
+    }
+  ],
+  "tags": [
+    "universo 6",
+    "freezer"
+  ]
+}

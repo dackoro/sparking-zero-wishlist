@@ -1,0 +1,72 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import FighterPanel from '../../components/FighterPanel.astro';
+
+export async function getStaticPaths() {
+  const fighters = await getCollection('fighters');
+  return fighters.map((fighter) => ({
+    params: { slug: fighter.id },
+    props: { fighter },
+  }));
+}
+
+interface Props {
+  fighter: CollectionEntry<'fighters'>;
+}
+
+const { fighter } = Astro.props;
+const d = fighter.data;
+
+const title = `${d.name} en Sparking! ZERO — ficha de la wishlist`;
+const description = `${d.name} (${d.series}, ${d.firstAppearance.year}): ${d.whyWanted}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: `${d.name}, candidato a DLC de Sparking! ZERO`,
+  description,
+  about: {
+    '@type': 'Person',
+    name: d.name,
+    alternateName: d.nameJa,
+  },
+  isPartOf: {
+    '@type': 'CollectionPage',
+    name: 'Personajes que faltan en Sparking! ZERO',
+    url: new URL('/', Astro.site).href,
+  },
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <nav class="mb-5 text-xs text-white/50" aria-label="Migas de pan">
+      <a href="/" class="transition hover:text-ice">Wishlist</a>
+      <span class="mx-2 text-white/25">/</span>
+      <span class="text-white/70">{d.name}</span>
+    </nav>
+
+    <FighterPanel fighter={fighter} standalone />
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href="/"
+        class="title-slant rounded-md border border-neon/50 px-4 py-2 text-sm text-white/80 transition hover:border-ice hover:text-ice"
+      >
+        ← Volver al panal
+      </a>
+      <a
+        href="/como-contribuir/"
+        class="title-slant rounded-md border border-white/20 px-4 py-2 text-sm text-white/60 transition hover:border-ice hover:text-ice"
+      >
+        Corregir esta ficha
+      </a>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { initLooks } from '../../scripts/looks';
+  initLooks();
+</script>

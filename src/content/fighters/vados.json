@@ -1,0 +1,29 @@
+{
+  "name": "Vados",
+  "nameJa": "ヴァドス",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo entre Universos (6 vs 7)",
+  "firstAppearance": {
+    "year": 2015,
+    "work": "Dragon Ball Super, ep. 28",
+    "medium": "Anime"
+  },
+  "role": "Apoyo",
+  "importance": 3,
+  "hype": 5,
+  "accent": "#a5b4fc",
+  "quote": "Señor Champa, ha vuelto a engordar.",
+  "description": "Ángel y maestra del Universo 6, hermana mayor de Whis y aún más fuerte que él. Entrena a Champa y al equipo del U6 con una calma imperturbable.",
+  "whyWanted": "Whis ya es jugable y ella es su superior directa. Es la petición número uno del bando angelical y del Universo 6.",
+  "signatureMoves": [
+    "Báculo angelical",
+    "Barrera temporal",
+    "Ultra Instinto"
+  ],
+  "variants": [],
+  "tags": [
+    "ángel",
+    "universo 6",
+    "femenino"
+  ]
+}

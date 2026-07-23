@@ -1,0 +1,45 @@
+{
+  "name": "Chi-Chi",
+  "nameJa": "チチ",
+  "series": "Dragon Ball",
+  "saga": "23º Torneo de las Artes Marciales",
+  "firstAppearance": {
+    "year": 1985,
+    "work": "Dragon Ball, cap. 60",
+    "medium": "Manga"
+  },
+  "role": "Apoyo",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#e11d48",
+  "quote": "¡Gohan tiene que estudiar!",
+  "description": "Hija de Ox-Satán, artista marcial desde niña y esposa de Goku. Compitió en el 23º Torneo y sigue siendo una de las humanas más fuertes de la serie.",
+  "whyWanted": "Peleó en un torneo mundial y nunca ha sido jugable en esta saga de juegos. Su versión con casco de niña es un diseño que los fans llevan años pidiendo.",
+  "signatureMoves": [
+    "Casco cortante",
+    "Puño de la montaña Fry",
+    "Sartén de guerra"
+  ],
+  "variants": [
+    {
+      "name": "Chi-Chi niña",
+      "source": "Saga Red Ribbon",
+      "description": "Con casco alado y bikini de combate."
+    },
+    {
+      "name": "23º Torneo",
+      "source": "23º Torneo",
+      "description": "Gi de combate y coleta."
+    },
+    {
+      "name": "Ama de casa",
+      "source": "Dragon Ball Z",
+      "description": "Vestido chino y moño."
+    }
+  ],
+  "tags": [
+    "humano",
+    "femenino",
+    "torneo"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Nam",
+  "nameJa": "ナム",
+  "series": "Dragon Ball",
+  "saga": "21º Torneo de las Artes Marciales",
+  "firstAppearance": {
+    "year": 1985,
+    "work": "Dragon Ball, cap. 40",
+    "medium": "Manga"
+  },
+  "role": "Secundario",
+  "importance": 3,
+  "hype": 4,
+  "status": "Ya es DLC",
+  "accent": "#f97316",
+  "quote": "Peleo por el agua de mi aldea.",
+  "description": "Guerrero asceta del desierto que entró al 21º Torneo para ganar el premio y llevar agua a su aldea moribunda. Llegó a semifinales y obligó a Goku a pelear en serio antes de caer.",
+  "whyWanted": "Es de los pocos humanos del torneo original con estilo propio y un arsenal aéreo reconocible. Rellena el hueco de la era Dragon Ball clásica, que apenas tiene representación en el roster.",
+  "signatureMoves": [
+    "Puño Ultrasónico Volador",
+    "Kikōhō del desierto",
+    "Salto del halcón"
+  ],
+  "variants": [
+    {
+      "name": "Túnica del desierto",
+      "source": "21º Torneo",
+      "description": "Su look clásico con turbante y hombro descubierto.",
+      "accent": "#f97316"
+    },
+    {
+      "name": "Nam anciano",
+      "source": "Dragon Ball GT",
+      "description": "Reaparición ya mayor, con barba y bastón."
+    }
+  ],
+  "tags": [
+    "humano",
+    "torneo",
+    "clásico"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Androide 21",
+  "nameJa": "人造人間21号",
+  "series": "Spin-off",
+  "saga": "Dragon Ball FighterZ",
+  "firstAppearance": {
+    "year": 2018,
+    "work": "Dragon Ball FighterZ",
+    "medium": "Videojuego"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 5,
+  "accent": "#ec4899",
+  "quote": "Tengo un hambre que no puedo controlar.",
+  "description": "Científica androide creada a partir del ADN de los guerreros más fuertes, con el instinto de Majin Buu de convertir en dulces a sus víctimas. Villana original de FighterZ.",
+  "whyWanted": "Es la villana moderna más popular fuera del anime y su rayo transformador daría un ultimate con efecto de estado único.",
+  "signatureMoves": [
+    "Rayo transformador",
+    "Absorción de dulces",
+    "Photon Wave"
+  ],
+  "variants": [
+    {
+      "name": "Humana",
+      "source": "FighterZ",
+      "description": "Bata de laboratorio y gafas."
+    },
+    {
+      "name": "Forma maligna",
+      "source": "FighterZ",
+      "description": "Piel rosa, cola y orejas de Majin.",
+      "accent": "#db2777"
+    }
+  ],
+  "tags": [
+    "videojuego",
+    "majin",
+    "femenino"
+  ]
+}

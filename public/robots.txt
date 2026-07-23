@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dbsz-wishlist.pages.dev/sitemap-index.xml
