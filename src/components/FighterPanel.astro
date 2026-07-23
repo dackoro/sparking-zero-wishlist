@@ -2,7 +2,8 @@
 import FighterArt from './FighterArt.astro';
 import newsBg from '../assets/dbsz-news-background.jpg';
 import type { CollectionEntry } from 'astro:content';
-import { useTranslations, useEnumLabel, getLangFromUrl } from '../i18n/utils';
+import { useTranslations, useEnumLabel, getLangFromUrl, localize, localizeArray } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
   fighter: CollectionEntry<'fighters'>;
@@ -14,20 +15,41 @@ const t = useTranslations(lang);
 const el = useEnumLabel(lang);
 
 const { fighter, standalone = false } = Astro.props;
-const d = fighter.data;
+const d = fighter.data as Record<string, unknown>;
 const Title = standalone ? 'h1' : 'h2';
 
+const L = (field: string) => localize(d, field, lang as Lang);
+const LA = (field: string) => localizeArray(d, field, lang as Lang);
+
+const description = L('description') ?? '';
+const whyWanted = L('whyWanted') ?? '';
+const quote = L('quote') as string | undefined;
+const moves = LA('signatureMoves');
+const fighterName = (d.name as string) ?? '';
+
 const looks = [
-  { name: t('panel.defaultLook') as string, source: d.saga, description: d.description, image: d.render, accent: d.accent },
-  ...d.variants,
+  {
+    name: t('panel.defaultLook') as string,
+    source: d.saga as string,
+    description,
+    image: d.render as string | undefined,
+    accent: d.accent as string,
+  },
+  ...((d.variants as any[]) ?? []).map((v: Record<string, unknown>) => ({
+    name: localize(v, 'name', lang as Lang) ?? v.name as string ?? '',
+    source: localize(v, 'source', lang as Lang) ?? v.source as string | undefined,
+    description: localize(v, 'description', lang as Lang) ?? v.description as string | undefined,
+    image: v.image as string | undefined,
+    accent: v.accent as string | undefined,
+  })),
 ];
 
 const meta = [
-  { label: t('panel.series') as string, value: el(d.series) },
-  { label: t('panel.saga') as string, value: d.saga },
-  { label: t('panel.firstAppearance') as string, value: `${d.firstAppearance.year} · ${el(d.firstAppearance.medium)}` },
-  { label: t('panel.work') as string, value: d.firstAppearance.work },
-  { label: t('panel.role') as string, value: el(d.role) },
+  { label: t('panel.series') as string, value: el(d.series as string) },
+  { label: t('panel.saga') as string, value: d.saga as string },
+  { label: t('panel.firstAppearance') as string, value: `${d.firstAppearance?.year ?? '?'} · ${el((d.firstAppearance as any)?.medium as string)}` },
+  { label: t('panel.work') as string, value: (d.firstAppearance as any)?.work as string ?? '' },
+  { label: t('panel.role') as string, value: el(d.role as string) },
 ];
 ---
 
@@ -37,7 +59,7 @@ const meta = [
   data-panel
   data-slug={fighter.id}
 >
-  {/* ---------- Cabecera visual: render + escena en diagonal ---------- */}
+  {/* ---------- Cabecera visual ---------- */}
   <div class="relative grid h-[42vh] max-h-[420px] min-h-[240px] grid-cols-[38%_62%]">
     <div
       class="relative flex items-end justify-center overflow-hidden"
@@ -46,7 +68,7 @@ const meta = [
       {
         looks.map((look, i) => (
           <div class="absolute inset-0 flex items-center justify-center p-4" data-look={i} hidden={i !== 0}>
-            <FighterArt name={d.name} accent={look.accent ?? d.accent} image={look.image} eager={i === 0} />
+            <FighterArt name={fighterName} accent={look.accent ?? d.accent as string} image={look.image} eager={i === 0} />
           </div>
         ))
       }
@@ -54,7 +76,7 @@ const meta = [
         class="absolute top-3 left-3 rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
         style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
       >
-        {el(d.status)}
+        {el(d.status as string)}
       </span>
     </div>
 
@@ -71,16 +93,16 @@ const meta = [
           {
             looks.map((look, i) => (
               <div class="h-full w-full" data-look={i} hidden={i !== 0}>
-                <FighterArt name={d.name} accent={look.accent ?? d.accent} image={look.image} eager={i === 0} />
+                <FighterArt name={fighterName} accent={look.accent ?? d.accent as string} image={look.image} eager={i === 0} />
               </div>
             ))
           }
         </div>
       </div>
       {
-        d.quote && (
+        quote && (
           <p class="title-slant absolute bottom-4 left-[18%] max-w-[55%] text-sm text-white/85 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:text-base">
-            «{d.quote}»
+            «{quote}»
           </p>
         )
       }
@@ -92,26 +114,26 @@ const meta = [
     <div class="space-y-4">
       <div>
         <Title class="title-slant text-3xl leading-none text-white sm:text-4xl">
-          {d.name}
+          {fighterName}
         </Title>
-        {d.nameJa && <p class="mt-1 text-sm text-white/40">{d.nameJa}</p>}
+        {d.nameJa && <p class="mt-1 text-sm text-white/40">{d.nameJa as string}</p>}
       </div>
 
-      <p class="text-sm leading-relaxed text-white/80">{d.description}</p>
+      <p class="text-sm leading-relaxed text-white/80">{description}</p>
 
       <div class="rounded-lg border-l-2 bg-white/5 p-3" style={`border-color:${d.accent}`}>
         <p class="title-slant mb-1 text-xs tracking-widest" style={`color:${d.accent}`}>
           {t('panel.whyWanted') as string}
         </p>
-        <p class="text-sm leading-relaxed text-white/80">{d.whyWanted}</p>
+        <p class="text-sm leading-relaxed text-white/80">{whyWanted}</p>
       </div>
 
       {
-        d.signatureMoves.length > 0 && (
+        moves.length > 0 && (
           <div>
             <p class="title-slant mb-2 text-xs tracking-widest text-white/50">{t('panel.techniques') as string}</p>
             <ul class="flex flex-wrap gap-2">
-              {d.signatureMoves.map((m) => (
+              {moves.map((m) => (
                 <li class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/75">
                   {m}
                 </li>
@@ -139,8 +161,8 @@ const meta = [
       <div class="space-y-2">
         {
           [
-            { label: t('panel.importance') as string, value: d.importance },
-            { label: t('panel.fanHype') as string, value: d.hype },
+            { label: t('panel.importance') as string, value: d.importance as number },
+            { label: t('panel.fanHype') as string, value: d.hype as number },
           ].map((bar) => (
             <div>
               <div class="mb-1 flex justify-between text-[10px] tracking-widest text-white/40 uppercase">
@@ -172,7 +194,7 @@ const meta = [
                   type="button"
                   data-look-btn={i}
                   data-desc={look.description ?? ''}
-                  data-accent={look.accent ?? d.accent}
+                  data-accent={look.accent ?? d.accent as string}
                   aria-pressed={i === 0 ? 'true' : 'false'}
                   class="rounded-md border px-3 py-1.5 text-left text-xs transition aria-pressed:text-void"
                   style={`border-color:${look.accent ?? d.accent}80; ${i === 0 ? `background:${look.accent ?? d.accent};color:#0b0616` : ''}`}
@@ -192,9 +214,9 @@ const meta = [
       </div>
 
       {
-        d.tags.length > 0 && (
+        (d.tags as string[])?.length > 0 && (
           <ul class="flex flex-wrap gap-1.5">
-            {d.tags.map((t_) => (
+            {(d.tags as string[]).map((t_: string) => (
               <li class="rounded bg-white/5 px-2 py-0.5 text-[10px] tracking-wide text-white/45">#{t_}</li>
             ))}
           </ul>

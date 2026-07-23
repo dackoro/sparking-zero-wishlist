@@ -32,19 +32,15 @@ export const MEDIA = ['Manga', 'Anime', 'Película', 'Videojuego'] as const;
 export const STATUS = ['Wishlist', 'Anunciado', 'Ya es DLC'] as const;
 
 const variant = z.object({
-  /** Nombre del traje o variante. Ej: "Gi del 23º Torneo" */
   name: z.string().min(2),
-  /** De dónde sale ese traje */
   source: z.string().optional(),
   description: z.string().optional(),
-  /** Ruta dentro de /public. Ej: "/fighters/nam-torneo.webp" */
   image: z.string().optional(),
-  /** Color de acento propio de la variante (hex) */
   accent: z
     .string()
     .regex(/^#[0-9a-fA-F]{6}$/, 'Usa un hex de 6 dígitos, ej: #7c3aed')
     .optional(),
-});
+}).passthrough();
 
 const fighters = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/fighters' }),
@@ -84,7 +80,7 @@ const fighters = defineCollection({
     /** Imagen de escena para el fondo del overlay */
     scene: z.string().optional(),
     tags: z.array(z.string()).default([]),
-  }),
+  }).passthrough(),
 });
 
 export const collections = { fighters };

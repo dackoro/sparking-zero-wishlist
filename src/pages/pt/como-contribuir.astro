@@ -1,0 +1,139 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SERIES, ROLES, MEDIA, STATUS } from '../../content.config';
+import { useTranslations, useEnumLabel, getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const el = useEnumLabel(lang);
+const prefix = lang === 'es' ? '' : `/${lang}`;
+
+const ejemplo = `{
+  "name": "Pikkon",
+  "nameJa": "パイクーハン",
+  "series": "Dragon Ball Z",
+  "saga": "Torneo del Otro Mundo",
+  "firstAppearance": {
+    "year": 1999,
+    "work": "Dragon Ball Z, ep. 195",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 4,
+  "hype": 5,
+  "status": "Wishlist",
+  "accent": "#22c55e",
+  "quote": "Quítate el peso y hablamos.",
+  "description": "Campeón de la Galaxia del Oeste y rival de Goku en el Otro Mundo.",
+  "whyWanted": "El personaje de relleno más querido de la franquicia...",
+  "signatureMoves": ["Trueno Explosivo", "Hyper Tornado"],
+  "variants": [
+    {
+      "name": "Sin pesos",
+      "source": "Torneo del Otro Mundo",
+      "description": "Camiseta sin mangas, velocidad desatada.",
+      "image": "/fighters/pikkon-sin-pesos.webp",
+      "accent": "#16a34a"
+    }
+  ],
+  "render": "/fighters/pikkon.webp",
+  "portrait": "/fighters/pikkon-portrait.webp",
+  "tags": ["relleno", "otro mundo"]
+}`;
+
+const campos: [string, string, string][] = [
+  ['name', 'sí', el('name')],
+  ['nameJa', 'no', el('nameJa')],
+  ['series', 'sí', el('series')],
+  ['saga', 'sí', el('saga')],
+  ['firstAppearance.year', 'sí', el('firstAppearance.year')],
+  ['firstAppearance.work', 'sí', el('firstAppearance.work')],
+  ['firstAppearance.medium', 'sí', el('firstAppearance.medium')],
+  ['role', 'sí', el('role')],
+  ['importance', 'sí', el('importance')],
+  ['hype', 'sí', el('hype')],
+  ['status', 'no', el('status')],
+  ['accent', 'sí', el('accent')],
+  ['quote', 'no', el('quote')],
+  ['description', 'sí', el('description')],
+  ['whyWanted', 'sí', el('whyWanted')],
+  ['signatureMoves', 'no', el('signatureMoves')],
+  ['variants', 'no', el('variants')],
+  ['render', 'no', el('render')],
+  ['portrait', 'no', el('portrait')],
+  ['scene', 'no', el('scene')],
+  ['tags', 'no', el('tags')],
+];
+
+const title = t('contribute.title') as string;
+const description = t('contribute.description') as string;
+const fieldsHeader = t('contribute.fieldsHeader') as string[];
+---
+
+<Base title={title} description={description}>
+  <div class="mx-auto max-w-4xl space-y-10 px-5 py-12">
+    <header>
+      <h1 class="title-slant text-4xl text-white sm:text-5xl">
+        <span class="text-ice">»</span> {t('contribute.heading') as string} <span class="text-ice">«</span>
+      </h1>
+      <p class="mt-4 text-sm leading-relaxed text-white/70" set:html={t('contribute.intro') as string} />
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.steps') as string}</h2>
+      <ol class="list-inside list-decimal space-y-2 text-sm text-white/75">
+        <li set:html={t('contribute.step1') as string} />
+        <li set:html={t('contribute.step2') as string} />
+        <li set:html={t('contribute.step3') as string} />
+        <li set:html={t('contribute.step4') as string} />
+        <li set:html={t('contribute.step5') as string} />
+      </ol>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.rules') as string}</h2>
+      <ul class="list-inside list-disc space-y-2 text-sm text-white/75">
+        <li set:html={t('contribute.rule1') as string} />
+        <li set:html={t('contribute.rule2') as string} />
+        <li set:html={t('contribute.rule3') as string} />
+        <li set:html={t('contribute.rule4') as string} />
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.fields') as string}</h2>
+      <div class="overflow-x-auto rounded-lg border border-neon/25">
+        <table class="w-full min-w-[36rem] text-left text-sm">
+          <thead class="bg-white/5 text-[11px] tracking-widest text-white/50 uppercase">
+            <tr>
+              <th class="px-3 py-2">{fieldsHeader[0]}</th>
+              <th class="px-3 py-2">{fieldsHeader[1]}</th>
+              <th class="px-3 py-2">{fieldsHeader[2]}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5">
+            {
+              campos.map(([campo, req, desc]) => (
+                <tr>
+                  <td class="px-3 py-2 font-mono text-xs whitespace-nowrap text-ice">{campo}</td>
+                  <td class="px-3 py-2 text-white/50">{el(req)}</td>
+                  <td class="px-3 py-2 text-white/75">{desc}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.example') as string}</h2>
+      <pre
+        class="overflow-x-auto rounded-lg border border-neon/25 bg-void/80 p-4 text-xs leading-relaxed text-white/80"><code>{ejemplo}</code></pre>
+    </section>
+
+    <a href={`${prefix}/`} class="title-slant inline-block rounded-md border border-neon/50 px-4 py-2 text-sm transition hover:border-ice hover:text-ice">
+      {t('detail.back') as string}
+    </a>
+  </div>
+</Base>

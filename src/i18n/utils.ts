@@ -38,3 +38,22 @@ export function switchLocaleUrl(pathname: string, targetLocale: Lang): string {
   }
   return `/${targetLocale}${base}`;
 }
+
+/**
+ * Obtiene el valor localizado de un campo de contenido.
+ * Busca `field_lang` primero, cae de vuelta a `field` (español).
+ */
+export function localize(data: Record<string, unknown>, field: string, lang: Lang): string | undefined {
+  if (lang === 'es') return data[field] as string | undefined;
+  const localized = data[`${field}_${lang}`] as string | undefined;
+  return localized ?? (data[field] as string | undefined);
+}
+
+/**
+ * Obtiene un array localizado de strings.
+ */
+export function localizeArray(data: Record<string, unknown>, field: string, lang: Lang): string[] {
+  if (lang === 'es') return (data[field] as string[]) ?? [];
+  const localized = data[`${field}_${lang}`] as string[] | undefined;
+  return localized ?? (data[field] as string[]) ?? [];
+}
