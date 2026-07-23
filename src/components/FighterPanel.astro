@@ -175,24 +175,29 @@ const meta = [
         <p class="title-slant mb-2 text-xs tracking-widest text-white/50">
           {t('panel.outfits') as string}
         </p>
-        {
-          looks.length > 1 ? (
-            <div class="flex flex-wrap gap-2" role="group" aria-label={t('panel.outfits') as string}>
-              {looks.map((look, i) => (
-                <button
-                  type="button"
-                  data-look-btn={i}
-                  data-desc={look.description ?? ''}
-                  data-accent={look.accent ?? d.accent as string}
-                  aria-pressed={i === 0 ? 'true' : 'false'}
-                  class="rounded-md border px-3 py-1.5 text-left text-xs transition aria-pressed:text-void"
-                  style={`border-color:${look.accent ?? d.accent}80; ${i === 0 ? `background:${look.accent ?? d.accent};color:#0b0616` : ''}`}
-                >
-                  <span class="block font-semibold">{look.name}</span>
-                  {look.source && <span class="block text-[10px] opacity-70">{look.source}</span>}
-                </button>
-              ))}
-            </div>
+         {
+           looks.length > 1 ? (
+             <div class="flex flex-wrap justify-center gap-3" role="group" aria-label={t('panel.outfits') as string}>
+               {looks.map((look, i) => (
+                 <button
+                   type="button"
+                   data-look-btn={i}
+                   data-desc={look.description ?? ''}
+                   data-accent={look.accent ?? d.accent as string}
+                   aria-pressed={i === 0 ? 'true' : 'false'}
+                   class="variant-hex transition"
+                   style={`
+                     --v-accent:${look.accent ?? d.accent};
+                     ${i === 0 ? `--v-bg:${look.accent ?? d.accent};--v-text:#0b0616` : `--v-bg:${look.accent ?? d.accent}22;--v-text:${look.accent ?? d.accent}`}
+                   `}
+                 >
+                   <span class="variant-hex-inner">
+                     <span class="block text-[11px] leading-tight font-bold uppercase">{look.name}</span>
+                     {look.source && <span class="block text-[9px] leading-none opacity-60">{look.source}</span>}
+                   </span>
+                 </button>
+               ))}
+             </div>
           ) : (
             <p class="text-xs text-white/40" set:html={t('panel.noVariants') as string} />
           )
@@ -214,3 +219,38 @@ const meta = [
     </div>
   </div>
 </article>
+
+<style>
+  .variant-hex {
+    position: relative;
+    width: 98px;
+    height: 113px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--v-bg);
+    color: var(--v-text);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    cursor: pointer;
+  }
+  .variant-hex:hover {
+    filter: brightness(1.3) saturate(1.2);
+    z-index: 2;
+  }
+  .variant-hex[aria-pressed="false"]:hover {
+    background: color-mix(in srgb, var(--v-accent) 40%, #150a2b);
+    color: var(--v-accent);
+  }
+  .variant-hex-inner {
+    position: absolute;
+    inset: 3px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: #150a2b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 6px;
+  }
+</style>
