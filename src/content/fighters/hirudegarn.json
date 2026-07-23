@@ -11,8 +11,8 @@
   "role": "Antagonista",
   "importance": 3,
   "hype": 4,
+  "section": "outfits",
   "accent": "#7e22ce",
-  "quote": "—",
   "description": "Monstruo colosal de Konatsu partido en dos mitades y sellado durante siglos. Al reunirse arrasa la ciudad hasta que Goku lo parte con el Puño del Dragón.",
   "whyWanted": "Sería el segundo personaje gigante jugable del juego y la excusa perfecta para meter el Puño del Dragón como ultimate cinemática.",
   "signatureMoves": [
@@ -20,19 +20,10 @@
     "Aliento de fuego",
     "Onda expansiva"
   ],
-  "variants": [
-    {
-      "name": "Primera forma",
-      "source": "Película 13",
-      "description": "Insectoide, con cuernos y cola de látigo."
-    },
-    {
-      "name": "Forma final",
-      "source": "Película 13",
-      "description": "Alado, con torso humanoide y garras.",
-      "accent": "#581c87"
-    }
-  ],
+  "portrait": "/fighters/hirudegarn-portrait.webp",
+  "render": "/fighters/hirudegarn.webp",
+  "scene": "/fighters/hirudegarn-scene.webp",
+
   "tags": [
     "película",
     "gigante",

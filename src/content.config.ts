@@ -13,6 +13,7 @@ export const SERIES = [
   'Dragon Ball Z',
   'Dragon Ball GT',
   'Dragon Ball Super',
+  'Dragon Ball Daima',
   'Películas',
   'Especiales de TV',
   'Spin-off',
@@ -30,6 +31,8 @@ export const ROLES = [
 export const MEDIA = ['Manga', 'Anime', 'Película', 'Videojuego'] as const;
 
 export const STATUS = ['Wishlist', 'Anunciado', 'Ya es DLC'] as const;
+
+export const SECTIONS = ['fighters', 'outfits'] as const;
 
 const variant = z.object({
   name: z.string().min(2),
@@ -62,6 +65,8 @@ const fighters = defineCollection({
     /** Cuántos fans lo piden, a ojo de la comunidad. 1 = nicho · 5 = clamor popular */
     hype: z.number().int().min(1).max(5),
     status: z.enum(STATUS).default('Wishlist'),
+    /** "fighters" = aparece en el panal de personajes; "outfits" = aparece en el panal de trajes */
+    section: z.enum(SECTIONS).default('fighters'),
     /** Color de acento del overlay (hex de 6 dígitos) */
     accent: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Usa un hex de 6 dígitos, ej: #7c3aed'),
     /** Frase corta del personaje */

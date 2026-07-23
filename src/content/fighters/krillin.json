@@ -1,0 +1,28 @@
+{
+  "name": "Krilin",
+  "nameJa": "クリリン",
+  "series": "Dragon Ball Z",
+  "saga": "Majin Buu",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Dragon Ball Z, ep. 237",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 3,
+  "hype": 4,
+  "section": "outfits",
+  "accent": "#ea580c",
+  "quote": "¡Soy el hombre más fuerte del mundo!",
+  "description": "El mejor amigo de Goku y el guerrero terricola más fuerte. Durante la saga de Majin Buu se dejó crecer el pelo, luciendo un look que los fans llevan años pidiendo como skin en el juego.",
+  "whyWanted": "Krilin ya está en el juego pero solo con su look calvo clásico. Su versión con pelo de la saga Buu es la skin más solicitada y sería increíblemente fácil de implementar como variante.",
+  "signatureMoves": [
+    "Kamehameha",
+    "Kienzan (Destello)",
+    "Taiyoken"
+  ],
+  "portrait": "/fighters/krillin-portrait.webp",
+  "render": "/fighters/krillin.webp",
+  "scene": "/fighters/krillin-scene.webp",
+  "tags": ["skin", "terricola", "buu", "humano"]
+}
