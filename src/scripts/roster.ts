@@ -99,6 +99,16 @@ export function initRoster() {
     open(tile.dataset.slug!);
   });
 
+  const hiveOutfits = document.getElementById('hive-outfits');
+  if (hiveOutfits) {
+    hiveOutfits.addEventListener('click', (event) => {
+      const tile = (event.target as HTMLElement).closest<Tile>('[data-hex]');
+      if (!tile || event.metaKey || event.ctrlKey || event.shiftKey) return;
+      event.preventDefault();
+      open(tile.dataset.slug!);
+    });
+  }
+
   modal.addEventListener('click', (event) => {
     const el = event.target as HTMLElement;
     if (el.closest('[data-close]') || el.hasAttribute('data-backdrop')) close();
