@@ -1,11 +1,15 @@
 ---
 import FighterArt from './FighterArt.astro';
 import type { CollectionEntry } from 'astro:content';
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
 
 interface Props {
   fighter: CollectionEntry<'fighters'>;
   index?: number;
 }
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const { fighter, index = 0 } = Astro.props;
 const d = fighter.data;
@@ -35,7 +39,7 @@ const d = fighter.data;
     {
       d.status !== 'Wishlist' && (
         <span class="absolute top-[14%] left-1/2 -translate-x-1/2 rounded-sm bg-ice px-1.5 py-px text-[9px] font-bold tracking-wider text-void uppercase">
-          {d.status === 'Ya es DLC' ? 'DLC' : 'Nuevo'}
+          {d.status === 'Ya es DLC' ? 'DLC' : t('hexTile.new') as string}
         </span>
       )
     }

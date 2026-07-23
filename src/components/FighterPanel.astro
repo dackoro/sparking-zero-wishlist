@@ -2,29 +2,32 @@
 import FighterArt from './FighterArt.astro';
 import newsBg from '../assets/dbsz-news-background.jpg';
 import type { CollectionEntry } from 'astro:content';
+import { useTranslations, useEnumLabel, getLangFromUrl } from '../i18n/utils';
 
 interface Props {
   fighter: CollectionEntry<'fighters'>;
-  /** true en la página de detalle: usa etiquetas h1 en vez de h2 */
   standalone?: boolean;
 }
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const el = useEnumLabel(lang);
 
 const { fighter, standalone = false } = Astro.props;
 const d = fighter.data;
 const Title = standalone ? 'h1' : 'h2';
 
-/** Índice 0 = look por defecto; el resto son variantes de traje. */
 const looks = [
-  { name: 'Look por defecto', source: d.saga, description: d.description, image: d.render, accent: d.accent },
+  { name: t('panel.defaultLook') as string, source: d.saga, description: d.description, image: d.render, accent: d.accent },
   ...d.variants,
 ];
 
 const meta = [
-  { label: 'Serie', value: d.series },
-  { label: 'Saga', value: d.saga },
-  { label: 'Primera vez visto', value: `${d.firstAppearance.year} · ${d.firstAppearance.medium}` },
-  { label: 'Obra', value: d.firstAppearance.work },
-  { label: 'Rol', value: d.role },
+  { label: t('panel.series') as string, value: el(d.series) },
+  { label: t('panel.saga') as string, value: d.saga },
+  { label: t('panel.firstAppearance') as string, value: `${d.firstAppearance.year} · ${el(d.firstAppearance.medium)}` },
+  { label: t('panel.work') as string, value: d.firstAppearance.work },
+  { label: t('panel.role') as string, value: el(d.role) },
 ];
 ---
 
@@ -51,7 +54,7 @@ const meta = [
         class="absolute top-3 left-3 rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
         style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
       >
-        {d.status}
+        {el(d.status)}
       </span>
     </div>
 
@@ -98,7 +101,7 @@ const meta = [
 
       <div class="rounded-lg border-l-2 bg-white/5 p-3" style={`border-color:${d.accent}`}>
         <p class="title-slant mb-1 text-xs tracking-widest" style={`color:${d.accent}`}>
-          Por qué lo queremos
+          {t('panel.whyWanted') as string}
         </p>
         <p class="text-sm leading-relaxed text-white/80">{d.whyWanted}</p>
       </div>
@@ -106,7 +109,7 @@ const meta = [
       {
         d.signatureMoves.length > 0 && (
           <div>
-            <p class="title-slant mb-2 text-xs tracking-widest text-white/50">Técnicas</p>
+            <p class="title-slant mb-2 text-xs tracking-widest text-white/50">{t('panel.techniques') as string}</p>
             <ul class="flex flex-wrap gap-2">
               {d.signatureMoves.map((m) => (
                 <li class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/75">
@@ -136,8 +139,8 @@ const meta = [
       <div class="space-y-2">
         {
           [
-            { label: 'Importancia', value: d.importance },
-            { label: 'Petición de los fans', value: d.hype },
+            { label: t('panel.importance') as string, value: d.importance },
+            { label: t('panel.fanHype') as string, value: d.hype },
           ].map((bar) => (
             <div>
               <div class="mb-1 flex justify-between text-[10px] tracking-widest text-white/40 uppercase">
@@ -159,11 +162,11 @@ const meta = [
 
       <div>
         <p class="title-slant mb-2 text-xs tracking-widest text-white/50">
-          Trajes y variantes que faltan
+          {t('panel.outfits') as string}
         </p>
         {
           looks.length > 1 ? (
-            <div class="flex flex-wrap gap-2" role="group" aria-label="Variantes de traje">
+            <div class="flex flex-wrap gap-2" role="group" aria-label={t('panel.outfits') as string}>
               {looks.map((look, i) => (
                 <button
                   type="button"
@@ -180,9 +183,7 @@ const meta = [
               ))}
             </div>
           ) : (
-            <p class="text-xs text-white/40">
-              Nadie ha propuesto variantes todavía. ¿Te sabes alguna? Añádela por pull request.
-            </p>
+            <p class="text-xs text-white/40" set:html={t('panel.noVariants') as string} />
           )
         }
         <p class="mt-3 text-xs leading-relaxed text-white/60" data-look-desc>
@@ -193,8 +194,8 @@ const meta = [
       {
         d.tags.length > 0 && (
           <ul class="flex flex-wrap gap-1.5">
-            {d.tags.map((t) => (
-              <li class="rounded bg-white/5 px-2 py-0.5 text-[10px] tracking-wide text-white/45">#{t}</li>
+            {d.tags.map((t_) => (
+              <li class="rounded bg-white/5 px-2 py-0.5 text-[10px] tracking-wide text-white/45">#{t_}</li>
             ))}
           </ul>
         )

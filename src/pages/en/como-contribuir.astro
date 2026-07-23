@@ -1,7 +1,7 @@
 ---
-import Base from '../layouts/Base.astro';
-import { SERIES, ROLES, MEDIA, STATUS } from '../content.config';
-import { useTranslations, useEnumLabel, getLangFromUrl } from '../i18n/utils';
+import Base from '../../layouts/Base.astro';
+import { SERIES, ROLES, MEDIA, STATUS } from '../../content.config';
+import { useTranslations, useEnumLabel, getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

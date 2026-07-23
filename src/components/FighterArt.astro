@@ -1,9 +1,6 @@
 ---
-/**
- * Render del personaje. Si la ficha trae imagen la usa; si no, dibuja un
- * placeholder generado con el color de acento para que la página se vea
- * completa aunque todavía no haya arte subido.
- */
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+
 interface Props {
   name: string;
   accent: string;
@@ -11,6 +8,9 @@ interface Props {
   class?: string;
   eager?: boolean;
 }
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const { name, accent, image, class: className = '', eager = false } = Astro.props;
 
@@ -27,7 +27,7 @@ const initials = name
   image ? (
     <img
       src={image}
-      alt={`Render de ${name}`}
+      alt={(t('fighterArt.renderOf') as (name: string) => string)(name)}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
       class={`h-full w-full object-contain ${className}`}
@@ -36,7 +36,7 @@ const initials = name
     <svg
       viewBox="0 0 200 260"
       role="img"
-      aria-label={`Arte pendiente de ${name}`}
+      aria-label={(t('fighterArt.pendingArt') as (name: string) => string)(name)}
       class={`h-full w-full ${className}`}
       style={`--accent:${accent}`}
     >

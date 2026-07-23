@@ -3,23 +3,30 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import logo from '../assets/dbsz-logo.png';
 import bgSection from '../assets/dbsz-bg-section.jpg';
+import { useTranslations, switchLocaleUrl, getLangFromUrl } from '../i18n/utils';
+import { languages, type Lang } from '../i18n/ui';
 
 interface Props {
   title: string;
   description: string;
-  /** Ruta absoluta de la imagen para redes sociales */
   ogImage?: string;
-  /** JSON-LD ya serializable */
   jsonLd?: Record<string, unknown>;
 }
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const prefix = lang === 'es' ? '' : `/${lang}`;
 
 const { title, description, ogImage = '/og-default.jpg', jsonLd } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogUrl = new URL(ogImage, Astro.site).href;
+
+const ogLocales: Record<Lang, string> = { es: 'es_ES', en: 'en_US', pt: 'pt_BR' };
+const htmlLocales: Record<Lang, string> = { es: 'es', en: 'en', pt: 'pt' };
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={htmlLocales[lang]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,8 +38,8 @@ const ogUrl = new URL(ogImage, Astro.site).href;
     <meta name="theme-color" content="#0b0616" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="DBSZ Wishlist" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={t('og.siteName')} />
+    <meta property="og:locale" content={ogLocales[lang]} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -47,13 +54,13 @@ const ogUrl = new URL(ogImage, Astro.site).href;
 
   <body class="min-h-screen">
     <div
-      class="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-fixed opacity-25"
+      class="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-fixed opacity-55"
       style={`background-image:url(${bgSection.src})`}
       aria-hidden="true"
     >
     </div>
     <div
-      class="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-void/85 via-abyss/80 to-void"
+      class="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-void/55 via-abyss/45 to-void/90"
       aria-hidden="true"
     >
     </div>
@@ -61,24 +68,43 @@ const ogUrl = new URL(ogImage, Astro.site).href;
     <header
       class="sticky top-0 z-40 border-b border-neon/20 bg-void/80 backdrop-blur-md supports-[backdrop-filter]:bg-void/60"
     >
-      <nav class="mx-auto flex max-w-6xl items-center gap-6 px-5 py-3" aria-label="Principal">
+      <nav class="mx-auto flex max-w-6xl items-center gap-6 px-5 py-3" aria-label={t('og.siteName')}>
         <a href="/" class="shrink-0" aria-label="Inicio">
           <Image src={logo} alt="Dragon Ball Sparking! Zero" width={132} densities={[1, 2]} class="h-9 w-auto" />
         </a>
         <ul class="title-slant flex flex-1 items-center gap-5 text-sm tracking-wide">
-          <li><a href="/" class="transition hover:text-ice">Roster deseado</a></li>
-          <li><a href="/#filtros" class="transition hover:text-ice">Filtros</a></li>
+          <li><a href={`${prefix}/`} class="transition hover:text-ice">{t('nav.roster')}</a></li>
+          <li><a href={`${prefix}/#filtros`} class="transition hover:text-ice">{t('nav.filters')}</a></li>
           <li>
-            <a href="/como-contribuir" class="transition hover:text-ice">Contribuir</a>
+            <a href={`${prefix}/como-contribuir`} class="transition hover:text-ice">{t('nav.contribute')}</a>
           </li>
         </ul>
+
+        <!-- Language switcher -->
+        <div class="relative group" aria-label={t('lang.label')}>
+          <span class="title-slant cursor-pointer rounded border border-white/20 px-2 py-1 text-xs text-white/60 transition hover:border-ice hover:text-ice uppercase">
+            {lang}
+            <span class="ml-1 inline-block align-[-1px] text-[8px]">&#9660;</span>
+          </span>
+          <div class="invisible absolute right-0 top-full z-50 mt-1 min-w-[120px] rounded-lg border border-neon/25 bg-void/95 py-1 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100">
+            {Object.entries(languages).map(([code, name]) => (
+              <a
+                href={switchLocaleUrl(Astro.url.pathname, code as Lang)}
+                class={`block px-4 py-1.5 text-sm transition hover:text-ice ${code === lang ? 'text-ice' : 'text-white/60'}`}
+              >
+                {name}
+              </a>
+            ))}
+          </div>
+        </div>
+
         <a
           href="https://github.com/tu-usuario/dbsz-sparking-wishlist"
           rel="noopener noreferrer nofollow"
           target="_blank"
           class="title-slant rounded-full border border-ice/60 bg-ice/10 px-4 py-1.5 text-xs text-ice transition hover:bg-ice hover:text-void"
         >
-          Añadir personaje
+          {t('nav.addFighter')}
         </a>
       </nav>
     </header>
@@ -89,15 +115,9 @@ const ogUrl = new URL(ogImage, Astro.site).href;
 
     <footer class="mt-24 border-t border-neon/20 bg-void/70 py-10">
       <div class="mx-auto max-w-6xl space-y-3 px-5 text-sm text-white/50">
-        <p class="title-slant text-base text-white/80">Proyecto de fans, sin ánimo de lucro.</p>
-        <p>
-          Dragon Ball y DRAGON BALL: Sparking! ZERO son marcas de Bird Studio / Shueisha, Toei Animation y
-          Bandai Namco Entertainment. Esta página no está afiliada ni respaldada por ellos: es una lista de
-          deseos hecha por la comunidad.
-        </p>
-        <p>
-          El código y los datos son abiertos. ¿Falta alguien? Abre un pull request con su ficha.
-        </p>
+        <p class="title-slant text-base text-white/80">{t('footer.nonprofit')}</p>
+        <p>{t('footer.disclaimer')}</p>
+        <p>{t('footer.opensource')}</p>
       </div>
     </footer>
   </body>
