@@ -1,0 +1,15 @@
+{
+  "name": "Planeta Vegeta",
+  "series": "Dragon Ball Z",
+  "saga": "Saiyajin",
+  "firstAppearance": {
+    "year": 1989,
+    "work": "Dragon Ball Z, ep. 5",
+    "medium": "Anime"
+  },
+  "description": "El planeta natal de los saiyajin antes de que Freezer lo destruyera. Cielo rojo, gravedad 10x, paisaje desértico y la leyenda del Super Saiyajin flotando en la atmósfera.",
+  "hype": 4,
+  "status": "Wishlist",
+  "accent": "#f97316",
+  "tags": ["saiyajin", "clasico", "backstory"]
+}

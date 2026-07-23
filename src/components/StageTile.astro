@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+
+interface Props {
+  stage: CollectionEntry<'stages'>;
+  index?: number;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { stage, index = 0 } = Astro.props;
+const d = stage.data;
+---
+
+<a
+  href={`/stages/${stage.id}/`}
+  class="stage-cell hive-anim group"
+  style={`--accent:${d.accent}; animation-delay:${Math.min(index * 18, 600)}ms`}
+  data-stage
+  data-slug={stage.id}
+  data-name={d.name.toLowerCase()}
+  data-series={d.series}
+  data-saga={d.saga}
+  data-year={d.firstAppearance.year}
+  data-hype={d.hype}
+  data-status={d.status}
+>
+  <span class="stage-inner" style={`background:linear-gradient(160deg, ${d.accent}33, #150a2b 70%)`}>
+
+    {
+      d.scene ? (
+        <span
+          class="absolute inset-0 bg-cover bg-center opacity-30 transition group-hover:opacity-45"
+          style={`background-image:url(${d.scene})`}
+          aria-hidden="true"
+        />
+      ) : (
+        <span
+          class="absolute inset-0 bg-cover bg-center opacity-15"
+          style={`background:radial-gradient(ellipse at 50% 30%, ${d.accent}66, transparent 70%)`}
+          aria-hidden="true"
+        />
+      )
+    }
+
+    {
+      d.status !== 'Wishlist' && (
+        <span class="absolute top-2 left-1/2 z-10 -translate-x-1/2 rounded-sm bg-ice px-1.5 py-px text-[9px] font-bold tracking-wider text-void uppercase">
+          {d.status === 'Ya es DLC' ? 'DLC' : t('hexTile.new') as string}
+        </span>
+      )
+    }
+
+    <span class="absolute inset-x-0 bottom-3 z-10 px-2 text-center">
+      <span class="block text-xs leading-tight font-bold text-white uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] sm:text-sm">
+        {d.name}
+      </span>
+      <span class="mt-0.5 block text-[10px] leading-none text-white/45">{d.saga}</span>
+    </span>
+
+    <span
+      class="absolute inset-0 rounded-xl bg-white/0 transition group-hover:bg-white/8"
+      aria-hidden="true"
+    />
+  </span>
+</a>
+
+<style>
+  .stage-cell {
+    position: relative;
+    display: block;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--accent, #8b5cf6) 35%, transparent);
+    overflow: hidden;
+    transition: filter 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+  }
+  .stage-cell:hover,
+  .stage-cell:focus-visible {
+    filter: brightness(1.2);
+    border-color: var(--accent, #8b5cf6);
+    transform: scale(1.03);
+    z-index: 5;
+    outline: none;
+  }
+  .stage-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stage-cell {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import StagePanel from '../../../components/StagePanel.astro';
+import { useTranslations, getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const prefix = lang === 'es' ? '' : `/${lang}`;
+
+export async function getStaticPaths() {
+  const stages = await getCollection('stages');
+  return stages.map((stage) => ({
+    params: { slug: stage.id },
+    props: { stage },
+  }));
+}
+
+interface Props {
+  stage: CollectionEntry<'stages'>;
+}
+
+const { stage } = Astro.props;
+const d = stage.data;
+
+const title = (t('stages.detailTitle') as (name: string) => string)(d.name);
+const description = (t('stages.detailDesc') as (name: string, series: string, year: number, desc: string) => string)(d.name, d.series, d.firstAppearance.year, d.description);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: (t('stages.detailTitle') as (name: string) => string)(d.name),
+  description,
+  about: { '@type': 'Place', name: d.name },
+  isPartOf: {
+    '@type': 'CollectionPage',
+    name: t('stages.jsonLdName') as string,
+    url: new URL('/stages/', Astro.site).href,
+  },
+};
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <nav class="mb-5 text-xs text-white/50">
+      <a href={`${prefix}/stages/`} class="transition hover:text-ice">{t('stages.breadcrumb') as string}</a>
+      <span class="mx-2 text-white/25">/</span>
+      <span class="text-white/70">{d.name}</span>
+    </nav>
+
+    <StagePanel stage={stage} standalone />
+
+    <div class="mt-8">
+      <a
+        href={`${prefix}/stages/`}
+        class="title-slant rounded-md border border-neon/50 px-4 py-2 text-sm text-white/80 transition hover:border-ice hover:text-ice"
+      >
+        {t('stages.back') as string}
+      </a>
+    </div>
+  </div>
+</Base>

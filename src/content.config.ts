@@ -83,4 +83,24 @@ const fighters = defineCollection({
   }).passthrough(),
 });
 
-export const collections = { fighters };
+const stages = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/stages' }),
+  schema: z.object({
+    name: z.string().min(2),
+    series: z.enum(SERIES),
+    saga: z.string().min(2),
+    firstAppearance: z.object({
+      year: z.number().int().min(1984).max(2030),
+      work: z.string().min(2),
+      medium: z.enum(MEDIA),
+    }),
+    description: z.string().min(20),
+    hype: z.number().int().min(1).max(5),
+    status: z.enum(STATUS).default('Wishlist'),
+    accent: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Usa un hex de 6 dígitos, ej: #7c3aed'),
+    scene: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+  }).passthrough(),
+});
+
+export const collections = { fighters, stages };

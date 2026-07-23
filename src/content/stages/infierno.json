@@ -1,0 +1,15 @@
+{
+  "name": "Infierno",
+  "series": "Dragon Ball Z",
+  "saga": "Majin Buu",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Dragon Ball Z, ep. 270",
+    "medium": "Anime"
+  },
+  "description": "El reino de los muertos con lagos de sangre, ogros y colores psicodélicos. Janemba y Freezer se han paseado por aquí.",
+  "hype": 4,
+  "status": "Wishlist",
+  "accent": "#ef4444",
+  "tags": ["otro mundo", "peliculas", "villano"]
+}

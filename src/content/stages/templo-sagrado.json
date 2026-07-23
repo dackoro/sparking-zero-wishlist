@@ -1,0 +1,15 @@
+{
+  "name": "Templo Sagrado",
+  "series": "Dragon Ball",
+  "saga": "Piccolo Daimaku",
+  "firstAppearance": {
+    "year": 1988,
+    "work": "Dragon Ball, cap. 162",
+    "medium": "Manga"
+  },
+  "description": "La atalaya flotante sobre la Torre de Karin donde residen Kamisama y Mr. Popo. Plataforma abierta al cielo con el palacio detrás, escenario de los entrenamientos más duros de Goku niño.",
+  "hype": 5,
+  "status": "Wishlist",
+  "accent": "#a855f7",
+  "tags": ["entrenamiento", "clasico", "dragon ball"]
+}

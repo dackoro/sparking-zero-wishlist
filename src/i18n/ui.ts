@@ -12,6 +12,7 @@ export const ui = {
     // Nav
     'nav.roster': 'Roster deseado',
     'nav.filters': 'Filtros',
+    'nav.stages': 'Escenarios',
     'nav.contribute': 'Contribuir',
     'nav.addFighter': 'Añadir personaje',
 
@@ -142,6 +143,21 @@ export const ui = {
     'fighterArt.renderOf': (name: string) => `Render de ${name}`,
     'fighterArt.pendingArt': (name: string) => `Arte pendiente de ${name}`,
 
+    // Stages
+    'nav.stages': 'Escenarios',
+    'stages.metaTitle': 'Escenarios que faltan en Sparking! ZERO — Wishlist de la comunidad',
+    'stages.metaDesc': (count: number) => `Lista de deseos de escenarios: ${count} escenarios de Dragon Ball que aún no están en Sparking! ZERO.`,
+    'stages.heading': 'Los escenarios que faltan',
+    'stages.description': 'Escenarios icónicos de Dragon Ball que aún no han llegado a <strong class="text-white">Sparking! ZERO</strong>. Ordenables por saga y año.',
+    'stages.empty': 'Ningún escenario encaja con esos filtros.',
+    'stages.hint': 'Pulsa cualquier tarjeta para ver su ficha.',
+    'stages.breadcrumb': 'Escenarios',
+    'stages.back': '← Volver a escenarios',
+    'stages.detailTitle': (name: string) => `${name} — Escenario de la wishlist de Sparking! ZERO`,
+    'stages.detailDesc': (name: string, series: string, year: number, description: string) =>
+      `${name} (${series}, ${year}): ${description}`,
+    'stages.jsonLdName': 'Escenarios que faltan en DRAGON BALL: Sparking! ZERO',
+
     // OG
     'og.siteName': 'DBSZ Wishlist',
 
@@ -156,6 +172,7 @@ export const ui = {
     // Nav
     'nav.roster': 'Wanted Roster',
     'nav.filters': 'Filters',
+    'nav.stages': 'Stages',
     'nav.contribute': 'Contribute',
     'nav.addFighter': 'Add fighter',
 
@@ -287,6 +304,21 @@ export const ui = {
     'fighterArt.renderOf': (name: string) => `Render of ${name}`,
     'fighterArt.pendingArt': (name: string) => `Art pending for ${name}`,
 
+    // Stages
+    'nav.stages': 'Stages',
+    'stages.metaTitle': 'Missing stages in Sparking! ZERO — Community Wishlist',
+    'stages.metaDesc': (count: number) => `Stage wishlist: ${count} Dragon Ball stages still not in Sparking! ZERO.`,
+    'stages.heading': 'The Missing Stages',
+    'stages.description': 'Iconic Dragon Ball stages that have not yet made it to <strong class="text-white">Sparking! ZERO</strong>. Sortable by saga and year.',
+    'stages.empty': 'No stages match those filters.',
+    'stages.hint': 'Tap any card to view the full details.',
+    'stages.breadcrumb': 'Stages',
+    'stages.back': '← Back to stages',
+    'stages.detailTitle': (name: string) => `${name} — Sparking! ZERO stage wishlist`,
+    'stages.detailDesc': (name: string, series: string, year: number, description: string) =>
+      `${name} (${series}, ${year}): ${description}`,
+    'stages.jsonLdName': 'Missing stages in DRAGON BALL: Sparking! ZERO',
+
     // OG
     'og.siteName': 'DBSZ Wishlist',
 
@@ -302,6 +334,7 @@ export const ui = {
     // Nav
     'nav.roster': 'Roster desejado',
     'nav.filters': 'Filtros',
+    'nav.stages': 'Cenários',
     'nav.contribute': 'Contribuir',
     'nav.addFighter': 'Adicionar personagem',
 
@@ -432,6 +465,21 @@ export const ui = {
     // FighterArt
     'fighterArt.renderOf': (name: string) => `Render de ${name}`,
     'fighterArt.pendingArt': (name: string) => `Arte pendente de ${name}`,
+
+    // Stages
+    'nav.stages': 'Cenários',
+    'stages.metaTitle': 'Cenários que faltam no Sparking! ZERO — Wishlist da comunidade',
+    'stages.metaDesc': (count: number) => `Lista de desejo de cenários: ${count} cenários de Dragon Ball que ainda não estão no Sparking! ZERO.`,
+    'stages.heading': 'Os cenários que faltam',
+    'stages.description': 'Cenários icônicos de Dragon Ball que ainda não chegaram ao <strong class="text-white">Sparking! ZERO</strong>. Ordenáveis por saga e ano.',
+    'stages.empty': 'Nenhum cenário corresponde aos filtros.',
+    'stages.hint': 'Toque em qualquer card para ver os detalhes.',
+    'stages.breadcrumb': 'Cenários',
+    'stages.back': '← Voltar aos cenários',
+    'stages.detailTitle': (name: string) => `${name} — Cenário da wishlist do Sparking! ZERO`,
+    'stages.detailDesc': (name: string, series: string, year: number, description: string) =>
+      `${name} (${series}, ${year}): ${description}`,
+    'stages.jsonLdName': 'Cenários que faltam no DRAGON BALL: Sparking! ZERO',
 
     // OG
     'og.siteName': 'DBSZ Wishlist',

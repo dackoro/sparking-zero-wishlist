@@ -1,0 +1,106 @@
+---
+import newsBg from '../assets/dbsz-news-background.jpg';
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations, useEnumLabel, getLangFromUrl, localize } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  stage: CollectionEntry<'stages'>;
+  standalone?: boolean;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const el = useEnumLabel(lang);
+
+const { stage, standalone = false } = Astro.props;
+const d = stage.data as Record<string, unknown>;
+const L = (field: string) => localize(d, field, lang as Lang);
+const Title = standalone ? 'h1' : 'h2';
+
+const description = L('description') ?? '';
+const stageName = (d.name as string) ?? '';
+
+const meta = [
+  { label: t('panel.series') as string, value: el(d.series as string) },
+  { label: t('panel.saga') as string, value: d.saga as string },
+  { label: t('panel.firstAppearance') as string, value: `${d.firstAppearance?.year ?? '?'} · ${el((d.firstAppearance as any)?.medium as string)}` },
+  { label: t('panel.work') as string, value: (d.firstAppearance as any)?.work as string ?? '' },
+];
+---
+
+<article
+  class="overflow-hidden rounded-xl border border-neon/40 bg-abyss/95 shadow-[0_0_60px_-15px] shadow-neon/60"
+  style={`--accent:${d.accent}`}
+  data-stage-panel
+>
+  {/* ---------- Cabecera ---------- */}
+  <div class="relative h-[42vh] max-h-[420px] min-h-[240px] overflow-hidden">
+    <div
+      class="absolute inset-0 scale-105 bg-cover bg-center"
+      style={`background-image:url(${d.scene ?? newsBg.src})`}
+    />
+    <div
+      class="absolute inset-0"
+      style={`background:linear-gradient(to top, #0b0616 5%, ${d.accent}22 40%, #0b0616cc 100%)`}
+    />
+    <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+      <span
+        class="mb-3 inline-block rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+        style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
+      >
+        {el(d.status as string)}
+      </span>
+      <Title class="title-slant text-3xl leading-none text-white sm:text-4xl">
+        {stageName}
+      </Title>
+    </div>
+  </div>
+
+  {/* ---------- Ficha ---------- */}
+  <div class="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1.4fr_1fr]">
+    <div class="space-y-4">
+      <p class="text-sm leading-relaxed text-white/80">{description}</p>
+    </div>
+
+    <div class="space-y-5">
+      <dl class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+        {
+          meta.map((m) => (
+            <div class="min-w-0">
+              <dt class="title-slant text-[10px] tracking-widest text-white/40">{m.label}</dt>
+              <dd class="truncate text-white/85" title={m.value}>
+                {m.value}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div>
+        <div class="mb-1 flex justify-between text-[10px] tracking-widest text-white/40 uppercase">
+          <span class="title-slant">{t('panel.fanHype') as string}</span>
+          <span>{d.hype as number}/5</span>
+        </div>
+        <div class="flex gap-1" role="img" aria-label={`${t('panel.fanHype')}: ${d.hype} de 5`}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span
+              class="h-1.5 flex-1 rounded-full"
+              style={i < (d.hype as number) ? `background:${d.accent}` : 'background:rgba(255,255,255,0.12)'}
+            />
+          ))}
+        </div>
+      </div>
+
+      {
+        (d.tags as string[])?.length > 0 && (
+          <ul class="flex flex-wrap gap-1.5">
+            {(d.tags as string[]).map((t_: string) => (
+              <li class="rounded bg-white/5 px-2 py-0.5 text-[10px] tracking-wide text-white/45">#{t_}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+</article>
