@@ -29,6 +29,7 @@
       "source": "FighterZ",
       "description": "Piel rosa, cola y orejas de Majin. Su verdadera forma al liberar el instinto de Buu.",
       "image": "/fighters/androide-21-forma-maligna.webp",
+      "portrait": "/fighters/androide-21-forma-maligna-portrait.webp",
       "scene": "/fighters/androide-21-forma-maligna-scene.webp",
       "accent": "#db2777"
     }

@@ -31,6 +31,8 @@ const looks = [
     source: d.saga as string,
     description,
     image: d.render as string | undefined,
+    // Misma cara que sale en el panal del home.
+    portrait: (d.portrait ?? d.render) as string | undefined,
     accent: d.accent as string,
     scene: d.scene as string | undefined,
   },
@@ -39,6 +41,7 @@ const looks = [
     source: localize(v, 'source', lang as Lang) ?? v.source as string | undefined,
     description: localize(v, 'description', lang as Lang) ?? v.description as string | undefined,
     image: v.image as string | undefined,
+    portrait: (v.portrait ?? v.image) as string | undefined,
     accent: v.accent as string | undefined,
     scene: v.scene as string | undefined,
   })),
@@ -186,14 +189,15 @@ const meta = [
                    data-accent={look.accent ?? d.accent as string}
                    aria-pressed={i === 0 ? 'true' : 'false'}
                    class="variant-hex transition"
-                   style={`
-                     --v-accent:${look.accent ?? d.accent};
-                     ${i === 0 ? `--v-bg:${look.accent ?? d.accent};--v-text:#0b0616` : `--v-bg:${look.accent ?? d.accent}22;--v-text:${look.accent ?? d.accent}`}
-                   `}
+                   style={`--v-accent:${look.accent ?? d.accent}`}
+                   title={look.name}
                  >
                    <span class="variant-hex-inner">
-                     <span class="block text-[11px] leading-tight font-bold uppercase">{look.name}</span>
-                     {look.source && <span class="block text-[9px] leading-none opacity-60">{look.source}</span>}
+                     {look.portrait && <img src={look.portrait} alt="" aria-hidden="true" loading="lazy" decoding="async" />}
+                     <span class="variant-hex-label">
+                       <span class="block text-[10px] leading-tight font-bold uppercase">{look.name}</span>
+                       {look.source && <span class="block text-[9px] leading-none opacity-70">{look.source}</span>}
+                     </span>
                    </span>
                  </button>
                ))}
@@ -221,36 +225,56 @@ const meta = [
 </article>
 
 <style>
+  /* El fondo de `.variant-hex` es el borde: `.variant-hex-inner` lo tapa
+     dejando 3px visibles alrededor, igual que en el panal del home. */
   .variant-hex {
+    --ring: color-mix(in srgb, var(--v-accent) 45%, #0b0616);
     position: relative;
     width: 98px;
     height: 113px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--v-bg);
-    color: var(--v-text);
+    background: var(--ring);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     cursor: pointer;
   }
+  .variant-hex[aria-pressed='true'],
   .variant-hex:hover {
-    filter: brightness(1.3) saturate(1.2);
+    --ring: var(--v-accent);
     z-index: 2;
   }
-  .variant-hex[aria-pressed="false"]:hover {
-    background: color-mix(in srgb, var(--v-accent) 40%, #150a2b);
-    color: var(--v-accent);
-  }
+
   .variant-hex-inner {
     position: absolute;
     inset: 3px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     background: #150a2b;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+  }
+
+  .variant-hex-inner img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    /* Las no activas se ven apagadas para que resalte la seleccionada. */
+    filter: grayscale(0.45) brightness(0.7);
+    transition: filter 0.18s ease;
+  }
+  .variant-hex[aria-pressed='true'] .variant-hex-inner img,
+  .variant-hex:hover .variant-hex-inner img {
+    filter: none;
+  }
+
+  /* Degradado inferior para que el nombre se lea sobre la foto. */
+  .variant-hex-label {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 14px 6px 10px;
     text-align: center;
-    padding: 8px 6px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
+    background: linear-gradient(to top, rgba(11, 6, 22, 0.95), rgba(11, 6, 22, 0));
   }
 </style>

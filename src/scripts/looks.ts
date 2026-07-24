@@ -18,11 +18,10 @@ export function initLooks() {
       layer.hidden = layer.dataset.look !== index;
     });
 
+    // Solo se mueve `aria-pressed`: el color del borde y el realce de la
+    // foto los resuelve el CSS a partir de ese atributo.
     panel.querySelectorAll<HTMLButtonElement>('[data-look-btn]').forEach((other) => {
-      const active = other === btn;
-      other.setAttribute('aria-pressed', String(active));
-      other.style.background = active ? (other.dataset.accent ?? '') : '';
-      other.style.color = active ? '#0b0616' : '';
+      other.setAttribute('aria-pressed', String(other === btn));
     });
 
     const desc = panel.querySelector<HTMLElement>('[data-look-desc]');

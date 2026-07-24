@@ -26,7 +26,7 @@ const roles = uniq(fighters.map((f) => f.data.role));
 const statuses = uniq(fighters.map((f) => f.data.status));
 
 const variantCount = fighters.reduce((acc, f) => acc + f.data.variants.length, 0);
-const oldest = Math.min(...fighters.map((f) => f.data.firstAppearance.year));
+const outfitsAndVariantsCount = outfitFighters.length + variantCount;
 
 const title = t('meta.indexTitle') as string;
 const description = (t('meta.indexDescription') as (count: number) => string)(fighters.length);
@@ -67,9 +67,7 @@ const jsonLd = {
       {
         [
           { k: t('stats.fighters') as string, v: fighters.length },
-          { k: t('stats.variants') as string, v: variantCount },
-          { k: t('stats.sagas') as string, v: sagas.length },
-          { k: t('stats.sinceYear') as string, v: oldest },
+          { k: t('stats.variants') as string, v: outfitsAndVariantsCount },
         ].map((s) => (
           <div>
             <dd class="title-slant text-3xl text-ice">{s.v}</dd>

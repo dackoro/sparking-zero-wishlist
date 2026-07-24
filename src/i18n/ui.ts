@@ -27,8 +27,6 @@ export const ui = {
     // Stats
     'stats.fighters': 'Personajes propuestos',
     'stats.variants': 'Trajes y variantes',
-    'stats.sagas': 'Sagas cubiertas',
-    'stats.sinceYear': 'Desde el año',
 
     // Filter heading
     'filter.heading': 'Todos los candidatos',
@@ -135,6 +133,10 @@ export const ui = {
     'contribute.sectionDesc':
       'El campo <code class="text-ice">section</code> define en qué grupo visual aparece: <code>fighters</code> (Personajes, arriba) o <code>outfits</code> (Trajes, abajo). Si un personaje ya está en el juego y solo faltan sus skins, ponle <code class="text-ice">"section": "outfits"</code>. El componente hexágono es exactamente el mismo — solo cambia en qué panal se dibuja.',
 
+    'contribute.variantsTitle': 'Imágenes de cada variante',
+    'contribute.variantsDesc':
+      'El selector de trajes dibuja un hexágono por variante, y cada uno lleva su propia foto — igual que el panal del home. La imagen sale de <code class="text-ice">variants[].portrait</code>; si no la pones, cae en <code class="text-ice">variants[].image</code>, y si tampoco hay, el hexágono queda liso. El traje por defecto (el primero) usa el <code class="text-ice">portrait</code> del personaje, así que es la misma cara que ya se ve en el panal. Al pulsar un hexágono cambian a la vez el render de la izquierda (<code>image</code>) y el fondo de la cabecera (<code>scene</code>), por eso conviene rellenar los tres campos de cada variante.',
+
     'contribute.fields': '4. Los campos',
     'contribute.fieldsHeader': ['Campo', 'Obligatorio', 'Qué es'],
     'contribute.example': '5. Ejemplo completo',
@@ -197,8 +199,6 @@ export const ui = {
     // Stats
     'stats.fighters': 'Proposed fighters',
     'stats.variants': 'Outfits & variants',
-    'stats.sagas': 'Sagas covered',
-    'stats.sinceYear': 'Since year',
 
     // Filter heading
     'filter.heading': 'All Candidates',
@@ -306,6 +306,10 @@ export const ui = {
     'contribute.sectionDesc':
       'The <code class="text-ice">section</code> field defines which visual group the entry appears in: <code>fighters</code> (Characters, top) or <code>outfits</code> (Outfits, bottom). If a character is already in the game and only their skins are missing, use <code class="text-ice">"section": "outfits"</code>. The hexagon component is exactly the same — only the panel it renders in changes.',
 
+    'contribute.variantsTitle': 'Images for each variant',
+    'contribute.variantsDesc':
+      'The outfit picker draws one hexagon per variant, and each carries its own photo — just like the home honeycomb. The image comes from <code class="text-ice">variants[].portrait</code>; if you omit it, it falls back to <code class="text-ice">variants[].image</code>, and with neither the hexagon stays flat. The default outfit (the first one) uses the character\'s own <code class="text-ice">portrait</code>, so it is the same face already shown in the honeycomb. Clicking a hexagon swaps both the render on the left (<code>image</code>) and the header background (<code>scene</code>), so it is worth filling all three fields on every variant.',
+
     'contribute.fields': '4. Fields',
     'contribute.fieldsHeader': ['Field', 'Required', 'What it is'],
     'contribute.example': '5. Full example',
@@ -369,8 +373,6 @@ export const ui = {
     // Stats
     'stats.fighters': 'Personagens propostos',
     'stats.variants': 'Trajes e variantes',
-    'stats.sagas': 'Sagas cobertas',
-    'stats.sinceYear': 'Desde o ano',
 
     // Filter heading
     'filter.heading': 'Todos os candidatos',
@@ -478,6 +480,10 @@ export const ui = {
     'contribute.sectionDesc':
       'O campo <code class="text-ice">section</code> define em qual grupo visual a entrada aparece: <code>fighters</code> (Personagens, em cima) ou <code>outfits</code> (Trajes, embaixo). Se um personagem já está no jogo e só faltam suas skins, use <code class="text-ice">"section": "outfits"</code>. O componente hexágono é exatamente o mesmo — só muda em qual painel ele se desenha.',
 
+    'contribute.variantsTitle': 'Imagens de cada variante',
+    'contribute.variantsDesc':
+      'O seletor de trajes desenha um hexágono por variante, e cada um leva sua própria foto — igual à colmeia da home. A imagem vem de <code class="text-ice">variants[].portrait</code>; se você não colocar, ela cai em <code class="text-ice">variants[].image</code>, e sem nenhuma das duas o hexágono fica liso. O traje padrão (o primeiro) usa o <code class="text-ice">portrait</code> do personagem, então é o mesmo rosto que já aparece na colmeia. Ao clicar em um hexágono mudam ao mesmo tempo o render da esquerda (<code>image</code>) e o fundo do cabeçalho (<code>scene</code>), por isso vale preencher os três campos de cada variante.',
+
     'contribute.fields': '4. Os campos',
     'contribute.fieldsHeader': ['Campo', 'Obrigatório', 'O que é'],
     'contribute.example': '5. Exemplo completo',
@@ -567,9 +573,12 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'description': 'Quién es, en una o dos frases (mínimo 20 caracteres).',
     'whyWanted': 'Por qué merece entrar al juego (mínimo 20 caracteres).',
     'signatureMoves': 'Lista de técnicas.',
-    'variants': 'Trajes o formas que también faltan.',
+    'variants': 'Trajes o formas que también faltan. Cada una lleva su propia imagen.',
+    'variants[].image': 'Render de cuerpo entero de la variante, con fondo transparente.',
+    'variants[].portrait': 'Cara de la variante para su hexágono en el selector. Si falta, usa image.',
+    'variants[].scene': 'Fondo de la cabecera cuando esa variante está seleccionada.',
     'render': 'Ruta en /public/fighters. Si falta se dibuja un placeholder.',
-    'portrait': 'Retrato para el hexágono.',
+    'portrait': 'Cara del personaje: sale en el panal del home y en su hexágono de traje.',
     'scene': 'Imagen de fondo para el lado derecho de la ficha.',
     'tags': 'Etiquetas libres en minúscula.',
     // Required yes/no
@@ -613,9 +622,12 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'description': 'Who they are, in one or two sentences (min 20 characters).',
     'whyWanted': 'Why they deserve to be in the game (min 20 characters).',
     'signatureMoves': 'List of techniques.',
-    'variants': 'Outfits or forms that are also missing.',
+    'variants': 'Outfits or forms that are also missing. Each one carries its own image.',
+    'variants[].image': 'Full-body render of the variant, with a transparent background.',
+    'variants[].portrait': 'Variant face for its hexagon in the picker. Falls back to image.',
+    'variants[].scene': 'Header background shown while that variant is selected.',
     'render': 'Path under /public/fighters. If missing, a placeholder is drawn.',
-    'portrait': 'Portrait for the hexagon.',
+    'portrait': 'Character face: used in the home honeycomb and in its outfit hexagon.',
     'scene': 'Background image for the right side of the profile.',
     'tags': 'Free lowercase tags.',
     'sí': 'yes',
@@ -658,9 +670,12 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'description': 'Quem é, em uma ou duas frases (mínimo 20 caracteres).',
     'whyWanted': 'Por que merece entrar no jogo (mínimo 20 caracteres).',
     'signatureMoves': 'Lista de técnicas.',
-    'variants': 'Trajes ou formas que também faltam.',
+    'variants': 'Trajes ou formas que também faltam. Cada uma leva sua própria imagem.',
+    'variants[].image': 'Render de corpo inteiro da variante, com fundo transparente.',
+    'variants[].portrait': 'Rosto da variante para o hexágono do seletor. Se faltar, usa image.',
+    'variants[].scene': 'Fundo do cabeçalho quando essa variante está selecionada.',
     'render': 'Caminho em /public/fighters. Se faltar, desenha um placeholder.',
-    'portrait': 'Retrato para o hexágono.',
+    'portrait': 'Rosto do personagem: aparece na colmeia da home e no hexágono do traje.',
     'scene': 'Imagem de fundo para o lado direito da ficha.',
     'tags': 'Tags livres em minúsculas.',
     'sí': 'sim',

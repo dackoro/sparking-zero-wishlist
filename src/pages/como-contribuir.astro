@@ -33,6 +33,8 @@ const ejemplo = `{
       "source": "Torneo del Otro Mundo",
       "description": "Camiseta sin mangas, velocidad desatada.",
       "image": "/fighters/pikkon-sin-pesos.webp",
+      "portrait": "/fighters/pikkon-sin-pesos-portrait.webp",
+      "scene": "/fighters/pikkon-sin-pesos-scene.webp",
       "accent": "#16a34a"
     }
   ],
@@ -59,6 +61,9 @@ const campos: [string, string, string][] = [
   ['whyWanted', 'sí', el('whyWanted')],
   ['signatureMoves', 'no', el('signatureMoves')],
   ['variants', 'no', el('variants')],
+  ['variants[].image', 'no', el('variants[].image')],
+  ['variants[].portrait', 'no', el('variants[].portrait')],
+  ['variants[].scene', 'no', el('variants[].scene')],
   ['render', 'no', el('render')],
   ['portrait', 'no', el('portrait')],
   ['scene', 'no', el('scene')],
@@ -103,6 +108,11 @@ const fieldsHeader = t('contribute.fieldsHeader') as string[];
     <section class="space-y-4">
       <h2 class="title-slant text-2xl text-ice">{t('contribute.sectionTitle') as string}</h2>
       <p class="text-sm leading-relaxed text-white/75" set:html={t('contribute.sectionDesc') as string} />
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.variantsTitle') as string}</h2>
+      <p class="text-sm leading-relaxed text-white/75" set:html={t('contribute.variantsDesc') as string} />
     </section>
 
     <section class="space-y-4">

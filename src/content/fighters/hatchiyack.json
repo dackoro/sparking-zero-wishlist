@@ -1,0 +1,32 @@
+{
+  "name": "Hatchiyack",
+  "nameJa": "ハッチヒャック",
+  "series": "Películas",
+  "saga": "Plan de exterminio de los Saiyajin",
+  "firstAppearance": {
+    "year": 1993,
+    "work": "OVA: Plan de exterminio de los Saiyajin",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "importance": 3,
+  "hype": 4,
+  "accent": "#dc2626",
+  "quote": "Saiyajins, vuestro fin ha llegado.",
+  "description": "Bio-androide creado por el Dr. Gero como su arma definitiva para exterminar a los Saiyajin. Absorbe energía para crecer y volverse más poderoso, pudiendo transformarse en una forma gigante devastadora.",
+  "whyWanted": "Es el villano del OVA más recordado y su mecánica de absorber energía lo hace único. Además sería un representante del Plan de Exterminio que nunca llegó al juego base.",
+  "signatureMoves": [
+    "Absorción de energía",
+    "Rey Destructor",
+    "Ráfaga vengativa"
+  ],
+  "portrait": "/fighters/hatchiyack-portrait.webp",
+  "render": "/fighters/hatchiyack.webp",
+  "scene": "/fighters/hatchiyack-scene.webp",
+  "tags": [
+    "androide",
+    "ova",
+    "villano",
+    "gigante"
+  ]
+}

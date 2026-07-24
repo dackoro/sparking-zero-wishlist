@@ -1,0 +1,32 @@
+{
+  "name": "Máquina de Pilaf",
+  "nameJa": "ピラフマシン",
+  "series": "Dragon Ball",
+  "saga": "Pilaf",
+  "firstAppearance": {
+    "year": 1986,
+    "work": "Dragon Ball, ep. 9",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "importance": 1,
+  "hype": 4,
+  "accent": "#f97316",
+  "quote": "¡Yo, el gran Pilaf, os aplastaré!",
+  "description": "El gigantesco robot de combate pilotado por Pilaf, Shu y Mai. Aparece en el arco final de la saga Pilaf cuando los tres intentan hacerse con las Esferas del Dragón. Goku lo destruye con un Kamehameha.",
+  "whyWanted": "Sería el primer mecha pilotado del juego y un personaje cómico perfecto con ataques en equipo de Pilaf, Shu y Mai.",
+  "signatureMoves": [
+    "Puño robótico",
+    "Rayo combinado",
+    "Autodestrucción falsa"
+  ],
+  "portrait": "/fighters/maquina-pilaf-portrait.webp",
+  "render": "/fighters/maquina-pilaf.webp",
+  "scene": "/fighters/maquina-pilaf-scene.webp",
+  "tags": [
+    "robot",
+    "pilaf",
+    "clasico",
+    "mecha"
+  ]
+}

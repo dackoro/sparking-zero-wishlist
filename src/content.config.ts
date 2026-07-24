@@ -38,7 +38,13 @@ const variant = z.object({
   name: z.string().min(2),
   source: z.string().optional(),
   description: z.string().optional(),
+  /** Render de cuerpo entero con fondo transparente, para el panel grande */
   image: z.string().optional(),
+  /** Recorte cuadrado de la cara, para el hexágono del selector de trajes.
+   *  Si falta, el hexágono cae en `image`. */
+  portrait: z.string().optional(),
+  /** Fondo de la cabecera cuando esta variante está activa */
+  scene: z.string().optional(),
   accent: z
     .string()
     .regex(/^#[0-9a-fA-F]{6}$/, 'Usa un hex de 6 dígitos, ej: #7c3aed')

@@ -14,6 +14,9 @@ uno nuevo, corregir datos o proponer trajes y variantes que también faltan.
   primera aparición y estado (wishlist / anunciado / ya es DLC).
 - **Ficha en overlay** al pulsar un hexágono: render a la izquierda, escena en diagonal a la derecha,
   y debajo la descripción, la saga, el año, las técnicas y un **selector de trajes y variantes**.
+- **Selector de trajes con foto**: cada variante es un hexágono con su propia imagen, y al pulsarlo
+  cambian a la vez el render y el fondo de la cabecera. Ver
+  [Imágenes de cada variante](CONTRIBUTING.md#imágenes-de-cada-variante).
 - **Página propia por personaje** (`/fighters/<slug>/`) para que el buscador indexe cada ficha; el
   overlay es solo el atajo desde la portada.
 - Sin imágenes oficiales: si una ficha no trae arte, la página **genera un placeholder** con su color.
@@ -74,7 +77,9 @@ Resumen — la versión larga está en [CONTRIBUTING.md](CONTRIBUTING.md) y en `
 2. Rellena los campos obligatorios (`name`, `series`, `saga`, `firstAppearance`, `role`,
    `importance`, `hype`, `accent`, `description`, `whyWanted`).
 3. Si tienes arte propio, déjalo en `public/fighters/` en WebP y apunta a él desde `render`,
-   `portrait` o cada `variants[].image`. Si no, no pongas nada.
+   `portrait` y `scene`. Cada variante acepta esos mismos tres campos
+   (`variants[].image`, `variants[].portrait`, `variants[].scene`) — el `portrait` es la foto que
+   sale en su hexágono del selector de trajes. Si no tienes arte, no pongas nada.
 4. `npm run build` para validar y ya puedes abrir el PR.
 
 Un personaje que llegue como DLC **no se borra**: se le cambia `status` a `"Ya es DLC"` y se queda

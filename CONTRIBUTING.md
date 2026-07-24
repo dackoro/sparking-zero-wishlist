@@ -35,8 +35,50 @@ La fuente de verdad es [`src/content.config.ts`](src/content.config.ts). Resumen
 | `description` | sí | Quién es, en una o dos frases. |
 | `whyWanted` | sí | Por qué merece entrar al juego. Es la parte que de verdad importa. |
 | `signatureMoves` | no | Lista de técnicas. |
-| `variants` | no | Trajes o formas que también faltan: `name`, `source`, `description`, `image`, `accent`. |
+| `variants` | no | Trajes o formas que también faltan: `name`, `source`, `description`, `image`, `portrait`, `scene`, `accent`. |
 | `render` / `portrait` / `scene` | no | Rutas dentro de `public/`. Si faltan se dibuja un placeholder. |
+
+### Imágenes de cada variante
+
+El selector de trajes de la ficha dibuja **un hexágono por variante**, y cada uno lleva su propia
+foto, igual que el panal de la portada. Cada variante acepta tres imágenes y las tres se usan en un
+sitio distinto:
+
+| Campo | Dónde se ve | Cómo debe ser |
+| --- | --- | --- |
+| `variants[].portrait` | El hexágono de esa variante en el selector | Recorte de la cara. Se muestra con `object-fit: cover` anclado arriba, así que la cabeza debe estar en la parte superior. |
+| `variants[].image` | El render grande a la izquierda de la cabecera | Cuerpo entero con **fondo transparente**. |
+| `variants[].scene` | El fondo de la cabecera, detrás del marco | Apaisado (16:9), sin transparencia. |
+
+Las tres son opcionales y degradan solas:
+
+- Si no pones `portrait`, el hexágono usa `image`.
+- Si tampoco hay `image`, el hexágono queda liso con el color de `accent`.
+- Si no pones `scene`, la cabecera se queda con el fondo genérico.
+
+El primer traje de la lista es siempre **el look por defecto**, y no se declara: sale automáticamente
+del `portrait`, `render` y `scene` del propio personaje. Por eso su hexágono muestra exactamente la
+misma cara que ya aparece en el panal de la portada.
+
+Al pulsar un hexágono cambian a la vez el render y el fondo de la cabecera, así que si añades una
+variante conviene rellenar los tres campos: si solo pones `image`, el fondo se quedará con el de la
+forma base y el cambio se notará a medias.
+
+Ejemplo, con los archivos ya en `public/fighters/`:
+
+```json
+"variants": [
+  {
+    "name": "Forma Majin",
+    "source": "FighterZ",
+    "description": "Piel rosa, cola y orejas de Majin.",
+    "image": "/fighters/androide-21-forma-maligna.webp",
+    "portrait": "/fighters/androide-21-forma-maligna-portrait.webp",
+    "scene": "/fighters/androide-21-forma-maligna-scene.webp",
+    "accent": "#db2777"
+  }
+]
+```
 | `tags` | no | Etiquetas libres en minúscula. |
 
 ## Reglas

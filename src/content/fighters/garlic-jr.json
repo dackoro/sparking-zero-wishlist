@@ -23,19 +23,6 @@
   "portrait": "/fighters/garlic-jr-portrait.webp",
   "render": "/fighters/garlic-jr.webp",
   "scene": "/fighters/garlic-jr-scene.webp",
-  "variants": [
-    {
-      "name": "Forma base",
-      "source": "Película 1",
-      "description": "Pequeño, con capa y pelo blanco."
-    },
-    {
-      "name": "Forma gigante",
-      "source": "Saga Garlic Jr.",
-      "description": "Musculado y con cuernos.",
-      "accent": "#4d7c0f"
-    }
-  ],
   "tags": [
     "película",
     "demonio",

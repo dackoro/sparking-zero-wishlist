@@ -1,0 +1,31 @@
+{
+  "name": "Botamo",
+  "nameJa": "ボタモ",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo entre Universos (6 vs 7)",
+  "firstAppearance": {
+    "year": 2015,
+    "work": "Dragon Ball Super, ep. 34",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "importance": 1,
+  "hype": 3,
+  "accent": "#eab308",
+  "quote": "Gua gua gua.",
+  "description": "Guerrero del Universo 6 con aspecto de osito de peluche. Su cuerpo es tan blando y elástico que los golpes físicos no le hacen daño. Fue el primer luchador del U6 en el torneo y cayó ante Goku, que lo agarró y lo lanzó fuera del ring.",
+  "whyWanted": "Su habilidad única de ser inmune a golpes físicos lo hace un personaje de nicho muy querido. El U6 necesita más representación y su diseño de osito es inconfundible.",
+  "signatureMoves": [
+    "Cuerpo elástico",
+    "Placaje osuno",
+    "Lanzamiento"
+  ],
+  "portrait": "/fighters/botamo-portrait.webp",
+  "render": "/fighters/botamo.webp",
+  "scene": "/fighters/botamo-scene.webp",
+  "tags": [
+    "universo 6",
+    "torneo",
+    "oso"
+  ]
+}
