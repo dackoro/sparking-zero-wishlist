@@ -101,6 +101,11 @@ const fieldsHeader = t('contribute.fieldsHeader') as string[];
     </section>
 
     <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.sectionTitle') as string}</h2>
+      <p class="text-sm leading-relaxed text-white/75" set:html={t('contribute.sectionDesc') as string} />
+    </section>
+
+    <section class="space-y-4">
       <h2 class="title-slant text-2xl text-ice">{t('contribute.fields') as string}</h2>
       <div class="overflow-x-auto rounded-lg border border-neon/25">
         <table class="w-full min-w-[36rem] text-left text-sm">

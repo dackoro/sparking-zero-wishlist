@@ -85,7 +85,7 @@ export const ui = {
     'panel.techniques': 'Técnicas',
     'panel.importance': 'Importancia',
     'panel.fanHype': 'Petición de los fans',
-    'panel.outfits': 'Trajes y variantes que faltan',
+    'panel.outfits': 'Trajes',
     'panel.defaultLook': 'Look por defecto',
     'panel.noVariants':
       'Nadie ha propuesto variantes todavía. ¿Te sabes alguna? Añádela por pull request.',
@@ -131,9 +131,13 @@ export const ui = {
     'contribute.rule4':
       '<code class="text-ice">importance</code> mide su peso en la historia; <code class="text-ice">hype</code> mide cuánto lo pide la gente. No son lo mismo y no pasa nada por que no coincidan.',
 
-    'contribute.fields': '3. Los campos',
+    'contribute.sectionTitle': '3. Personajes o Trajes',
+    'contribute.sectionDesc':
+      'El campo <code class="text-ice">section</code> define en qué grupo visual aparece: <code>fighters</code> (Personajes, arriba) o <code>outfits</code> (Trajes, abajo). Si un personaje ya está en el juego y solo faltan sus skins, ponle <code class="text-ice">"section": "outfits"</code>. El componente hexágono es exactamente el mismo — solo cambia en qué panal se dibuja.',
+
+    'contribute.fields': '4. Los campos',
     'contribute.fieldsHeader': ['Campo', 'Obligatorio', 'Qué es'],
-    'contribute.example': '4. Ejemplo completo',
+    'contribute.example': '5. Ejemplo completo',
 
     // Footer
     'footer.nonprofit': 'Proyecto de fans, sin ánimo de lucro.',
@@ -252,7 +256,7 @@ export const ui = {
     'panel.techniques': 'Techniques',
     'panel.importance': 'Importance',
     'panel.fanHype': 'Fan demand',
-    'panel.outfits': 'Missing outfits & variants',
+    'panel.outfits': 'Outfits',
     'panel.defaultLook': 'Default look',
     'panel.noVariants':
       'No one has proposed variants yet. Know any? Add them via pull request.',
@@ -298,9 +302,13 @@ export const ui = {
     'contribute.rule4':
       '<code class="text-ice">importance</code> measures story weight; <code class="text-ice">hype</code> measures fan demand. They aren\'t the same, and it\'s fine if they don\'t match.',
 
-    'contribute.fields': '3. Fields',
+    'contribute.sectionTitle': '3. Characters or Outfits',
+    'contribute.sectionDesc':
+      'The <code class="text-ice">section</code> field defines which visual group the entry appears in: <code>fighters</code> (Characters, top) or <code>outfits</code> (Outfits, bottom). If a character is already in the game and only their skins are missing, use <code class="text-ice">"section": "outfits"</code>. The hexagon component is exactly the same — only the panel it renders in changes.',
+
+    'contribute.fields': '4. Fields',
     'contribute.fieldsHeader': ['Field', 'Required', 'What it is'],
-    'contribute.example': '4. Full example',
+    'contribute.example': '5. Full example',
 
     // Footer
     'footer.nonprofit': 'Fan project, non-profit.',
@@ -420,7 +428,7 @@ export const ui = {
     'panel.techniques': 'Técnicas',
     'panel.importance': 'Importância',
     'panel.fanHype': 'Pedido dos fãs',
-    'panel.outfits': 'Trajes e variantes que faltam',
+    'panel.outfits': 'Trajes',
     'panel.defaultLook': 'Visual padrão',
     'panel.noVariants':
       'Ninguém propôs variantes ainda. Conhece alguma? Adicione via pull request.',
@@ -466,9 +474,13 @@ export const ui = {
     'contribute.rule4':
       '<code class="text-ice">importance</code> mede o peso na história; <code class="text-ice">hype</code> mede o quanto o público pede. Não são a mesma coisa e não tem problema se não coincidirem.',
 
-    'contribute.fields': '3. Os campos',
+    'contribute.sectionTitle': '3. Personagens ou Trajes',
+    'contribute.sectionDesc':
+      'O campo <code class="text-ice">section</code> define em qual grupo visual a entrada aparece: <code>fighters</code> (Personagens, em cima) ou <code>outfits</code> (Trajes, embaixo). Se um personagem já está no jogo e só faltam suas skins, use <code class="text-ice">"section": "outfits"</code>. O componente hexágono é exatamente o mesmo — só muda em qual painel ele se desenha.',
+
+    'contribute.fields': '4. Os campos',
     'contribute.fieldsHeader': ['Campo', 'Obrigatório', 'O que é'],
-    'contribute.example': '4. Exemplo completo',
+    'contribute.example': '5. Exemplo completo',
 
     // Footer
     'footer.nonprofit': 'Projeto de fãs, sem fins lucrativos.',

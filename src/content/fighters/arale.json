@@ -20,18 +20,9 @@
     "Kiiin",
     "Puño rompeplanetas"
   ],
-  "variants": [
-    {
-      "name": "Clásica",
-      "source": "Dr. Slump",
-      "description": "Con su gorro alado y peto."
-    },
-    {
-      "name": "Dragon Ball Super",
-      "source": "Saga Super",
-      "description": "Rediseño moderno."
-    }
-  ],
+  "portrait": "/fighters/arale-portrait.webp",
+  "render": "/fighters/arale.webp",
+  "scene": "/fighters/arale-scene.webp",
   "tags": [
     "crossover",
     "robot",

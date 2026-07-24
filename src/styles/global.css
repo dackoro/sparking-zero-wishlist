@@ -67,12 +67,16 @@
   --cols: 4;
   --hex-w: clamp(74px, 20vw, 120px);
   --hex-h: calc(var(--hex-w) * 1.1547);
-  --hex-gap: 6px;
+  --hex-gap: 8px;
+  /* Color macizo del hueco entre hexágonos (lo pinta .hex-cell::before). */
+  --hex-gap-fill: #37146e;
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--hex-w));
   /* Fila = 75% del alto del hexágono: así las filas engranan solas
-     sin márgenes negativos (que aplastarían la celda del grid). */
-  grid-auto-rows: calc(var(--hex-h) * 0.75);
+     sin márgenes negativos (que aplastarían la celda del grid).
+     El extra de `--hex-gap * 0.866` (sen 60°) deja el mismo hueco
+     vertical que el horizontal. */
+  grid-auto-rows: calc(var(--hex-h) * 0.75 + var(--hex-gap) * 0.866);
   column-gap: var(--hex-gap);
   justify-content: center;
   padding-inline: 0.75rem;
@@ -142,27 +146,58 @@
 /* Borde del hexágono: capa exterior coloreada + interior recortado */
 /* El tamaño lo pone `.hive > *`: la celda es hija directa del panal. */
 .hex-cell {
+  /* Cuánto sobresale el relleno del hueco por cada lado. Debe pasar de
+     medio `--hex-gap` para que el de dos celdas vecinas se solape y no
+     quede una costura sin pintar. */
+  --hex-bleed: 7px;
   position: relative;
   display: block;
-  background: linear-gradient(160deg, #a855f7, #4c1d95 55%, #22d3ee);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   transform: translateX(var(--shift, 0px)) scale(var(--hex-scale, 1));
   transition: filter 0.18s ease, transform 0.18s ease;
   cursor: pointer;
 }
 
+/* Relleno del hueco: un hexágono algo mayor en morado oscuro. Los de las
+   celdas vecinas se tocan entre sí, así el gap queda macizo en vez de
+   dejar ver el fondo de la página. */
+.hex-cell::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--hex-bleed) * -1);
+  z-index: 0;
+  background: var(--hex-gap-fill, #37146e);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Borde del hexágono: morado claro, azul al pasar por encima. */
+.hex-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #a855f7;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: background 0.18s ease;
+}
+
 .hex-cell:hover,
 .hex-cell:focus-visible {
-  filter: brightness(1.25) saturate(1.2)
-    drop-shadow(0 0 12px color-mix(in srgb, var(--accent, #8b5cf6) 75%, transparent));
+  filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 12px color-mix(in srgb, var(--color-ice) 70%, transparent));
   --hex-scale: 1.06;
   z-index: 5;
   outline: none;
 }
 
+.hex-cell:hover::after,
+.hex-cell:focus-visible::after {
+  background: var(--color-ice);
+}
+
 .hex-inner {
   position: absolute;
-  inset: 3px;
+  inset: 2px;
+  /* Por encima del relleno y del borde, que también van posicionados. */
+  z-index: 2;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   background: var(--color-abyss);
   overflow: hidden;

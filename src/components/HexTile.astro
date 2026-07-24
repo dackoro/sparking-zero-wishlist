@@ -33,9 +33,13 @@ const d = fighter.data;
   aria-label={`${d.name} — ${d.series}, ${d.firstAppearance.year}`}
 >
   <span class="hex-inner" style={`background:linear-gradient(165deg, ${d.accent}55, #150a2b 60%)`}>
-    <span class="absolute inset-0 flex items-center justify-center pt-[8%]">
-      <FighterArt name={d.name} accent={d.accent} image={d.portrait ?? d.render} class="scale-110" />
+    <span class="absolute inset-0">
+      <FighterArt name={d.name} accent={d.accent} image={d.portrait ?? d.render} fit="cover" />
     </span>
+
+    <span
+      class="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-void via-void/65 to-transparent"
+      aria-hidden="true"></span>
 
     {
       d.status !== 'Wishlist' && (

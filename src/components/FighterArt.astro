@@ -7,12 +7,14 @@ interface Props {
   image?: string;
   class?: string;
   eager?: boolean;
+  /** `contain` respeta el render completo; `cover` llena la celda sin dejar huecos. */
+  fit?: 'contain' | 'cover';
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { name, accent, image, class: className = '', eager = false } = Astro.props;
+const { name, accent, image, class: className = '', eager = false, fit = 'contain' } = Astro.props;
 
 const initials = name
   .replace(/[^\p{L}\s]/gu, '')
@@ -30,7 +32,7 @@ const initials = name
       alt={(t('fighterArt.renderOf') as (name: string) => string)(name)}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
-      class={`h-full w-full object-contain ${className}`}
+      class={`h-full w-full ${fit === 'cover' ? 'object-cover object-top' : 'object-contain'} ${className}`}
     />
   ) : (
     <svg
