@@ -44,6 +44,8 @@ try {
   const raw = readFileSync(join(dist, sitemapFile), 'utf-8');
   const urlRegex = /<url>([\s\S]*?)<\/url>/g;
   const locRegex = /<loc>([^<]+)<\/loc>/;
+  const priorityRegex = /<priority>([^<]+)<\/priority>/;
+  const changefreqRegex = /<changefreq>([^<]+)<\/changefreq>/;
   const match = (block, re) => { const m = block.match(re); return m ? m[1] : ''; };
 
   const entries = [];
@@ -73,6 +75,11 @@ try {
     const main = group.find((g) => g.lang === 'es') ?? group[0];
     xml += `  <url>\n`;
     xml += `    <loc>${main.loc}</loc>\n`;
+
+    const prio = match(main.raw, priorityRegex);
+    const freq = match(main.raw, changefreqRegex);
+    if (prio) xml += `    <priority>${prio}</priority>\n`;
+    if (freq) xml += `    <changefreq>${freq}</changefreq>\n`;
 
     if (group.length > 1) {
       for (const alt of group) {
