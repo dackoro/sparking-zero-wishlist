@@ -31,7 +31,7 @@ const title = (t('detail.titleTemplate') as (name: string) => string)(name);
 const rawDescription = localize(d, 'description', lang) ?? (d.description as string) ?? '';
 const description = (t('detail.descriptionTemplate') as (name: string, series: string, year: number, description: string) => string)(name, el(d.series as string), d.firstAppearance?.year as number, rawDescription);
 
-const ogImgSrc = d.render ?? d.portrait ?? d.scene ?? undefined;
+const ogImgSrc = d.scene ?? d.render ?? d.portrait ?? undefined;
 const ogImgAlt = `${name} — Dragon Ball: Sparking! ZERO`;
 
 const detailUrl = new URL(`/fighters/${fighter.id}/`, Astro.site).href;
