@@ -1,0 +1,26 @@
+{
+  "name": "Tambourine",
+  "name_en": "Tambourine",
+  "name_pt": "Tambourine",
+  "nameJa": "タンバリン",
+  "series": "Dragon Ball",
+  "saga": "Piccolo Daimaku",
+  "saga_en": "King Piccolo",
+  "saga_pt": "Piccolo Daimaku",
+  "firstAppearance": {
+    "year": 1988,
+    "work": "Dragon Ball, cap. 137",
+    "work_en": "Dragon Ball, ch. 137",
+    "work_pt": "Dragon Ball, cap. 137",
+    "medium": "Manga"
+  },
+  "role": "Antagonista",
+  "accent": "#16a34a",
+  "description": "Demonio alado hijo de Piccolo Daimaku, creado para recuperar las Esferas del Dragón. Es el asesino de Krilin en el 22º Torneo, lo que desata la ira de Goku.",
+  "description_en": "Winged demon son of King Piccolo, created to retrieve the Dragon Balls. He is Krillin's murderer at the 22nd World Martial Arts Tournament, unleashing Goku's wrath.",
+  "description_pt": "Demônio alado filho de Piccolo Daimaku, criado para recuperar as Esferas do Dragão. É o assassino de Kuririn no 22º Torneio, desencadeando a fúria de Goku.",
+  "portrait": "/fighters/tambourine-portrait.webp",
+  "render": "/fighters/tambourine.webp",
+  "scene": "/fighters/tambourine-scene.webp",
+  "tags": ["dragon ball", "demonio", "piccolo", "clasico"]
+}

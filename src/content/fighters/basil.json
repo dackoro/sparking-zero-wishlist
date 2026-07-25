@@ -1,0 +1,26 @@
+{
+  "name": "Basil",
+  "name_en": "Basil",
+  "name_pt": "Basil",
+  "nameJa": "バジル",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo de la Fuerza",
+  "saga_en": "Tournament of Power",
+  "saga_pt": "Torneio do Poder",
+  "firstAppearance": {
+    "year": 2017,
+    "work": "Dragon Ball Super, ep. 84",
+    "work_en": "Dragon Ball Super, ep. 84",
+    "work_pt": "Dragon Ball Super, ep. 84",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "accent": "#22c55e",
+  "description": "Miembro del Trio de Peligro del Universo 9, hermano de Bergamo y Lavanda. Es un luchador con velocidad increíble y patadas giratorias devastadoras.",
+  "description_en": "Member of the Trio of Danger from Universe 9, brother of Bergamo and Lavender. He is a fighter with incredible speed and devastating spinning kicks.",
+  "description_pt": "Membro do Trio de Perigo do Universo 9, irmão de Bergamo e Lavanda. É um lutador com velocidade incrível e chutes giratórios devastadores.",
+  "portrait": "/fighters/basil-portrait.webp",
+  "render": "/fighters/basil.webp",
+  "scene": "/fighters/basil-scene.webp",
+  "tags": ["universo 9", "trio peligro", "torneo de la fuerza", "boxeador"]
+}

@@ -1,25 +1,24 @@
 {
   "name": "Garlic Jr.",
+  "name_en": "Garlic Jr.",
+  "name_pt": "Garlic Jr.",
   "nameJa": "ガーリックJr.",
   "series": "Películas",
   "saga": "La leyenda de Shen Long",
+  "saga_en": "The Legend of Shen Long",
+  "saga_pt": "A Lenda de Shen Long",
   "firstAppearance": {
     "year": 1988,
     "work": "Película 1: La leyenda de Shen Long",
+    "work_en": "Movie 1: The Legend of Shen Long",
+    "work_pt": "Filme 1: A Lenda de Shen Long",
     "medium": "Película"
   },
   "role": "Antagonista",
-  "importance": 3,
-  "hype": 3,
   "accent": "#a3e635",
-  "quote": "Soy inmortal, no podéis hacerme nada.",
   "description": "Demonio inmortal que reclama el puesto de Dios de la Tierra y abre la Zona Muerta. Su inmortalidad lo condena a flotar eternamente en esa dimensión. Ya está en el juego en su forma base y Super Garlic Jr., se pide como personaje adicional con moveset propio de la película.",
-  "whyWanted": "Es el villano de la primera película de la franquicia y protagonista de su propia saga en el anime. La Zona Muerta sería un ultimate icónico.",
-  "signatureMoves": [
-    "Zona Muerta",
-    "Transformación gigante",
-    "Ráfaga demoníaca"
-  ],
+  "description_en": "Immortal demon who claims the position of God of Earth and opens the Dead Zone. His immortality condemns him to float eternally in that dimension. He is already in the game in his base form and Super Garlic Jr., requested as an additional character with a moveset from the movie.",
+  "description_pt": "Demônio imortal que reivindica o posto de Deus da Terra e abre a Zona Morta. Sua imortalidade o condena a flutuar eternamente nessa dimensão. Já está no jogo em sua forma base e Super Garlic Jr., é pedido como personagem adicional com moveset próprio do filme.",
   "portrait": "/fighters/garlic-jr-portrait.webp",
   "render": "/fighters/garlic-jr.webp",
   "scene": "/fighters/garlic-jr-scene.webp",

@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import FilterBar from '../../components/FilterBar.astro';
 import HexTile from '../../components/HexTile.astro';
 import FighterPanel from '../../components/FighterPanel.astro';
+import RosterStrip from '../../components/RosterStrip.astro';
 import logo from '../../assets/dbsz-logo.png';
 import { useTranslations, getLangFromUrl } from '../../i18n/utils';
 
@@ -13,7 +14,7 @@ const t = useTranslations(lang);
 
 const fighters = (await getCollection('fighters')).sort(
   (a, b) =>
-    b.data.importance - a.data.importance || a.data.firstAppearance.year - b.data.firstAppearance.year,
+    a.data.firstAppearance.year - b.data.firstAppearance.year || a.data.name.localeCompare(b.data.name, 'es'),
 );
 
 const fighterFighters = fighters.filter((f) => f.data.section !== 'outfits');
@@ -51,9 +52,9 @@ const jsonLd = {
     <Image
       src={logo}
       alt="DRAGON BALL: Sparking! ZERO"
-      width={420}
+      width={520}
       densities={[1, 2]}
-      class="mx-auto w-64 sm:w-80"
+      class="mx-auto w-80 sm:w-96"
     />
 
     <h1 class="title-slant mt-8 text-4xl leading-none text-white sm:text-6xl lg:text-7xl">
@@ -128,7 +129,7 @@ const jsonLd = {
       class="fixed inset-0 backdrop-blur-[2px]"
       style="background:radial-gradient(125% 95% at 50% 0%, rgba(109,40,217,0.90), rgba(59,13,120,0.94) 55%, rgba(20,6,45,0.96))"
     ></div>
-    <div class="relative mx-auto my-6 w-full max-w-5xl px-4 sm:my-10">
+    <div class="relative mx-auto my-6 w-full max-w-7xl px-4 sm:my-10">
       <button
         type="button"
         data-close
@@ -140,6 +141,7 @@ const jsonLd = {
           </svg>
       </button>
       <div id="fighter-modal-content"></div>
+      <RosterStrip fighters={fighters} />
     </div>
   </div>
 

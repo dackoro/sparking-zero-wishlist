@@ -22,7 +22,7 @@ export const ui = {
     // Hero
     'hero.title': 'Los que faltan',
     'hero.description':
-      'El roster de <strong class="text-white">Sparking! ZERO</strong> es enorme, pero todavía deja fuera a medio Dragon Ball. Esta es la lista de deseos de la comunidad: personajes que nos gustaría ver como DLC, ordenables por saga, por año en que los vimos por primera vez o por lo secundarios que son. Al abrir una ficha verás también los <strong class="text-white">trajes y variantes</strong> que faltan.',
+      'El roster de <strong class="text-white">Sparking! ZERO</strong> es enorme, pero todavía deja fuera a medio Dragon Ball. Esta es la lista de deseos de la comunidad: personajes que nos gustaría ver como DLC, ordenables por saga, por año en que los vimos por primera vez o por cuánto los pide la gente. Al abrir una ficha verás también los <strong class="text-white">trajes y variantes</strong> que faltan.',
 
     // Stats
     'stats.fighters': 'Personajes propuestos',
@@ -38,16 +38,7 @@ export const ui = {
     'filter.allSeries': 'Todas',
     'filter.role': 'Rol',
     'filter.anyRole': 'Cualquiera',
-    'filter.minImportance': 'Importancia mínima',
-    'filter.anyImportance': 'Cualquiera',
-    'filter.importance2': '2+ · con papel propio',
-    'filter.importance3': '3+ · relevantes',
-    'filter.importance4': '4+ · clave en su saga',
-    'filter.importance5': '5 · capitales',
     'filter.sort': 'Ordenar por',
-    'filter.sortImportanceDesc': 'Más importantes primero',
-    'filter.sortImportanceAsc': 'Más secundarios primero',
-    'filter.sortHypeDesc': 'Más pedidos por los fans',
     'filter.sortYearAsc': 'Primera aparición (antiguos)',
     'filter.sortYearDesc': 'Primera aparición (recientes)',
     'filter.sortSeries': 'Serie',
@@ -72,6 +63,9 @@ export const ui = {
 
     // Modal
     'modal.close': 'Cerrar ficha',
+    'modal.prev': 'Personaje anterior',
+    'modal.next': 'Personaje siguiente',
+    'modal.browse': 'Explorar personajes',
 
     // Fighter panel
     'panel.series': 'Serie',
@@ -79,10 +73,6 @@ export const ui = {
     'panel.firstAppearance': 'Primera vez visto',
     'panel.work': 'Obra',
     'panel.role': 'Rol',
-    'panel.whyWanted': 'Por qué lo queremos',
-    'panel.techniques': 'Técnicas',
-    'panel.importance': 'Importancia',
-    'panel.fanHype': 'Petición de los fans',
     'panel.outfits': 'Trajes',
     'panel.defaultLook': 'Look por defecto',
     'panel.noVariants':
@@ -90,8 +80,8 @@ export const ui = {
 
     // Detail page
     'detail.titleTemplate': (name: string) => `${name} en Sparking! ZERO — ficha de la wishlist`,
-    'detail.descriptionTemplate': (name: string, series: string, year: number, whyWanted: string) =>
-      `${name} (${series}, ${year}): ${whyWanted}`,
+    'detail.descriptionTemplate': (name: string, series: string, year: number, description: string) =>
+      `${name} (${series}, ${year}): ${description}`,
     'detail.jsonLdHeadline': (name: string) => `${name}, candidato a DLC de Sparking! ZERO`,
     'detail.jsonLdCollection': 'Personajes que faltan en Sparking! ZERO',
     'detail.breadcrumb': 'Wishlist',
@@ -124,11 +114,6 @@ export const ui = {
       'Solo personajes que <strong class="text-white">no estén ya</strong> en el juego.',
     'contribute.rule2':
       'Si un personaje llega como DLC, no se borra: se cambia su <code class="text-ice">status</code> a "Ya es DLC".',
-    'contribute.rule3':
-      'Nada de arte robado. Sube solo trabajo propio o con licencia que lo permita.',
-    'contribute.rule4':
-      '<code class="text-ice">importance</code> mide su peso en la historia; <code class="text-ice">hype</code> mide cuánto lo pide la gente. No son lo mismo y no pasa nada por que no coincidan.',
-
     'contribute.sectionTitle': '3. Personajes o Trajes',
     'contribute.sectionDesc':
       'El campo <code class="text-ice">section</code> define en qué grupo visual aparece: <code>fighters</code> (Personajes, arriba) o <code>outfits</code> (Trajes, abajo). Si un personaje ya está en el juego y solo faltan sus skins, ponle <code class="text-ice">"section": "outfits"</code>. El componente hexágono es exactamente el mismo — solo cambia en qué panal se dibuja.',
@@ -139,7 +124,8 @@ export const ui = {
 
     'contribute.fields': '4. Los campos',
     'contribute.fieldsHeader': ['Campo', 'Obligatorio', 'Qué es'],
-    'contribute.example': '5. Ejemplo completo',
+    'contribute.example': '5. Ejemplo: personaje nuevo',
+    'contribute.exampleOutfit': '6. Ejemplo: traje o variante',
 
     // Footer
     'footer.nonprofit': 'Proyecto de fans, sin ánimo de lucro.',
@@ -162,7 +148,7 @@ export const ui = {
     'stages.heading': 'Los escenarios que faltan',
     'stages.description': 'Escenarios icónicos de Dragon Ball que aún no han llegado a <strong class="text-white">Sparking! ZERO</strong>. Ordenables por saga y año.',
     'stages.empty': 'Ningún escenario encaja con esos filtros.',
-    'stages.hint': 'Pulsa cualquier tarjeta para ver su ficha.',
+    'stages.hint': '',
     'stages.breadcrumb': 'Escenarios',
     'stages.back': '← Volver a escenarios',
     'stages.detailTitle': (name: string) => `${name} — Escenario de la wishlist de Sparking! ZERO`,
@@ -176,7 +162,7 @@ export const ui = {
     // Index meta
     'meta.indexTitle': 'Personajes que faltan en Sparking! ZERO — Wishlist de la comunidad',
     'meta.indexDescription': (count: number) =>
-      `Lista de deseos hecha por fans: ${count} personajes de Dragon Ball que aún no están en Sparking! ZERO, con su saga, año de primera aparición, nivel de importancia y los trajes que también faltan.`,
+      `Lista de deseos hecha por fans: ${count} personajes de Dragon Ball que aún no están en Sparking! ZERO, con su saga, año de primera aparición y los trajes que también faltan.`,
     'meta.jsonLdName': 'Personajes que faltan en DRAGON BALL: Sparking! ZERO',
   },
 
@@ -194,7 +180,7 @@ export const ui = {
     // Hero
     'hero.title': 'The Missing Ones',
     'hero.description':
-      'The <strong class="text-white">Sparking! ZERO</strong> roster is huge, but it still leaves out half of Dragon Ball. This is the community wishlist: characters we\'d love to see as DLC, sortable by saga, by the year we first saw them, or by how minor they are. Open a profile to also see the <strong class="text-white">outfits and variants</strong> that are missing.',
+      'The <strong class="text-white">Sparking! ZERO</strong> roster is huge, but it still leaves out half of Dragon Ball. This is the community wishlist: characters we\'d love to see as DLC, sortable by saga, by the year we first saw them, or by how much fans want them. Open a profile to also see the <strong class="text-white">outfits and variants</strong> that are missing.',
 
     // Stats
     'stats.fighters': 'Proposed fighters',
@@ -210,16 +196,7 @@ export const ui = {
     'filter.allSeries': 'All',
     'filter.role': 'Role',
     'filter.anyRole': 'Any',
-    'filter.minImportance': 'Min importance',
-    'filter.anyImportance': 'Any',
-    'filter.importance2': '2+ · has own role',
-    'filter.importance3': '3+ · relevant',
-    'filter.importance4': '4+ · key in saga',
-    'filter.importance5': '5 · essential',
     'filter.sort': 'Sort by',
-    'filter.sortImportanceDesc': 'Most important first',
-    'filter.sortImportanceAsc': 'Most minor first',
-    'filter.sortHypeDesc': 'Most requested by fans',
     'filter.sortYearAsc': 'First appearance (oldest)',
     'filter.sortYearDesc': 'First appearance (newest)',
     'filter.sortSeries': 'Series',
@@ -245,6 +222,9 @@ export const ui = {
 
     // Modal
     'modal.close': 'Close profile',
+    'modal.prev': 'Previous character',
+    'modal.next': 'Next character',
+    'modal.browse': 'Browse characters',
 
     // Fighter panel
     'panel.series': 'Series',
@@ -252,10 +232,6 @@ export const ui = {
     'panel.firstAppearance': 'First seen',
     'panel.work': 'Work',
     'panel.role': 'Role',
-    'panel.whyWanted': 'Why we want them',
-    'panel.techniques': 'Techniques',
-    'panel.importance': 'Importance',
-    'panel.fanHype': 'Fan demand',
     'panel.outfits': 'Outfits',
     'panel.defaultLook': 'Default look',
     'panel.noVariants':
@@ -263,8 +239,8 @@ export const ui = {
 
     // Detail page
     'detail.titleTemplate': (name: string) => `${name} in Sparking! ZERO — wishlist profile`,
-    'detail.descriptionTemplate': (name: string, series: string, year: number, whyWanted: string) =>
-      `${name} (${series}, ${year}): ${whyWanted}`,
+    'detail.descriptionTemplate': (name: string, series: string, year: number, description: string) =>
+      `${name} (${series}, ${year}): ${description}`,
     'detail.jsonLdHeadline': (name: string) => `${name}, Sparking! ZERO DLC candidate`,
     'detail.jsonLdCollection': 'Missing characters in Sparking! ZERO',
     'detail.breadcrumb': 'Wishlist',
@@ -297,11 +273,6 @@ export const ui = {
       'Only characters <strong class="text-white">not already</strong> in the game.',
     'contribute.rule2':
       'If a character becomes DLC, don\'t delete it: change its <code class="text-ice">status</code> to "Ya es DLC".',
-    'contribute.rule3':
-      'No stolen art. Only upload your own work or properly licensed material.',
-    'contribute.rule4':
-      '<code class="text-ice">importance</code> measures story weight; <code class="text-ice">hype</code> measures fan demand. They aren\'t the same, and it\'s fine if they don\'t match.',
-
     'contribute.sectionTitle': '3. Characters or Outfits',
     'contribute.sectionDesc':
       'The <code class="text-ice">section</code> field defines which visual group the entry appears in: <code>fighters</code> (Characters, top) or <code>outfits</code> (Outfits, bottom). If a character is already in the game and only their skins are missing, use <code class="text-ice">"section": "outfits"</code>. The hexagon component is exactly the same — only the panel it renders in changes.',
@@ -312,7 +283,8 @@ export const ui = {
 
     'contribute.fields': '4. Fields',
     'contribute.fieldsHeader': ['Field', 'Required', 'What it is'],
-    'contribute.example': '5. Full example',
+    'contribute.example': '5. Example: new character',
+    'contribute.exampleOutfit': '6. Example: outfit or variant',
 
     // Footer
     'footer.nonprofit': 'Fan project, non-profit.',
@@ -350,7 +322,7 @@ export const ui = {
     'meta.indexTitle':
       'Missing characters in Sparking! ZERO — Community Wishlist',
     'meta.indexDescription': (count: number) =>
-      `Fan-made wishlist: ${count} Dragon Ball characters still not in Sparking! ZERO, with their saga, first appearance year, importance level, and missing outfits.`,
+      `Fan-made wishlist: ${count} Dragon Ball characters still not in Sparking! ZERO, with their saga, first appearance year, and missing outfits.`,
     'meta.jsonLdName': 'Missing characters in DRAGON BALL: Sparking! ZERO',
   },
 
@@ -368,7 +340,7 @@ export const ui = {
     // Hero
     'hero.title': 'Os que faltam',
     'hero.description':
-      'O elenco de <strong class="text-white">Sparking! ZERO</strong> é enorme, mas ainda deixa metade de Dragon Ball de fora. Esta é a lista de desejos da comunidade: personagens que gostaríamos de ver como DLC, ordenáveis por saga, por ano de estreia ou por quão secundários são. Ao abrir uma ficha você verá também os <strong class="text-white">trajes e variantes</strong> que faltam.',
+      'O elenco de <strong class="text-white">Sparking! ZERO</strong> é enorme, mas ainda deixa metade de Dragon Ball de fora. Esta é a lista de desejos da comunidade: personagens que gostaríamos de ver como DLC, ordenáveis por saga, por ano de estreia ou por quanto os fãs pedem. Ao abrir uma ficha você verá também os <strong class="text-white">trajes e variantes</strong> que faltam.',
 
     // Stats
     'stats.fighters': 'Personagens propostos',
@@ -384,16 +356,7 @@ export const ui = {
     'filter.allSeries': 'Todas',
     'filter.role': 'Papel',
     'filter.anyRole': 'Qualquer',
-    'filter.minImportance': 'Importância mínima',
-    'filter.anyImportance': 'Qualquer',
-    'filter.importance2': '2+ · com papel próprio',
-    'filter.importance3': '3+ · relevantes',
-    'filter.importance4': '4+ · chave na saga',
-    'filter.importance5': '5 · capitais',
     'filter.sort': 'Ordenar por',
-    'filter.sortImportanceDesc': 'Mais importantes primeiro',
-    'filter.sortImportanceAsc': 'Mais secundários primeiro',
-    'filter.sortHypeDesc': 'Mais pedidos pelos fãs',
     'filter.sortYearAsc': 'Primeira aparição (antigos)',
     'filter.sortYearDesc': 'Primeira aparição (recentes)',
     'filter.sortSeries': 'Série',
@@ -419,6 +382,9 @@ export const ui = {
 
     // Modal
     'modal.close': 'Fechar ficha',
+    'modal.prev': 'Personagem anterior',
+    'modal.next': 'Próximo personagem',
+    'modal.browse': 'Explorar personagens',
 
     // Fighter panel
     'panel.series': 'Série',
@@ -426,10 +392,6 @@ export const ui = {
     'panel.firstAppearance': 'Visto pela primeira vez',
     'panel.work': 'Obra',
     'panel.role': 'Papel',
-    'panel.whyWanted': 'Por que queremos',
-    'panel.techniques': 'Técnicas',
-    'panel.importance': 'Importância',
-    'panel.fanHype': 'Pedido dos fãs',
     'panel.outfits': 'Trajes',
     'panel.defaultLook': 'Visual padrão',
     'panel.noVariants':
@@ -437,8 +399,8 @@ export const ui = {
 
     // Detail page
     'detail.titleTemplate': (name: string) => `${name} no Sparking! ZERO — ficha da wishlist`,
-    'detail.descriptionTemplate': (name: string, series: string, year: number, whyWanted: string) =>
-      `${name} (${series}, ${year}): ${whyWanted}`,
+    'detail.descriptionTemplate': (name: string, series: string, year: number, description: string) =>
+      `${name} (${series}, ${year}): ${description}`,
     'detail.jsonLdHeadline': (name: string) => `${name}, candidato a DLC do Sparking! ZERO`,
     'detail.jsonLdCollection': 'Personagens que faltam no Sparking! ZERO',
     'detail.breadcrumb': 'Wishlist',
@@ -471,11 +433,6 @@ export const ui = {
       'Apenas personagens que <strong class="text-white">ainda não estão</strong> no jogo.',
     'contribute.rule2':
       'Se um personagem virar DLC, não apague: mude o <code class="text-ice">status</code> para "Ya es DLC".',
-    'contribute.rule3':
-      'Nada de arte roubada. Envie apenas trabalho próprio ou com licença que permita.',
-    'contribute.rule4':
-      '<code class="text-ice">importance</code> mede o peso na história; <code class="text-ice">hype</code> mede o quanto o público pede. Não são a mesma coisa e não tem problema se não coincidirem.',
-
     'contribute.sectionTitle': '3. Personagens ou Trajes',
     'contribute.sectionDesc':
       'O campo <code class="text-ice">section</code> define em qual grupo visual a entrada aparece: <code>fighters</code> (Personagens, em cima) ou <code>outfits</code> (Trajes, embaixo). Se um personagem já está no jogo e só faltam suas skins, use <code class="text-ice">"section": "outfits"</code>. O componente hexágono é exatamente o mesmo — só muda em qual painel ele se desenha.',
@@ -486,7 +443,8 @@ export const ui = {
 
     'contribute.fields': '4. Os campos',
     'contribute.fieldsHeader': ['Campo', 'Obrigatório', 'O que é'],
-    'contribute.example': '5. Exemplo completo',
+    'contribute.example': '5. Exemplo: personagem novo',
+    'contribute.exampleOutfit': '6. Exemplo: traje ou variante',
 
     // Footer
     'footer.nonprofit': 'Projeto de fãs, sem fins lucrativos.',
@@ -524,7 +482,7 @@ export const ui = {
     'meta.indexTitle':
       'Personagens que faltam no Sparking! ZERO — Wishlist da comunidade',
     'meta.indexDescription': (count: number) =>
-      `Lista de desejos feita por fãs: ${count} personagens de Dragon Ball que ainda não estão no Sparking! ZERO, com sua saga, ano de estreia, nível de importância e os trajes que também faltam.`,
+      `Lista de desejos feita por fãs: ${count} personagens de Dragon Ball que ainda não estão no Sparking! ZERO, com sua saga, ano de estreia e os trajes que também faltam.`,
     'meta.jsonLdName': 'Personagens que faltam no DRAGON BALL: Sparking! ZERO',
   },
 } as const;
@@ -565,18 +523,18 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'firstAppearance.work': 'Obra concreta: capítulo, episodio o película.',
     'firstAppearance.medium': 'Uno de: Manga · Anime · Película · Videojuego',
     'role': 'Uno de: Protagonista · Antagonista · Secundario · Apoyo · Relleno · Cameo',
-    'importance': '1 = figurante olvidado · 5 = personaje capital de su arco.',
-    'hype': '1 = petición de nicho · 5 = clamor popular.',
     'status': 'Uno de: Wishlist · Anunciado · Ya es DLC. Por defecto "Wishlist".',
+    'section': 'Uno de: fighters · outfits. "fighters" = panel de Personajes, "outfits" = panel de Trajes (para skins/formas de un personaje que ya está en el juego). Por defecto "fighters".',
     'accent': 'Color hex de 6 dígitos que tiñe su ficha. Ej: #22c55e',
-    'quote': 'Frase corta del personaje.',
     'description': 'Quién es, en una o dos frases (mínimo 20 caracteres).',
-    'whyWanted': 'Por qué merece entrar al juego (mínimo 20 caracteres).',
-    'signatureMoves': 'Lista de técnicas.',
     'variants': 'Trajes o formas que también faltan. Cada una lleva su propia imagen.',
+    'variants[].name': 'Nombre de la variante, ej: "Forma Majin".',
+    'variants[].source': 'De dónde sale la variante: película, saga, videojuego, etc.',
+    'variants[].description': 'Qué la distingue del personaje base, en 1-2 frases.',
     'variants[].image': 'Render de cuerpo entero de la variante, con fondo transparente.',
     'variants[].portrait': 'Cara de la variante para su hexágono en el selector. Si falta, usa image.',
     'variants[].scene': 'Fondo de la cabecera cuando esa variante está seleccionada.',
+    'variants[].accent': 'Color hex de 6 dígitos propio de la variante. Ej: #db2777',
     'render': 'Ruta en /public/fighters. Si falta se dibuja un placeholder.',
     'portrait': 'Cara del personaje: sale en el panal del home y en su hexágono de traje.',
     'scene': 'Imagen de fondo para el lado derecho de la ficha.',
@@ -614,18 +572,18 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'firstAppearance.work': 'Specific work: chapter, episode, or movie.',
     'firstAppearance.medium': 'One of: Manga · Anime · Movie · Video game',
     'role': 'One of: Protagonist · Antagonist · Supporting · Side character · Filler · Cameo',
-    'importance': '1 = forgotten extra · 5 = pivotal character of their arc.',
-    'hype': '1 = niche request · 5 = popular demand.',
     'status': 'One of: Wishlist · Announced · Already DLC. Defaults to "Wishlist".',
+    'section': 'One of: fighters · outfits. "fighters" = Characters panel, "outfits" = Outfits panel (for skins/forms of a character already in the game). Defaults to "fighters".',
     'accent': '6-digit hex color that tints their profile. E.g. #22c55e',
-    'quote': 'Short character quote.',
     'description': 'Who they are, in one or two sentences (min 20 characters).',
-    'whyWanted': 'Why they deserve to be in the game (min 20 characters).',
-    'signatureMoves': 'List of techniques.',
     'variants': 'Outfits or forms that are also missing. Each one carries its own image.',
+    'variants[].name': 'Variant name, e.g. "Majin Form".',
+    'variants[].source': 'Where the variant comes from: movie, saga, video game, etc.',
+    'variants[].description': 'What sets it apart from the base character, in 1-2 sentences.',
     'variants[].image': 'Full-body render of the variant, with a transparent background.',
     'variants[].portrait': 'Variant face for its hexagon in the picker. Falls back to image.',
     'variants[].scene': 'Header background shown while that variant is selected.',
+    'variants[].accent': '6-digit hex color specific to the variant. E.g. #db2777',
     'render': 'Path under /public/fighters. If missing, a placeholder is drawn.',
     'portrait': 'Character face: used in the home honeycomb and in its outfit hexagon.',
     'scene': 'Background image for the right side of the profile.',
@@ -662,18 +620,18 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'firstAppearance.work': 'Obra concreta: capítulo, episódio ou filme.',
     'firstAppearance.medium': 'Um de: Mangá · Anime · Filme · Video game',
     'role': 'Um de: Protagonista · Antagonista · Secundário · Apoio · Filler · Cameo',
-    'importance': '1 = figurante esquecido · 5 = personagem capital do seu arco.',
-    'hype': '1 = pedido de nicho · 5 = clamor popular.',
     'status': 'Um de: Wishlist · Anunciado · Já é DLC. Padrão "Wishlist".',
+    'section': 'Um de: fighters · outfits. "fighters" = painel de Personagens, "outfits" = painel de Trajes (para skins/formas de um personagem que já está no jogo). Padrão "fighters".',
     'accent': 'Cor hex de 6 dígitos que colore a ficha. Ex: #22c55e',
-    'quote': 'Frase curta do personagem.',
     'description': 'Quem é, em uma ou duas frases (mínimo 20 caracteres).',
-    'whyWanted': 'Por que merece entrar no jogo (mínimo 20 caracteres).',
-    'signatureMoves': 'Lista de técnicas.',
     'variants': 'Trajes ou formas que também faltam. Cada uma leva sua própria imagem.',
+    'variants[].name': 'Nome da variante, ex: "Forma Majin".',
+    'variants[].source': 'De onde vem a variante: filme, saga, video game, etc.',
+    'variants[].description': 'O que a diferencia do personagem base, em 1-2 frases.',
     'variants[].image': 'Render de corpo inteiro da variante, com fundo transparente.',
     'variants[].portrait': 'Rosto da variante para o hexágono do seletor. Se faltar, usa image.',
     'variants[].scene': 'Fundo do cabeçalho quando essa variante está selecionada.',
+    'variants[].accent': 'Cor hex de 6 dígitos própria da variante. Ex: #db2777',
     'render': 'Caminho em /public/fighters. Se faltar, desenha um placeholder.',
     'portrait': 'Rosto do personagem: aparece na colmeia da home e no hexágono do traje.',
     'scene': 'Imagem de fundo para o lado direito da ficha.',

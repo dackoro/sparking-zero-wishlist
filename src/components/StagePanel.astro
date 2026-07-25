@@ -77,21 +77,6 @@ const meta = [
         }
       </dl>
 
-      <div>
-        <div class="mb-1 flex justify-between text-[10px] tracking-widest text-white/40 uppercase">
-          <span class="title-slant">{t('panel.fanHype') as string}</span>
-          <span>{d.hype as number}/5</span>
-        </div>
-        <div class="flex gap-1" role="img" aria-label={`${t('panel.fanHype')}: ${d.hype} de 5`}>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <span
-              class="h-1.5 flex-1 rounded-full"
-              style={i < (d.hype as number) ? `background:${d.accent}` : 'background:rgba(255,255,255,0.12)'}
-            />
-          ))}
-        </div>
-      </div>
-
       {
         (d.tags as string[])?.length > 0 && (
           <ul class="flex flex-wrap gap-1.5">

@@ -1,0 +1,26 @@
+{
+  "name": "Kibitoshin",
+  "name_en": "Kibitoshin",
+  "name_pt": "Kibitoshin",
+  "nameJa": "キビトシン",
+  "series": "Dragon Ball Z",
+  "saga": "Majin Buu",
+  "saga_en": "Majin Buu",
+  "saga_pt": "Majin Boo",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Dragon Ball Z, ep. 270",
+    "work_en": "Dragon Ball Z, ep. 270",
+    "work_pt": "Dragon Ball Z, ep. 270",
+    "medium": "Anime"
+  },
+  "role": "Apoyo",
+  "accent": "#eab308",
+  "description": "Fusión del Kaioshin Supremo (Shin) y su asistente Kibito mediante los Potara. Aparece durante la saga de Majin Buu con un poder muy superior al de sus componentes.",
+  "description_en": "Fusion of the Supreme Kai (Shin) and his attendant Kibito using Potara earrings. He appears during the Majin Buu saga with power far superior to his individual components.",
+  "description_pt": "Fusão do Kaioshin Supremo (Shin) e seu assistente Kibito usando os brincos Potara. Aparece durante a saga de Majin Boo com poder muito superior aos seus componentes.",
+  "portrait": "/fighters/kibitoshin-portrait.webp",
+  "render": "/fighters/kibitoshin.webp",
+  "scene": "/fighters/kibitoshin-scene.webp",
+  "tags": ["fusion", "kai", "majin buu", "dios"]
+}

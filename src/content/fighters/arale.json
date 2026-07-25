@@ -1,25 +1,24 @@
 {
   "name": "Arale Norimaki",
+  "name_en": "Arale Norimaki",
+  "name_pt": "Arale Norimaki",
   "nameJa": "アラレちゃん",
   "series": "Spin-off",
   "saga": "Crossover con Dr. Slump",
+  "saga_en": "Crossover with Dr. Slump",
+  "saga_pt": "Crossover com Dr. Slump",
   "firstAppearance": {
     "year": 1986,
     "work": "Dragon Ball, cap. 57 (crossover)",
+    "work_en": "Dragon Ball, ch. 57 (crossover)",
+    "work_pt": "Dragon Ball, cap. 57 (crossover)",
     "medium": "Manga"
   },
   "role": "Cameo",
-  "importance": 2,
-  "hype": 5,
   "accent": "#38bdf8",
-  "quote": "¡N’cha!",
   "description": "Robot con forma de niña creada por el Dr. Slump, capaz de partir el planeta de un puñetazo. Apareció en Dragon Ball y volvió en Super para pelear contra Goku y Bofa.",
-  "whyWanted": "Su fuerza absurda y su humor la convierten en el personaje invitado soñado. Ya peleó en Dragon Ball Super, así que es canon jugable.",
-  "signatureMoves": [
-    "N’cha Cannon",
-    "Kiiin",
-    "Puño rompeplanetas"
-  ],
+  "description_en": "A robot with the appearance of a little girl created by Dr. Slump, capable of splitting the planet with a punch. She appeared in Dragon Ball and returned in Super to fight against Goku and Beerus.",
+  "description_pt": "Robô com aparência de menina criada pelo Dr. Slump, capaz de partir o planeta com um soco. Apareceu em Dragon Ball e voltou em Super para lutar contra Goku e Birusu.",
   "portrait": "/fighters/arale-portrait.webp",
   "render": "/fighters/arale.webp",
   "scene": "/fighters/arale-scene.webp",

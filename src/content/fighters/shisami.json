@@ -1,0 +1,26 @@
+{
+  "name": "Shisami",
+  "name_en": "Shisami",
+  "name_pt": "Shisami",
+  "nameJa": "シサミ",
+  "series": "Dragon Ball Super",
+  "saga": "Resurrección de Freezer",
+  "saga_en": "Frieza's Resurrection",
+  "saga_pt": "Ressurreição de Freeza",
+  "firstAppearance": {
+    "year": 2015,
+    "work": "Dragon Ball Super, ep. 16",
+    "work_en": "Dragon Ball Super, ep. 16",
+    "work_pt": "Dragon Ball Super, ep. 16",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "accent": "#dc2626",
+  "description": "General del ejército de Freezer, de complexión masiva y gran poder destructivo. Lucha junto a Tagoma durante la resurrección de Freezer. Es derrotado por Piccolo en la batalla de la Tierra.",
+  "description_en": "General of Frieza's army, with a massive build and great destructive power. He fights alongside Tagoma during Frieza's resurrection. He is defeated by Piccolo in the battle on Earth.",
+  "description_pt": "General do exército de Freeza, de compleição massiva e grande poder destrutivo. Luta ao lado de Tagoma durante a ressurreição de Freeza. É derrotado por Piccolo na batalha da Terra.",
+  "portrait": "/fighters/shisami-portrait.webp",
+  "render": "/fighters/shisami.webp",
+  "scene": "/fighters/shisami-scene.webp",
+  "tags": ["freezer", "soldado", "dbs", "general"]
+}

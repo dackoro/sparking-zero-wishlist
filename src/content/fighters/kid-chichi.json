@@ -1,0 +1,26 @@
+{
+  "name": "Chi-Chi (niña)",
+  "name_en": "Kid Chi-Chi",
+  "name_pt": "Chi-Chi (criança)",
+  "nameJa": "チチ (子供)",
+  "series": "Dragon Ball",
+  "saga": "23º Torneo de las Artes Marciales",
+  "saga_en": "23rd World Martial Arts Tournament",
+  "saga_pt": "23º Torneio de Artes Marciais",
+  "firstAppearance": {
+    "year": 1986,
+    "work": "Dragon Ball, ep. 65",
+    "work_en": "Dragon Ball, ep. 65",
+    "work_pt": "Dragon Ball, ep. 65",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "accent": "#f43f5e",
+  "description": "La hija del Rey Ox que conoció Goku cuando eran niños. Aparece con casco y armadura de samurái buscando venganza contra Goku por una promesa malinterpretada.",
+  "description_en": "The daughter of the Ox King whom Goku met when they were children. She appears wearing a samurai helmet and armor seeking revenge against Goku over a misunderstood promise.",
+  "description_pt": "A filha do Rei Ox que Goku conheceu quando eram crianças. Aparece com capacete e armadura de samurai buscando vingança contra Goku por uma promessa mal interpretada.",
+  "portrait": "/fighters/kid-chichi-portrait.webp",
+  "render": "/fighters/kid-chichi.webp",
+  "scene": "/fighters/kid-chichi-scene.webp",
+  "tags": ["dragon ball", "femenino", "clasico", "torneo"]
+}

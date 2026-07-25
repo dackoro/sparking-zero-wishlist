@@ -1,0 +1,26 @@
+{
+  "name": "Vermoud",
+  "name_en": "Belmod",
+  "name_pt": "Vermoud",
+  "nameJa": "ベルモッド",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo de la Fuerza",
+  "saga_en": "Tournament of Power",
+  "saga_pt": "Torneio do Poder",
+  "firstAppearance": {
+    "year": 2017,
+    "work": "Dragon Ball Super, ep. 78",
+    "work_en": "Dragon Ball Super, ep. 78",
+    "work_pt": "Dragon Ball Super, ep. 78",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "accent": "#e11d48",
+  "description": "Dios de la Destrucción del Universo 11 y antiguo miembro de las Tropas del Orgullo. De aspecto payasesco pero poder letal. Es el superior de Toppo y Jiren.",
+  "description_en": "God of Destruction of Universe 11 and former Pride Trooper. With a clown-like appearance but deadly power. He is the superior of Toppo and Jiren.",
+  "description_pt": "Deus da Destruição do Universo 11 e antigo membro das Tropas do Orgulho. De aparência palhaço mas poder letal. É o superior de Toppo e Jiren.",
+  "portrait": "/fighters/vermoud-portrait.webp",
+  "render": "/fighters/vermoud.webp",
+  "scene": "/fighters/vermoud-scene.webp",
+  "tags": ["dios", "universo 11", "torneo de la fuerza"]
+}

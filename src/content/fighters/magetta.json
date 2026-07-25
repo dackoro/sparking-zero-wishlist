@@ -1,0 +1,26 @@
+{
+  "name": "Magetta",
+  "name_en": "Magetta",
+  "name_pt": "Magetta",
+  "nameJa": "マゲッタ",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo entre Universos (6 vs 7)",
+  "saga_en": "Universe 6 Tournament",
+  "saga_pt": "Torneio do Universo 6",
+  "firstAppearance": {
+    "year": 2015,
+    "work": "Dragon Ball Super, ep. 35",
+    "work_en": "Dragon Ball Super, ep. 35",
+    "work_pt": "Dragon Ball Super, ep. 35",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "accent": "#f97316",
+  "description": "Robot de combate metálico del Universo 6, creado por la raza Metalman. Su cuerpo de acero fundido es resistente al calor extremo y sus puños derriten todo lo que tocan.",
+  "description_en": "Metallic combat robot from Universe 6, created by the Metalman race. His molten steel body is resistant to extreme heat and his fists melt everything they touch.",
+  "description_pt": "Robô de combate metálico do Universo 6, criado pela raça Metalman. Seu corpo de aço fundido é resistente ao calor extremo e seus punhos derretem tudo que tocam.",
+  "portrait": "/fighters/magetta-portrait.webp",
+  "render": "/fighters/magetta.webp",
+  "scene": "/fighters/magetta-scene.webp",
+  "tags": ["universo 6", "robot", "torneo"]
+}

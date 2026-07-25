@@ -9,38 +9,54 @@ const el = useEnumLabel(lang);
 const prefix = lang === 'es' ? '' : `/${lang}`;
 
 const ejemplo = `{
-  "name": "Pikkon",
-  "nameJa": "パイクーハン",
-  "series": "Dragon Ball Z",
-  "saga": "Torneo del Otro Mundo",
+  "name": "Androide 21",
+  "nameJa": "人造人間21号",
+  "series": "Spin-off",
+  "saga": "Dragon Ball FighterZ",
   "firstAppearance": {
-    "year": 1999,
-    "work": "Dragon Ball Z, ep. 195",
+    "year": 2018,
+    "work": "Dragon Ball FighterZ",
+    "medium": "Videojuego"
+  },
+  "role": "Antagonista",
+  "status": "Wishlist",
+  "accent": "#ec4899",
+  "description": "Bio-androide creada por el Dr. Gero a partir del ADN de los guerreros más fuertes, incluyendo células de Majin Buu.",
+  "variants": [
+    {
+      "name": "Forma Majin",
+      "source": "FighterZ",
+      "description": "Ojos amarillos, garras y sonrisa de depredadora: emerge cuando el hambre de absorber energía vital le gana a su lado racional, y ataca a amigos y enemigos por igual sin distinguirlos.",
+      "image": "/fighters/androide-21-forma-maligna.webp",
+      "portrait": "/fighters/androide-21-forma-maligna-portrait.webp",
+      "scene": "/fighters/androide-21-forma-maligna-scene.webp",
+      "accent": "#db2777"
+    }
+  ],
+  "render": "/fighters/androide-21.webp",
+  "portrait": "/fighters/androide-21-portrait.webp",
+  "scene": "/fighters/androide-21-scene.webp",
+  "tags": ["videojuego", "majin", "femenino"]
+}`;
+
+const ejemploTraje = `{
+  "name": "Krilin",
+  "nameJa": "クリリン",
+  "series": "Dragon Ball Z",
+  "saga": "Majin Buu",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Dragon Ball Z, ep. 237",
     "medium": "Anime"
   },
   "role": "Secundario",
-  "importance": 4,
-  "hype": 5,
-  "status": "Wishlist",
-  "accent": "#22c55e",
-  "quote": "Quítate el peso y hablamos.",
-  "description": "Campeón de la Galaxia del Oeste y rival de Goku en el Otro Mundo.",
-  "whyWanted": "El personaje de relleno más querido de la franquicia...",
-  "signatureMoves": ["Trueno Explosivo", "Hyper Tornado"],
-  "variants": [
-    {
-      "name": "Sin pesos",
-      "source": "Torneo del Otro Mundo",
-      "description": "Camiseta sin mangas, velocidad desatada.",
-      "image": "/fighters/pikkon-sin-pesos.webp",
-      "portrait": "/fighters/pikkon-sin-pesos-portrait.webp",
-      "scene": "/fighters/pikkon-sin-pesos-scene.webp",
-      "accent": "#16a34a"
-    }
-  ],
-  "render": "/fighters/pikkon.webp",
-  "portrait": "/fighters/pikkon-portrait.webp",
-  "tags": ["relleno", "otro mundo"]
+  "section": "outfits",
+  "accent": "#ea580c",
+  "description": "En el juego ya está Krilin con su look calvo clásico, pero falta esta skin con el pelo que se dejó crecer durante la saga de Majin Buu.",
+  "portrait": "/fighters/krillin-portrait.webp",
+  "render": "/fighters/krillin.webp",
+  "scene": "/fighters/krillin-scene.webp",
+  "tags": ["skin", "terricola", "buu", "humano"]
 }`;
 
 const campos: [string, string, string][] = [
@@ -52,18 +68,18 @@ const campos: [string, string, string][] = [
   ['firstAppearance.work', 'sí', el('firstAppearance.work')],
   ['firstAppearance.medium', 'sí', el('firstAppearance.medium')],
   ['role', 'sí', el('role')],
-  ['importance', 'sí', el('importance')],
-  ['hype', 'sí', el('hype')],
   ['status', 'no', el('status')],
+  ['section', 'no', el('section')],
   ['accent', 'sí', el('accent')],
-  ['quote', 'no', el('quote')],
   ['description', 'sí', el('description')],
-  ['whyWanted', 'sí', el('whyWanted')],
-  ['signatureMoves', 'no', el('signatureMoves')],
   ['variants', 'no', el('variants')],
+  ['variants[].name', 'no', el('variants[].name')],
+  ['variants[].source', 'no', el('variants[].source')],
+  ['variants[].description', 'no', el('variants[].description')],
   ['variants[].image', 'no', el('variants[].image')],
   ['variants[].portrait', 'no', el('variants[].portrait')],
   ['variants[].scene', 'no', el('variants[].scene')],
+  ['variants[].accent', 'no', el('variants[].accent')],
   ['render', 'no', el('render')],
   ['portrait', 'no', el('portrait')],
   ['scene', 'no', el('scene')],
@@ -100,8 +116,6 @@ const fieldsHeader = t('contribute.fieldsHeader') as string[];
       <ul class="list-inside list-disc space-y-2 text-sm text-white/75">
         <li set:html={t('contribute.rule1') as string} />
         <li set:html={t('contribute.rule2') as string} />
-        <li set:html={t('contribute.rule3') as string} />
-        <li set:html={t('contribute.rule4') as string} />
       </ul>
     </section>
 
@@ -145,6 +159,12 @@ const fieldsHeader = t('contribute.fieldsHeader') as string[];
       <h2 class="title-slant text-2xl text-ice">{t('contribute.example') as string}</h2>
       <pre
         class="overflow-x-auto rounded-lg border border-neon/25 bg-void/80 p-4 text-xs leading-relaxed text-white/80"><code>{ejemplo}</code></pre>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="title-slant text-2xl text-ice">{t('contribute.exampleOutfit') as string}</h2>
+      <pre
+        class="overflow-x-auto rounded-lg border border-neon/25 bg-void/80 p-4 text-xs leading-relaxed text-white/80"><code>{ejemploTraje}</code></pre>
     </section>
 
     <a href={`${prefix}/`} class="title-slant inline-block rounded-md border border-neon/50 px-4 py-2 text-sm transition hover:border-ice hover:text-ice">

@@ -1,0 +1,26 @@
+{
+  "name": "Tarble",
+  "name_en": "Tarble",
+  "name_pt": "Tarble",
+  "nameJa": "ターブル",
+  "series": "Películas",
+  "saga": "¡Hey! Son Goku y sus amigos regresan",
+  "saga_en": "Yo! Son Goku and His Friends Return",
+  "saga_pt": "Ei! Son Goku e seus amigos retornam",
+  "firstAppearance": {
+    "year": 2008,
+    "work": "OVA: ¡Hey! Son Goku y sus amigos regresan",
+    "work_en": "OVA: Yo! Son Goku and His Friends Return",
+    "work_pt": "OVA: Ei! Son Goku e seus amigos retornam",
+    "medium": "Película"
+  },
+  "role": "Apoyo",
+  "accent": "#7c3aed",
+  "description": "El hermano menor de Vegeta, exiliado por su bajo poder. Aparece en la Tierra pidiendo ayuda contra Abo y Cado, los hermanos de Freezer.",
+  "description_en": "Vegeta's younger brother, exiled for his low power level. He appears on Earth asking for help against Abo and Cado, Frieza's brothers.",
+  "description_pt": "O irmão mais novo de Vegeta, exilado por seu baixo poder. Aparece na Terra pedindo ajuda contra Abo e Cado, os irmãos de Freeza.",
+  "portrait": "/fighters/tarble-portrait.webp",
+  "render": "/fighters/tarble.webp",
+  "scene": "/fighters/tarble-scene.webp",
+  "tags": ["saiyajin", "vegeta", "ova", "hermano"]
+}

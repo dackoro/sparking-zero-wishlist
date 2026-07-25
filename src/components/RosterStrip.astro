@@ -1,0 +1,115 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+
+interface Props {
+  fighters: CollectionEntry<'fighters'>[];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { fighters } = Astro.props;
+---
+
+<div class="mt-4 border-t border-white/10 pt-4">
+  <p class="title-slant mb-2 text-center text-xs tracking-widest text-white/40">
+    {t('modal.browse') as string}
+  </p>
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      id="fighter-strip-prev"
+      aria-label={t('modal.prev') as string}
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 text-lg text-white/70 transition hover:border-ice hover:text-ice"
+    >
+      ‹
+    </button>
+
+    <div id="fighter-strip" class="strip-track flex-1 overflow-x-auto">
+      <div class="flex gap-2 px-1 py-1">
+        {
+          fighters.map((f) => (
+            <button
+              type="button"
+              data-strip-slug={f.id}
+              data-name={f.data.name.toLowerCase()}
+              data-series={f.data.series}
+              data-year={f.data.firstAppearance.year}
+              aria-pressed="false"
+              class="strip-hex shrink-0"
+              style={`--v-accent:${f.data.accent}`}
+              title={f.data.name}
+            >
+              <span class="strip-hex-inner">
+                <img src={f.data.portrait ?? f.data.render} alt="" loading="lazy" decoding="async" />
+              </span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="fighter-strip-next"
+      aria-label={t('modal.next') as string}
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 text-lg text-white/70 transition hover:border-ice hover:text-ice"
+    >
+      ›
+    </button>
+  </div>
+</div>
+
+<style>
+  .strip-track {
+    cursor: grab;
+    /* Oculta la scrollbar: se arrastra o se navega con la rueda/flechas/dedo. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .strip-track:active {
+    cursor: grabbing;
+  }
+  .strip-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .strip-hex {
+    --ring: color-mix(in srgb, var(--v-accent) 45%, #0b0616);
+    position: relative;
+    width: 52px;
+    height: 60px;
+    background: var(--ring);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    cursor: pointer;
+  }
+  .strip-hex[aria-pressed='true'],
+  .strip-hex:hover {
+    --ring: var(--v-accent);
+    z-index: 2;
+  }
+
+  .strip-hex-inner {
+    position: absolute;
+    inset: 2px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: #150a2b;
+    overflow: hidden;
+    display: block;
+  }
+
+  .strip-hex-inner img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: grayscale(0.45) brightness(0.7);
+    transition: filter 0.18s ease;
+  }
+  .strip-hex[aria-pressed='true'] .strip-hex-inner img,
+  .strip-hex:hover .strip-hex-inner img {
+    filter: none;
+  }
+</style>

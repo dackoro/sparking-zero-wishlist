@@ -1,0 +1,26 @@
+{
+  "name": "Lavanda",
+  "name_en": "Lavender",
+  "name_pt": "Lavanda",
+  "nameJa": "ラベンダー",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo de la Fuerza",
+  "saga_en": "Tournament of Power",
+  "saga_pt": "Torneio do Poder",
+  "firstAppearance": {
+    "year": 2017,
+    "work": "Dragon Ball Super, ep. 84",
+    "work_en": "Dragon Ball Super, ep. 84",
+    "work_pt": "Dragon Ball Super, ep. 84",
+    "medium": "Anime"
+  },
+  "role": "Antagonista",
+  "accent": "#a855f7",
+  "description": "Miembro del Trio de Peligro del Universo 9, hermano de Bergamo y Basil. Es un lobo antropomórfico que usa veneno en sus ataques, volviendo sus golpes letales.",
+  "description_en": "Member of the Trio of Danger from Universe 9, brother of Bergamo and Basil. He is an anthropomorphic wolf who uses poison in his attacks, making his strikes lethal.",
+  "description_pt": "Membro do Trio de Perigo do Universo 9, irmão de Bergamo e Basil. É um lobo antropomórfico que usa veneno em seus ataques, tornando seus golpes letais.",
+  "portrait": "/fighters/lavanda-portrait.webp",
+  "render": "/fighters/lavanda.webp",
+  "scene": "/fighters/lavanda-scene.webp",
+  "tags": ["universo 9", "trio peligro", "torneo de la fuerza", "veneno"]
+}

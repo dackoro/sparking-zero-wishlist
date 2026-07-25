@@ -52,22 +52,8 @@ const labelClass = 'title-slant mb-1 block text-[10px] tracking-widest text-whit
       </div>
 
       <div>
-        <label class={labelClass} for="f-importance">{t('filter.minImportance') as string}</label>
-        <select id="f-importance" name="importance" class={selectClass}>
-          <option value="0">{t('filter.anyImportance') as string}</option>
-          <option value="2">{t('filter.importance2') as string}</option>
-          <option value="3">{t('filter.importance3') as string}</option>
-          <option value="4">{t('filter.importance4') as string}</option>
-          <option value="5">{t('filter.importance5') as string}</option>
-        </select>
-      </div>
-
-      <div>
         <label class={labelClass} for="f-sort">{t('filter.sort') as string}</label>
         <select id="f-sort" name="sort" class={selectClass}>
-          <option value="importance-desc">{t('filter.sortImportanceDesc') as string}</option>
-          <option value="importance-asc">{t('filter.sortImportanceAsc') as string}</option>
-          <option value="hype-desc">{t('filter.sortHypeDesc') as string}</option>
           <option value="year-asc">{t('filter.sortYearAsc') as string}</option>
           <option value="year-desc">{t('filter.sortYearDesc') as string}</option>
           <option value="series">{t('filter.sortSeries') as string}</option>

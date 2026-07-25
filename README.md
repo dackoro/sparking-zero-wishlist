@@ -3,6 +3,8 @@
 Fan page abierta con la lista de deseos de la comunidad: personajes de Dragon Ball que **no están**
 en DRAGON BALL: Sparking! ZERO y que nos gustaría ver como DLC.
 
+![Ficha de Kibitoshin en la wishlist](public/screenshot.webp)
+
 Copia el estilo del roster oficial (panal de hexágonos + overlay de ficha), pero todo el contenido lo
 mantienen los fans: cada personaje es un JSON y **cualquiera puede abrir un pull request** para añadir
 uno nuevo, corregir datos o proponer trajes y variantes que también faltan.
@@ -10,10 +12,10 @@ uno nuevo, corregir datos o proponer trajes y variantes que también faltan.
 ## Qué hace
 
 - **Panal de hexágonos** con todos los candidatos, al estilo de la página *All Fighters* oficial.
-- **Filtros y orden** por serie, saga, rol, importancia en la historia, tirón entre los fans, año de
-  primera aparición y estado (wishlist / anunciado / ya es DLC).
+- **Filtros y orden** por serie, saga, rol, año de primera aparición y estado (wishlist / anunciado /
+  ya es DLC).
 - **Ficha en overlay** al pulsar un hexágono: render a la izquierda, escena en diagonal a la derecha,
-  y debajo la descripción, la saga, el año, las técnicas y un **selector de trajes y variantes**.
+  y debajo la descripción, la saga, el año y un **selector de trajes y variantes**.
 - **Selector de trajes con foto**: cada variante es un hexágono con su propia imagen, y al pulsarlo
   cambian a la vez el render y el fondo de la cabecera. Ver
   [Imágenes de cada variante](CONTRIBUTING.md#imágenes-de-cada-variante).
@@ -75,7 +77,7 @@ Resumen — la versión larga está en [CONTRIBUTING.md](CONTRIBUTING.md) y en `
 
 1. Crea `src/content/fighters/<slug>.json`. El nombre del archivo es la URL.
 2. Rellena los campos obligatorios (`name`, `series`, `saga`, `firstAppearance`, `role`,
-   `importance`, `hype`, `accent`, `description`, `whyWanted`).
+   `accent`, `description`).
 3. Si tienes arte propio, déjalo en `public/fighters/` en WebP y apunta a él desde `render`,
    `portrait` y `scene`. Cada variante acepta esos mismos tres campos
    (`variants[].image`, `variants[].portrait`, `variants[].scene`) — el `portrait` es la foto que

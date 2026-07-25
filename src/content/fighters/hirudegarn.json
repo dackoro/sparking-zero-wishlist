@@ -1,29 +1,28 @@
 {
   "name": "Hirudegarn",
+  "name_en": "Hirudegarn",
+  "name_pt": "Hirudegarn",
   "nameJa": "ヒルデガーン",
   "series": "Películas",
   "saga": "El ataque del dragón",
+  "saga_en": "The Attack of the Dragon",
+  "saga_pt": "O Ataque do Dragão",
   "firstAppearance": {
     "year": 1995,
     "work": "Película 13: El ataque del dragón",
+    "work_en": "Movie 13: The Attack of the Dragon",
+    "work_pt": "Filme 13: O Ataque do Dragão",
     "medium": "Película"
   },
   "role": "Antagonista",
-  "importance": 3,
-  "hype": 4,
   "section": "outfits",
   "accent": "#7e22ce",
-  "description": "Monstruo colosal de Konatsu partido en dos mitades y sellado durante siglos. Al reunirse arrasa la ciudad hasta que Goku lo parte con el Puño del Dragón.",
-  "whyWanted": "Sería el segundo personaje gigante jugable del juego y la excusa perfecta para meter el Puño del Dragón como ultimate cinemática.",
-  "signatureMoves": [
-    "Latigazo de cola",
-    "Aliento de fuego",
-    "Onda expansiva"
-  ],
+  "description": "En el juego ya está Hirudegarn en su forma amarilla de máximo poder (la que Goku derrota con el Puño del Dragón), pero falta su primera transformación: más débil, sin alas, antes de curarse por completo.",
+  "description_en": "Hirudegarn is already in the game in his yellow maximum power form (the one Goku defeats with the Dragon Fist), but his first transformation is missing: weaker, wingless, before fully healing.",
+  "description_pt": "Hirudegarn já está no jogo em sua forma amarela de poder máximo (aquela que Goku derrota com o Punho do Dragão), mas falta sua primeira transformação: mais fraco, sem asas, antes de se curar completamente.",
   "portrait": "/fighters/hirudegarn-portrait.webp",
   "render": "/fighters/hirudegarn.webp",
   "scene": "/fighters/hirudegarn-scene.webp",
-
   "tags": [
     "película",
     "gigante",

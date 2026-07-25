@@ -2,7 +2,7 @@
 import FighterArt from './FighterArt.astro';
 import newsBg from '../assets/dbsz-news-background.jpg';
 import type { CollectionEntry } from 'astro:content';
-import { useTranslations, useEnumLabel, getLangFromUrl, localize, localizeArray } from '../i18n/utils';
+import { useTranslations, useEnumLabel, getLangFromUrl, localize } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -19,10 +19,8 @@ const d = fighter.data as Record<string, unknown>;
 const Title = standalone ? 'h1' : 'h2';
 
 const L = (field: string) => localize(d, field, lang as Lang);
-const LA = (field: string) => localizeArray(d, field, lang as Lang);
 
 const description = L('description') ?? '';
-const moves = LA('signatureMoves');
 const fighterName = (d.name as string) ?? '';
 
 const looks = [
@@ -118,22 +116,7 @@ const meta = [
         {d.nameJa && <p class="mt-1 text-sm text-white/40">{d.nameJa as string}</p>}
       </div>
 
-      <p class="text-sm leading-relaxed text-white/80">{description}</p>
-
-      {
-        moves.length > 0 && (
-          <div>
-            <p class="title-slant mb-2 text-xs tracking-widest text-white/50">{t('panel.techniques') as string}</p>
-            <ul class="flex flex-wrap gap-2">
-              {moves.map((m) => (
-                <li class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/75">
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
+      <p class="text-sm leading-relaxed text-white/80" data-look-desc>{description}</p>
     </div>
 
     <div class="space-y-5">
@@ -150,66 +133,37 @@ const meta = [
         }
       </dl>
 
-      <div class="space-y-2">
-        {
-          [
-            { label: t('panel.importance') as string, value: d.importance as number },
-            { label: t('panel.fanHype') as string, value: d.hype as number },
-          ].map((bar) => (
-            <div>
-              <div class="mb-1 flex justify-between text-[10px] tracking-widest text-white/40 uppercase">
-                <span class="title-slant">{bar.label}</span>
-                <span>{bar.value}/5</span>
-              </div>
-              <div class="flex gap-1" role="img" aria-label={`${bar.label}: ${bar.value} de 5`}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    class="h-1.5 flex-1 rounded-full"
-                    style={i < bar.value ? `background:${d.accent}` : 'background:rgba(255,255,255,0.12)'}
-                  />
-                ))}
-              </div>
+      {
+        looks.length > 1 && (
+          <div>
+            <p class="title-slant mb-2 text-xs tracking-widest text-white/50">
+              {t('panel.outfits') as string}
+            </p>
+            <div class="flex flex-wrap justify-center gap-3" role="group" aria-label={t('panel.outfits') as string}>
+              {looks.map((look, i) => (
+                <button
+                  type="button"
+                  data-look-btn={i}
+                  data-desc={look.description ?? ''}
+                  data-accent={look.accent ?? d.accent as string}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                  class="variant-hex transition"
+                  style={`--v-accent:${look.accent ?? d.accent}`}
+                  title={look.name}
+                >
+                  <span class="variant-hex-inner">
+                    {look.portrait && <img src={look.portrait} alt="" aria-hidden="true" loading="lazy" decoding="async" />}
+                    <span class="variant-hex-label">
+                      <span class="block text-[10px] leading-tight font-bold uppercase">{look.name}</span>
+                      {look.source && <span class="block text-[9px] leading-none opacity-70">{look.source}</span>}
+                    </span>
+                  </span>
+                </button>
+              ))}
             </div>
-          ))
-        }
-      </div>
-
-      <div>
-        <p class="title-slant mb-2 text-xs tracking-widest text-white/50">
-          {t('panel.outfits') as string}
-        </p>
-         {
-           looks.length > 1 ? (
-             <div class="flex flex-wrap justify-center gap-3" role="group" aria-label={t('panel.outfits') as string}>
-               {looks.map((look, i) => (
-                 <button
-                   type="button"
-                   data-look-btn={i}
-                   data-desc={look.description ?? ''}
-                   data-accent={look.accent ?? d.accent as string}
-                   aria-pressed={i === 0 ? 'true' : 'false'}
-                   class="variant-hex transition"
-                   style={`--v-accent:${look.accent ?? d.accent}`}
-                   title={look.name}
-                 >
-                   <span class="variant-hex-inner">
-                     {look.portrait && <img src={look.portrait} alt="" aria-hidden="true" loading="lazy" decoding="async" />}
-                     <span class="variant-hex-label">
-                       <span class="block text-[10px] leading-tight font-bold uppercase">{look.name}</span>
-                       {look.source && <span class="block text-[9px] leading-none opacity-70">{look.source}</span>}
-                     </span>
-                   </span>
-                 </button>
-               ))}
-             </div>
-          ) : (
-            <p class="text-xs text-white/40" set:html={t('panel.noVariants') as string} />
-          )
-        }
-        <p class="mt-3 text-xs leading-relaxed text-white/60" data-look-desc>
-          {looks[0].description}
-        </p>
-      </div>
+          </div>
+        )
+      }
 
       {
         (d.tags as string[])?.length > 0 && (

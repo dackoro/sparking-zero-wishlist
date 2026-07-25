@@ -1,0 +1,27 @@
+{
+  "name": "Bio-Broly",
+  "name_en": "Bio-Broly",
+  "name_pt": "Bio-Broly",
+  "nameJa": "バイオブロリー",
+  "series": "Películas",
+  "saga": "Bio-Broly",
+  "saga_en": "Bio-Broly",
+  "saga_pt": "Bio-Broly",
+  "firstAppearance": {
+    "year": 1994,
+    "work": "Película 11: Bio-Broly",
+    "work_en": "Movie 11: Bio-Broly",
+    "work_pt": "Filme 11: Bio-Broly",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "section": "outfits",
+  "accent": "#65a30d",
+  "description": "Clon fallido de Broly creado a partir de su sangre por el Dr. Collie. Tiene forma de monstruo mutante verde con capacidad de derretirse y regenerarse.",
+  "description_en": "Failed clone of Broly created from his blood by Dr. Collie. He takes the form of a green mutant monster with the ability to melt and regenerate.",
+  "description_pt": "Clone fracassado de Broly criado a partir de seu sangue pelo Dr. Collie. Tem forma de monstro mutante verde com capacidade de derreter e regenerar.",
+  "portrait": "/fighters/bio-broly-portrait.webp",
+  "render": "/fighters/bio-broly.webp",
+  "scene": "/fighters/bio-broly-scene.webp",
+  "tags": ["broly", "pelicula", "monstruo", "clon"]
+}
