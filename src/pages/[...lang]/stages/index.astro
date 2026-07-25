@@ -1,21 +1,29 @@
 ---
 import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import StageTile from '../../components/StageTile.astro';
-import StagePanel from '../../components/StagePanel.astro';
-import { useTranslations, getLangFromUrl } from '../../i18n/utils';
+import Base from '@/layouts/Base.astro';
+import StageTile from '@/components/StageTile.astro';
+import StagePanel from '@/components/StagePanel.astro';
+import StageStrip from '@/components/StageStrip.astro';
+import { useTranslations, localeParams } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
 
-const lang = getLangFromUrl(Astro.url);
+export function getStaticPaths() {
+  return localeParams().map(({ lang, param }) => ({
+    params: { lang: param },
+    props: { lang },
+  }));
+}
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const stages = (await getCollection('stages')).sort(
   (a, b) => b.data.hype - a.data.hype || a.data.firstAppearance.year - b.data.firstAppearance.year,
 );
-
-const uniq = (values: string[]) => [...new Set(values)].sort((a, b) => a.localeCompare(b, 'es'));
-const series = uniq(stages.map((s) => s.data.series));
-const sagas = uniq(stages.map((s) => s.data.saga));
-const statuses = uniq(stages.map((s) => s.data.status));
 
 const title = t('stages.metaTitle') as string;
 const description = (t('stages.metaDesc') as (count: number) => string)(stages.length);
@@ -68,18 +76,19 @@ const jsonLd = {
       class="fixed inset-0 backdrop-blur-[2px]"
       style="background:radial-gradient(125% 95% at 50% 0%, rgba(109,40,217,0.90), rgba(59,13,120,0.94) 55%, rgba(20,6,45,0.96))"
     ></div>
-    <div class="relative mx-auto my-6 w-full max-w-5xl px-4 sm:my-10">
+    <div class="relative mx-auto my-6 w-full max-w-7xl px-4 sm:my-10">
       <button
         type="button"
         data-stage-close
         class="mb-3 ml-auto flex h-12 w-12 items-center justify-center text-ice drop-shadow-[0_0_10px_rgba(34,211,238,0.55)] transition hover:scale-110 hover:text-white"
         aria-label={t('modal.close') as string}
-        >
-          <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-            <path d="M5 5 19 19M19 5 5 19" />
-          </svg>
+      >
+        <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <path d="M5 5 19 19M19 5 5 19" />
+        </svg>
       </button>
       <div id="stage-modal-content"></div>
+      <StageStrip stages={stages} />
     </div>
   </div>
 
@@ -101,6 +110,28 @@ const jsonLd = {
     const content = document.getElementById('stage-modal-content')!;
     const home = location.pathname;
 
+    /* --------------------- Tira de navegación entre escenarios --------------------- */
+    const strip = document.getElementById('stage-strip');
+    const stripBtns = strip ? Array.from(strip.querySelectorAll<HTMLButtonElement>('[data-strip-slug]')) : [];
+    const prevBtn = document.getElementById('stage-strip-prev');
+    const nextBtn = document.getElementById('stage-strip-next');
+
+    function syncStrip(slug: string) {
+      stripBtns.forEach((btn) => {
+        const active = btn.dataset.stripSlug === slug;
+        btn.setAttribute('aria-pressed', String(active));
+        if (active) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    }
+
+    function step(delta: number) {
+      if (modal!.hidden || stripBtns.length === 0) return;
+      const current = stripBtns.findIndex((btn) => btn.getAttribute('aria-pressed') === 'true');
+      const from = current === -1 ? 0 : current;
+      const next = (from + delta + stripBtns.length) % stripBtns.length;
+      open(stripBtns[next].dataset.stripSlug!);
+    }
+
     function open(slug: string) {
       const tpl = document.querySelector<HTMLTemplateElement>(`template[data-stage-panel-for="${slug}"]`);
       if (!tpl) return;
@@ -109,6 +140,7 @@ const jsonLd = {
       document.documentElement.style.overflow = 'hidden';
       modal!.querySelector<HTMLButtonElement>('[data-stage-close]')?.focus();
       history.pushState({ stageSlug: slug }, '', `/stages/${slug}/`);
+      syncStrip(slug);
     }
 
     function close() {
@@ -136,6 +168,65 @@ const jsonLd = {
     });
 
     window.addEventListener('popstate', () => close());
+
+    let dragged = false;
+
+    stripBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const slug = btn.dataset.stripSlug;
+        if (slug) open(slug);
+      });
+    });
+
+    prevBtn?.addEventListener('click', () => step(-1));
+    nextBtn?.addEventListener('click', () => step(1));
+
+    document.addEventListener('keydown', (event) => {
+      if (modal!.hidden) return;
+      const target = event.target as HTMLElement;
+      if (target.closest('input, textarea, select, [contenteditable]')) return;
+      if (event.key === 'ArrowLeft') step(-1);
+      if (event.key === 'ArrowRight') step(1);
+    });
+
+    // Rueda del ratón mueve el scroll horizontal (el eje vertical no tiene sentido aquí).
+    strip?.addEventListener(
+      'wheel',
+      (event) => {
+        if (event.deltaY === 0) return;
+        event.preventDefault();
+        strip.scrollLeft += event.deltaY;
+      },
+      { passive: false },
+    );
+
+    // Arrastre con el ratón (el táctil ya funciona nativo con overflow-x: auto).
+    let pointerDown = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    strip?.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'touch') return;
+      if ((event.target as HTMLElement).closest('[data-strip-slug]')) return;
+      pointerDown = true;
+      dragged = false;
+      dragStartX = event.clientX;
+      dragStartScroll = strip.scrollLeft;
+      strip.setPointerCapture(event.pointerId);
+    });
+
+    strip?.addEventListener('pointermove', (event) => {
+      if (!pointerDown) return;
+      const delta = event.clientX - dragStartX;
+      if (Math.abs(delta) > 6) dragged = true;
+      strip.scrollLeft = dragStartScroll - delta;
+    });
+
+    const endDrag = () => {
+      pointerDown = false;
+    };
+    strip?.addEventListener('pointerup', endDrag);
+    strip?.addEventListener('pointercancel', endDrag);
   }
 
   initStages();

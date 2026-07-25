@@ -20,9 +20,9 @@ const { fighters } = Astro.props;
       type="button"
       id="fighter-strip-prev"
       aria-label={t('modal.prev') as string}
-      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 text-lg text-white/70 transition hover:border-ice hover:text-ice"
+      class="flex h-10 w-10 shrink-0 items-center justify-center text-ice drop-shadow-[0_0_8px_rgba(34,211,238,0.4)] transition hover:scale-110 hover:text-white"
     >
-      ‹
+      <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
     </button>
 
     <div id="fighter-strip" class="strip-track flex-1 overflow-x-auto">
@@ -32,6 +32,7 @@ const { fighters } = Astro.props;
             <button
               type="button"
               data-strip-slug={f.id}
+              data-section={f.data.section ?? 'fighters'}
               data-name={f.data.name.toLowerCase()}
               data-series={f.data.series}
               data-year={f.data.firstAppearance.year}
@@ -53,9 +54,9 @@ const { fighters } = Astro.props;
       type="button"
       id="fighter-strip-next"
       aria-label={t('modal.next') as string}
-      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/25 text-lg text-white/70 transition hover:border-ice hover:text-ice"
+      class="flex h-10 w-10 shrink-0 items-center justify-center text-ice drop-shadow-[0_0_8px_rgba(34,211,238,0.4)] transition hover:scale-110 hover:text-white"
     >
-      ›
+      <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
     </button>
   </div>
 </div>
@@ -77,13 +78,13 @@ const { fighters } = Astro.props;
   .strip-hex {
     --ring: color-mix(in srgb, var(--v-accent) 45%, #0b0616);
     position: relative;
-    width: 52px;
-    height: 60px;
+    width: 64px;
+    height: 74px;
     background: var(--ring);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     cursor: pointer;
   }
-  .strip-hex[aria-pressed='true'],
+  .strip-hex[aria-current='page'],
   .strip-hex:hover {
     --ring: var(--v-accent);
     z-index: 2;
@@ -108,7 +109,7 @@ const { fighters } = Astro.props;
     filter: grayscale(0.45) brightness(0.7);
     transition: filter 0.18s ease;
   }
-  .strip-hex[aria-pressed='true'] .strip-hex-inner img,
+  .strip-hex[aria-current='page'] .strip-hex-inner img,
   .strip-hex:hover .strip-hex-inner img {
     filter: none;
   }

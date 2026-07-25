@@ -1,7 +1,8 @@
 ---
 import FighterArt from './FighterArt.astro';
 import type { CollectionEntry } from 'astro:content';
-import { useTranslations, getLangFromUrl } from '../i18n/utils';
+import { useTranslations, getLangFromUrl, localize } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
   fighter: CollectionEntry<'fighters'>;
@@ -13,6 +14,7 @@ const t = useTranslations(lang);
 
 const { fighter, index = 0 } = Astro.props;
 const d = fighter.data;
+const name = localize(d, 'name', lang as Lang) ?? (d.name as string);
 ---
 
 <a
@@ -28,7 +30,8 @@ const d = fighter.data;
   data-role={d.role}
   data-year={d.firstAppearance.year}
   data-status={d.status}
-  aria-label={`${d.name} — ${d.series}, ${d.firstAppearance.year}`}
+  data-section={d.section}
+  aria-label={`${name} — ${d.series}, ${d.firstAppearance.year}`}
 >
   <span class="hex-inner" style={`background:linear-gradient(165deg, ${d.accent}55, #150a2b 60%)`}>
     <span class="absolute inset-0">
@@ -48,9 +51,9 @@ const d = fighter.data;
     }
 
     <span
-      class="absolute inset-x-0 bottom-[12%] px-1 text-center text-[10px] leading-tight font-bold tracking-tight text-white uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] sm:text-[11px]"
+      class="hex-name absolute inset-x-0 bottom-[12%] px-1 text-center text-[10px] leading-tight font-bold tracking-tight text-white uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] sm:text-[11px]"
     >
-      {d.name}
+      {name}
     </span>
 
     <span

@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import { Image } from 'astro:assets';
-import logo from '../assets/dbsz-logo.png';
 import bgSection from '../assets/dbsz-bg-section.jpg';
 import { useTranslations, switchLocaleUrl, getLangFromUrl } from '../i18n/utils';
 import { languages, type Lang } from '../i18n/ui';
@@ -10,19 +8,41 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageAlt?: string;
+  ogType?: string;
   jsonLd?: Record<string, unknown>;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const prefix = lang === 'es' ? '' : `/${lang}`;
+const routePath = Astro.url.pathname.replace(/^\/(en|pt|ja)(?=\/|$)/, '') || '/';
+const isRosterRoute = routePath === '/' || routePath.startsWith('/fighters');
+const isStagesRoute = routePath.startsWith('/stages');
+const isContributeRoute = routePath.startsWith('/como-contribuir');
 
-const { title, description, ogImage = '/og-default.jpg', jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  ogImage = '/og-default.jpg',
+  ogImageWidth,
+  ogImageHeight,
+  ogImageAlt,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogUrl = new URL(ogImage, Astro.site).href;
 
-const ogLocales: Record<Lang, string> = { es: 'es_ES', en: 'en_US', pt: 'pt_BR' };
-const htmlLocales: Record<Lang, string> = { es: 'es', en: 'en', pt: 'pt' };
+const ogLocales: Record<Lang, string> = { es: 'es_ES', en: 'en_US', pt: 'pt_BR', ja: 'ja_JP' };
+const htmlLocales: Record<Lang, string> = { es: 'es', en: 'en', pt: 'pt', ja: 'ja' };
+
+const alternates = (Object.keys(languages) as Lang[]).map((code) => ({
+  lang: code,
+  href: new URL(switchLocaleUrl(Astro.url.pathname, code), Astro.site).href,
+}));
 ---
 
 <!doctype html>
@@ -37,13 +57,23 @@ const htmlLocales: Record<Lang, string> = { es: 'es', en: 'en', pt: 'pt' };
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0b0616" />
 
-    <meta property="og:type" content="website" />
+    {
+      alternates.map(({ lang: altLang, href }) => (
+        <link rel="alternate" hreflang={htmlLocales[altLang] ?? altLang} href={href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={new URL(switchLocaleUrl(Astro.url.pathname, 'es'), Astro.site).href} />
+
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={t('og.siteName')} />
     <meta property="og:locale" content={ogLocales[lang]} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogUrl} />
+    {ogImageWidth && <meta property="og:image:width" content={String(ogImageWidth)} />}
+    {ogImageHeight && <meta property="og:image:height" content={String(ogImageHeight)} />}
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -54,67 +84,141 @@ const htmlLocales: Record<Lang, string> = { es: 'es', en: 'en', pt: 'pt' };
 
   <body class="min-h-screen">
     <div
-      class="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-fixed opacity-90"
+      class="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-fixed opacity-100"
       style={`background-image:url(${bgSection.src})`}
       aria-hidden="true"
     >
     </div>
     <div
       class="pointer-events-none fixed inset-0 -z-10"
-      style="background:radial-gradient(120% 90% at 50% 0%, rgba(109,40,217,0.62), rgba(59,13,120,0.70) 45%, rgba(20,6,45,0.88))"
+      style="background:radial-gradient(120% 90% at 50% 0%, rgba(109,40,217,0.12), rgba(59,13,120,0.20) 45%, rgba(20,6,45,0.32))"
       aria-hidden="true"
     >
     </div>
-
     <header
-      class="sticky top-0 z-40 border-b border-neon/20 bg-void/80 backdrop-blur-md supports-[backdrop-filter]:bg-void/60"
+      class="sticky top-0 z-40 border-b border-neon/20 bg-[#000000]"
     >
-      <nav class="mx-auto flex max-w-6xl items-center gap-6 px-5 py-3" aria-label={t('og.siteName')}>
+      <nav class="relative mx-auto flex max-w-6xl items-center gap-6 px-5 py-3" aria-label={t('og.siteName')}>
         <a href="/" class="shrink-0" aria-label="Inicio">
-          <Image src={logo} alt="Dragon Ball Sparking! Zero" width={132} densities={[1, 2]} class="h-9 w-auto" />
+          <img src="/dbsz-logo.webp" alt="Dragon Ball Sparking! Zero" class="h-9 w-auto" />
         </a>
-        <ul class="title-slant flex flex-1 items-center gap-5 text-sm tracking-wide">
-          <li><a href={`${prefix}/`} class="transition hover:text-ice">{t('nav.roster')}</a></li>
-          <li><a href={`${prefix}/stages/`} class="transition hover:text-ice">{t('nav.stages')}</a></li>
-          <li>
-            <a href={`${prefix}/como-contribuir`} class="transition hover:text-ice">{t('nav.contribute')}</a>
-          </li>
-        </ul>
 
-        <!-- Language switcher -->
-        <div class="relative group" aria-label={t('lang.label')}>
-          <span class="title-slant cursor-pointer rounded border border-white/20 px-2 py-1 text-xs text-white/60 transition hover:border-ice hover:text-ice uppercase">
-            {lang}
-            <span class="ml-1 inline-block align-[-1px] text-[8px]">&#9660;</span>
-          </span>
-          <div class="invisible absolute right-0 top-full z-50 mt-1 min-w-[120px] rounded-lg border border-neon/25 bg-void/95 py-1 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100">
-            {Object.entries(languages).map(([code, name]) => (
-              <a
-                href={switchLocaleUrl(Astro.url.pathname, code as Lang)}
-                class={`block px-4 py-1.5 text-sm transition hover:text-ice ${code === lang ? 'text-ice' : 'text-white/60'}`}
-              >
-                {name}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <a
-          href="https://github.com/dackoro/sparking-zero-wishlist"
-          rel="noopener noreferrer nofollow"
-          target="_blank"
-          class="title-slant rounded-full border border-ice/60 bg-ice/10 px-4 py-1.5 text-xs text-ice transition hover:bg-ice hover:text-void"
+        <button
+          type="button"
+          id="nav-toggle"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label={t('nav.menu') as string}
+          class="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/20 text-white/80 transition hover:border-ice hover:text-ice md:hidden"
         >
-          GitHub
-        </a>
+          <svg id="nav-icon-open" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          <svg id="nav-icon-close" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" hidden>
+            <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <div
+          id="nav-menu"
+          class="absolute top-full left-0 hidden w-full flex-col gap-4 border-b border-neon/20 bg-[#000000] px-5 py-4 md:static md:flex md:w-auto md:flex-1 md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0"
+        >
+          <ul class="title-slant flex flex-col gap-4 text-sm tracking-wide md:flex-1 md:flex-row md:items-center md:gap-5">
+            <li>
+              <a
+                href={`${prefix}/`}
+                class={`border-b-2 px-2.5 py-1 transition hover:border-ice hover:text-ice ${isRosterRoute ? 'border-ice text-ice' : 'border-transparent'}`}
+              >{t('nav.roster')}</a>
+            </li>
+            <li>
+              <a
+                href={`${prefix}/stages/`}
+                class={`border-b-2 px-2.5 py-1 transition hover:border-ice hover:text-ice ${isStagesRoute ? 'border-ice text-ice' : 'border-transparent'}`}
+              >{t('nav.stages')}</a>
+            </li>
+            <li>
+              <a
+                href={`${prefix}/como-contribuir`}
+                class={`border-b-2 px-2.5 py-1 transition hover:border-ice hover:text-ice ${isContributeRoute ? 'border-ice text-ice' : 'border-transparent'}`}
+              >{t('nav.contribute')}</a>
+            </li>
+          </ul>
+
+          <!-- Language switcher -->
+          <div class="relative group" aria-label={t('lang.label')}>
+            <span class="title-slant inline-block cursor-pointer rounded border border-white bg-white px-2 py-1 text-xs text-black transition hover:border-ice hover:bg-ice hover:text-white uppercase">
+              {lang}
+              <span class="ml-1 inline-block align-[-1px] text-[8px]">&#9660;</span>
+            </span>
+            <div class="invisible absolute left-0 top-full z-50 mt-1 min-w-[120px] rounded-lg border border-neon/25 bg-void/95 py-1 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100 md:left-auto md:right-0">
+              {Object.entries(languages).map(([code, name]) => (
+                <a
+                  href={switchLocaleUrl(Astro.url.pathname, code as Lang)}
+                  class={`block px-4 py-1.5 text-sm transition hover:text-ice ${code === lang ? 'text-ice' : 'text-white/60'}`}
+                >
+                  {name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <a
+            href="https://github.com/dackoro/sparking-zero-wishlist"
+            rel="noopener noreferrer nofollow"
+            target="_blank"
+            class="title-slant inline-block w-fit rounded-full border border-ice bg-ice px-4 py-1.5 text-xs text-white transition hover:bg-white hover:text-void"
+          >
+            GitHub
+          </a>
+        </div>
       </nav>
     </header>
+
+    <script>
+      const toggle = document.getElementById('nav-toggle');
+      const menu = document.getElementById('nav-menu');
+      const iconOpen = document.getElementById('nav-icon-open');
+      const iconClose = document.getElementById('nav-icon-close');
+
+      if (toggle && menu && iconOpen && iconClose) {
+        const setOpen = (open: boolean) => {
+          menu.classList.toggle('hidden', !open);
+          menu.classList.toggle('flex', open);
+          toggle.setAttribute('aria-expanded', String(open));
+          iconOpen.toggleAttribute('hidden', open);
+          iconClose.toggleAttribute('hidden', !open);
+        };
+
+        toggle.addEventListener('click', () => {
+          setOpen(menu.classList.contains('hidden'));
+        });
+
+        menu.addEventListener('click', (event) => {
+          if ((event.target as HTMLElement).closest('a')) setOpen(false);
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') setOpen(false);
+        });
+
+        const mq = window.matchMedia('(min-width: 768px)');
+        mq.addEventListener('change', (e) => {
+          if (e.matches) setOpen(false);
+        });
+      }
+    </script>
 
     <main>
       <slot />
     </main>
 
-    <footer class="mt-24 border-t border-neon/20 bg-void/70 py-10">
+    <footer class="relative mt-24 border-t border-neon/20 bg-[#000000] py-10">
+      <div
+        class="pointer-events-none absolute inset-x-0 bottom-full h-20"
+        style="background:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.34) 78%, #000000 100%)"
+        aria-hidden="true"
+      >
+      </div>
       <div class="mx-auto max-w-6xl space-y-3 px-5 text-sm text-white/50">
         <p class="title-slant text-base text-white/80">{t('footer.nonprofit')}</p>
         <p>{t('footer.disclaimer')}</p>

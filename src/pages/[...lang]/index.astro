@@ -1,15 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import FilterBar from '../../components/FilterBar.astro';
-import HexTile from '../../components/HexTile.astro';
-import FighterPanel from '../../components/FighterPanel.astro';
-import RosterStrip from '../../components/RosterStrip.astro';
-import logo from '../../assets/dbsz-logo.png';
-import { useTranslations, getLangFromUrl } from '../../i18n/utils';
+import Base from '@/layouts/Base.astro';
+import FilterBar from '@/components/FilterBar.astro';
+import HexTile from '@/components/HexTile.astro';
+import FighterPanel from '@/components/FighterPanel.astro';
+import RosterStrip from '@/components/RosterStrip.astro';
+import { useTranslations, localeParams } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
 
-const lang = getLangFromUrl(Astro.url);
+export function getStaticPaths() {
+  return localeParams().map(({ lang, param }) => ({
+    params: { lang: param },
+    props: { lang },
+  }));
+}
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const fighters = (await getCollection('fighters')).sort(
@@ -48,17 +58,10 @@ const jsonLd = {
 ---
 
 <Base title={title} description={description} jsonLd={jsonLd}>
+  {/* ------------------------------ Hero ------------------------------ */}
   <section class="relative overflow-hidden px-5 pt-14 pb-10 text-center">
-    <Image
-      src={logo}
-      alt="DRAGON BALL: Sparking! ZERO"
-      width={520}
-      densities={[1, 2]}
-      class="mx-auto w-80 sm:w-96"
-    />
-
-    <h1 class="title-slant mt-8 text-4xl leading-none text-white sm:text-6xl lg:text-7xl">
-      <span class="text-ice">»</span> {t('hero.title')} <span class="text-ice">«</span>
+    <h1 class="hero-title mt-8 text-4xl leading-none text-white sm:text-6xl lg:text-7xl">
+      <span class="hero-chevron" aria-hidden="true">»</span> {t('hero.title')} <span class="hero-chevron" aria-hidden="true">«</span>
     </h1>
 
     <p class="mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base" set:html={t('hero.description')} />
@@ -66,7 +69,7 @@ const jsonLd = {
     <dl class="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-x-10 gap-y-4">
       {
         [
-          { k: t('stats.fighters') as string, v: fighters.length },
+          { k: t('stats.fighters') as string, v: fighterFighters.length },
           { k: t('stats.variants') as string, v: outfitsAndVariantsCount },
         ].map((s) => (
           <div>
@@ -87,13 +90,11 @@ const jsonLd = {
   </section>
 
   <section class="pb-20">
-    <div id="hive" class="hive">
+      <div id="hive" class="hive names-hidden mx-auto max-w-6xl">
       {fighterFighters.map((fighter, i) => <HexTile fighter={fighter} index={i} />)}
     </div>
 
     <p id="hive-empty" hidden class="mt-10 text-center text-sm text-white/50" set:html={t('hive.empty')} />
-
-
   </section>
 
   {/* ----------------------------- Panal trajes ----------------------------- */}
@@ -107,7 +108,7 @@ const jsonLd = {
         </section>
 
         <section class="pb-20" id="section-outfits">
-          <div id="hive-outfits" class="hive">
+            <div id="hive-outfits" class="hive names-hidden mx-auto max-w-6xl">
             {outfitFighters.map((fighter, i) => <HexTile fighter={fighter} index={i} />)}
           </div>
         </section>
@@ -135,10 +136,10 @@ const jsonLd = {
         data-close
         class="mb-3 ml-auto flex h-12 w-12 items-center justify-center text-ice drop-shadow-[0_0_10px_rgba(34,211,238,0.55)] transition hover:scale-110 hover:text-white"
         aria-label={t('modal.close') as string}
-        >
-          <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-            <path d="M5 5 19 19M19 5 5 19" />
-          </svg>
+      >
+        <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <path d="M5 5 19 19M19 5 5 19" />
+        </svg>
       </button>
       <div id="fighter-modal-content"></div>
       <RosterStrip fighters={fighters} />
@@ -155,8 +156,8 @@ const jsonLd = {
 </Base>
 
 <script>
-  import { initRoster } from '../../scripts/roster';
-  import { initLooks } from '../../scripts/looks';
+  import { initRoster } from '@/scripts/roster';
+  import { initLooks } from '@/scripts/looks';
 
   initRoster();
   initLooks();

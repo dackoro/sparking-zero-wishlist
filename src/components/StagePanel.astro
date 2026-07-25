@@ -19,47 +19,52 @@ const L = (field: string) => localize(d, field, lang as Lang);
 const Title = standalone ? 'h1' : 'h2';
 
 const description = L('description') ?? '';
-const stageName = (d.name as string) ?? '';
+const stageName = localize(d, 'name', lang as Lang) ?? (d.name as string) ?? '';
 
 const meta = [
   { label: t('panel.series') as string, value: el(d.series as string) },
-  { label: t('panel.saga') as string, value: d.saga as string },
+  { label: t('panel.saga') as string, value: L('saga') ?? (d.saga as string) },
   { label: t('panel.firstAppearance') as string, value: `${d.firstAppearance?.year ?? '?'} · ${el((d.firstAppearance as any)?.medium as string)}` },
-  { label: t('panel.work') as string, value: (d.firstAppearance as any)?.work as string ?? '' },
+  { label: t('panel.work') as string, value: localize((d.firstAppearance as Record<string, unknown>) ?? {}, 'work', lang as Lang) ?? (d.firstAppearance as any)?.work as string ?? '' },
 ];
 ---
 
 <article
-  class="overflow-hidden rounded-xl border border-neon/40 bg-abyss/95 shadow-[0_0_60px_-15px] shadow-neon/60"
-  style={`--accent:${d.accent}`}
+  class="overflow-hidden rounded-xl border border-neon/40 shadow-[0_0_60px_-15px] shadow-neon/60"
+  style={`--accent:${d.accent};background:linear-gradient(180deg, rgba(50,20,110,0.96), rgba(28,11,62,0.97) 55%, rgba(17,7,40,0.98))`}
   data-stage-panel
 >
-  {/* ---------- Cabecera ---------- */}
-  <div class="relative h-[42vh] max-h-[420px] min-h-[240px] overflow-hidden">
+  {/* ---------- Cabecera visual ---------- */}
+  <div class="relative aspect-[2072/1166] w-full overflow-hidden bg-abyss">
+    {/* Fondo: escena */}
     <div
-      class="absolute inset-0 scale-105 bg-cover bg-center"
+      class="absolute inset-0 bg-cover bg-center"
       style={`background-image:url(${d.scene ?? newsBg.src})`}
-    />
+      aria-hidden="true"
+    >
+    </div>
+
+    {/* Gradiente solo abajo, muy sutil */}
     <div
       class="absolute inset-0"
-      style={`background:linear-gradient(to top, #0b0616 0%, ${d.accent}33 20%, transparent 48%)`}
-    />
-    <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-      <span
-        class="mb-3 inline-block rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-        style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
-      >
-        {el(d.status as string)}
-      </span>
-      <Title class="title-slant text-3xl leading-none text-white sm:text-4xl">
-        {stageName}
-      </Title>
+      style={`background:linear-gradient(to top, #0b0616 0%, transparent 50%)`}
+    >
     </div>
+
+    <span
+      class="absolute top-[4%] left-[3%] z-10 rounded-sm px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+      style={`background:${d.status === 'Ya es DLC' ? '#22d3ee' : d.accent};color:#0b0616`}
+    >
+      {el(d.status as string)}
+    </span>
   </div>
 
   {/* ---------- Ficha ---------- */}
   <div class="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1.4fr_1fr]">
     <div class="space-y-4">
+      <Title class="title-slant text-3xl leading-none text-white sm:text-4xl">
+        {stageName}
+      </Title>
       <p class="text-sm leading-relaxed text-white/80">{description}</p>
     </div>
 

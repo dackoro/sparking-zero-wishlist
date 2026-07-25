@@ -2,17 +2,67 @@
  * Filtrado, orden y overlay del panal de personajes.
  *
  * El panal se reordena moviendo nodos reales (no ocultándolos) porque el
- * escalonado de las filas se calcula con :nth-child: si dejáramos huecos, las
- * filas dejarían de engranar.
+ * escalonado de las filas se recalcula (layoutHive) midiendo la posición real
+ * de cada celda: si dejáramos huecos, las filas dejarían de engranar.
  */
 type Tile = HTMLElement;
 
 const num = (el: Tile, key: string) => Number(el.dataset[key] ?? 0);
 
+/**
+ * En desktop (sm+, `--cols` fijo) el desfase de fila lo pone CSS con
+ * :nth-child porque queda mejor distribuido con columnas fijas; ahí no
+ * tocamos --shift por JS, solo limpiamos cualquier valor inline que
+ * hubiera quedado de un resize anterior desde mobile.
+ */
+/**
+ * Calcula a qué fila cayó cada celda tras el auto-layout del grid (columnas
+ * `auto-fill`, así que el número de columnas por fila lo decide el navegador
+ * según el ancho real, no un breakpoint) y desplaza medio hexágono las filas
+ * impares para que el panal engrane. Se recalcula en cada resize real del
+ * contenedor, así se acomoda solo sin importar el ancho. Solo aplica en
+ * mobile: en desktop el desfase lo pone CSS (ver global.css).
+ */
+function layoutHive(hive: HTMLElement) {
+  const cells = Array.from(hive.children) as HTMLElement[];
+  const width = window.innerWidth;
+  const pattern = width >= 1024 ? [6, 7] : width >= 768 ? [4, 5] : width >= 640 ? [3, 4] : [3, 2];
+  const maxCols = Math.max(...pattern);
+  hive.style.setProperty('--hive-max-cols', String(maxCols));
+
+  let row = 1;
+  let column = 1;
+  let patternIndex = 0;
+  let rowSize = pattern[patternIndex];
+  for (const cell of cells) {
+    if (column > rowSize) {
+      row++;
+      patternIndex = (patternIndex + 1) % pattern.length;
+      rowSize = pattern[patternIndex];
+      column = 1;
+    }
+    cell.style.gridColumn = String(column);
+    cell.style.gridRow = String(row);
+    cell.style.setProperty('--shift', rowSize < maxCols ? 'calc(50% + var(--hex-gap) / 2)' : '0px');
+    column++;
+  }
+}
+
+function watchHiveLayout(hive: HTMLElement) {
+  layoutHive(hive);
+  const observer = new ResizeObserver(() => layoutHive(hive));
+  observer.observe(hive);
+  return observer;
+}
+
 export function initRoster() {
   const hive = document.getElementById('hive');
   const modal = document.getElementById('fighter-modal');
   if (!hive || !modal) return;
+
+  watchHiveLayout(hive);
+  const hiveOutfitsEl = document.getElementById('hive-outfits');
+  if (hiveOutfitsEl) watchHiveLayout(hiveOutfitsEl);
 
   const tiles = Array.from(hive.querySelectorAll<Tile>('[data-hex]'));
   const empty = document.getElementById('hive-empty')!;
@@ -70,6 +120,7 @@ export function initRoster() {
     hive.replaceChildren(...visible);
     counter.textContent = String(visible.length);
     empty.hidden = visible.length > 0;
+    layoutHive(hive);
 
     applyStripOrder();
   }
@@ -94,6 +145,10 @@ export function initRoster() {
     document.documentElement.style.overflow = 'hidden';
     if (!wasOpen) modal!.querySelector<HTMLButtonElement>('[data-close]')?.focus();
     if (push) history.pushState({ slug }, '', `/fighters/${slug}/`);
+
+    const tile = tiles.find(t => t.dataset.slug === slug)
+      ?? hiveOutfitsEl?.querySelector<HTMLElement>(`[data-hex][data-slug="${slug}"]`);
+    currentSection = tile?.dataset.section ?? 'fighters';
     syncStrip(slug);
   }
 
@@ -134,20 +189,24 @@ export function initRoster() {
 
   window.addEventListener('popstate', () => close(false));
 
+  let currentSection = 'fighters';
+
   function syncStrip(slug: string) {
     stripBtns.forEach((btn) => {
-      const active = btn.dataset.stripSlug === slug;
-      btn.setAttribute('aria-pressed', String(active));
+      btn.hidden = btn.dataset.section !== currentSection;
+      const active = btn.dataset.stripSlug === slug && !btn.hidden;
+      btn.setAttribute('aria-current', active ? 'page' : 'false');
       if (active) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
   }
 
   function step(delta: number) {
     if (modal!.hidden || stripBtns.length === 0) return;
-    const current = stripBtns.findIndex((btn) => btn.getAttribute('aria-pressed') === 'true');
+    const visible = stripBtns.filter(b => !b.hidden);
+    const current = visible.findIndex((btn) => btn.getAttribute('aria-current') === 'page');
     const from = current === -1 ? 0 : current;
-    const next = (from + delta + stripBtns.length) % stripBtns.length;
-    open(stripBtns[next].dataset.stripSlug!);
+    const next = (from + delta + visible.length) % visible.length;
+    open(visible[next].dataset.stripSlug!);
   }
 
   let dragged = false;
@@ -189,25 +248,23 @@ export function initRoster() {
   let dragStartX = 0;
   let dragStartScroll = 0;
 
-  strip?.addEventListener('pointerdown', (event) => {
-    if (event.pointerType === 'touch') return;
+  strip?.addEventListener('mousedown', (event) => {
     pointerDown = true;
     dragged = false;
     dragStartX = event.clientX;
     dragStartScroll = strip.scrollLeft;
-    strip.setPointerCapture(event.pointerId);
   });
 
-  strip?.addEventListener('pointermove', (event) => {
+  strip?.addEventListener('mousemove', (event) => {
     if (!pointerDown) return;
     const delta = event.clientX - dragStartX;
-    if (Math.abs(delta) > 6) dragged = true;
+    if (Math.abs(delta) > 5) dragged = true;
     strip.scrollLeft = dragStartScroll - delta;
   });
 
   const endDrag = () => {
     pointerDown = false;
+    setTimeout(() => { dragged = false; }, 100);
   };
-  strip?.addEventListener('pointerup', endDrag);
-  strip?.addEventListener('pointercancel', endDrag);
+  document.addEventListener('mouseup', endDrag);
 }

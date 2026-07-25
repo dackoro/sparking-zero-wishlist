@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { useTranslations, getLangFromUrl } from '../i18n/utils';
+import { useTranslations, getLangFromUrl, localize } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
   stage: CollectionEntry<'stages'>;
@@ -12,6 +13,8 @@ const t = useTranslations(lang);
 
 const { stage, index = 0 } = Astro.props;
 const d = stage.data;
+const name = localize(d, 'name', lang as Lang) ?? (d.name as string);
+const saga = localize(d, 'saga', lang as Lang) ?? (d.saga as string);
 ---
 
 <a
@@ -60,9 +63,9 @@ const d = stage.data;
 
     <span class="absolute inset-x-0 bottom-3 z-10 px-2 text-center">
       <span class="block text-xs leading-tight font-bold text-white uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] sm:text-sm">
-        {d.name}
+        {name}
       </span>
-      <span class="mt-0.5 block text-[10px] leading-none text-white/45">{d.saga}</span>
+      <span class="mt-0.5 block text-[10px] leading-none text-white/45">{saga}</span>
     </span>
 
     <span

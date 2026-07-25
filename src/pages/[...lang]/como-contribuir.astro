@@ -1,12 +1,23 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { SERIES, ROLES, MEDIA, STATUS } from '../../content.config';
-import { useTranslations, useEnumLabel, getLangFromUrl } from '../../i18n/utils';
+import Base from '@/layouts/Base.astro';
+import { useTranslations, useEnumLabel, localeParams, localePrefix } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
 
-const lang = getLangFromUrl(Astro.url);
+export function getStaticPaths() {
+  return localeParams().map(({ lang, param }) => ({
+    params: { lang: param },
+    props: { lang },
+  }));
+}
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 const el = useEnumLabel(lang);
-const prefix = lang === 'es' ? '' : `/${lang}`;
+const prefix = localePrefix(lang);
 
 const ejemplo = `{
   "name": "Androide 21",

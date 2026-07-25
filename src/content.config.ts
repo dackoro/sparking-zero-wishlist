@@ -64,7 +64,7 @@ const fighters = defineCollection({
       /** Obra concreta. Ej: "Dragon Ball, cap. 40" */
       work: z.string().min(2),
       medium: z.enum(MEDIA),
-    }),
+    }).passthrough(),
     role: z.enum(ROLES),
     status: z.enum(STATUS).default('Wishlist'),
     /** "fighters" = aparece en el panal de personajes; "outfits" = aparece en el panal de trajes */
@@ -95,7 +95,7 @@ const stages = defineCollection({
       year: z.number().int().min(1984).max(2030),
       work: z.string().min(2),
       medium: z.enum(MEDIA),
-    }),
+    }).passthrough(),
     description: z.string().min(20),
     hype: z.number().int().min(1).max(5),
     status: z.enum(STATUS).default('Wishlist'),

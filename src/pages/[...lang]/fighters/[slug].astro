@@ -1,0 +1,80 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import FighterPanel from '@/components/FighterPanel.astro';
+import { useTranslations, localeParams, localize } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+export async function getStaticPaths() {
+  const fighters = await getCollection('fighters');
+  return localeParams().flatMap(({ lang, param }) =>
+    fighters.map((fighter) => ({
+      params: { lang: param, slug: fighter.id },
+      props: { fighter, lang },
+    })),
+  );
+}
+
+interface Props {
+  fighter: CollectionEntry<'fighters'>;
+  lang: Lang;
+}
+
+const { fighter, lang } = Astro.props;
+const t = useTranslations(lang);
+const d = fighter.data;
+
+const prefix = lang === 'es' ? '' : `/${lang}`;
+const name = localize(d, 'name', lang) ?? (d.name as string) ?? '';
+const title = (t('detail.titleTemplate') as (name: string) => string)(name);
+const description = localize(d, 'description', lang) ?? (d.description as string) ?? '';
+
+const ogImgSrc = d.render ?? d.portrait ?? d.scene ?? undefined;
+const ogImgAlt = `${name} — Dragon Ball: Sparking! ZERO`;
+
+const detailUrl = new URL(`/fighters/${fighter.id}/`, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: name,
+  description,
+  image: ogImgSrc ? new URL(ogImgSrc, Astro.site).href : undefined,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': detailUrl },
+  about: { '@type': 'Thing', name },
+};
+---
+
+<Base title={title} description={description} ogImage={ogImgSrc} ogImageAlt={ogImgAlt} ogType="article" jsonLd={jsonLd}>
+  <div class="mx-auto flex min-h-[100dvh] max-w-5xl px-4 py-10">
+    <div class="w-full">
+      <nav class="mb-5 text-xs text-white/50" aria-label="breadcrumb">
+        <a href="/" class="transition hover:text-ice">{t('detail.breadcrumb') as string}</a>
+        <span class="mx-2 text-white/25">/</span>
+        <span class="text-white/70">{name}</span>
+      </nav>
+
+      <FighterPanel fighter={fighter} standalone />
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={`${prefix}/`}
+          class="rounded-md border border-neon/50 px-4 py-2 text-sm text-white/80 transition hover:border-ice hover:text-ice"
+        >
+          {t('detail.back') as string}
+        </a>
+        <a
+          href={`${prefix}/como-contribuir/`}
+          class="rounded-md border border-white/20 px-4 py-2 text-sm text-white/60 transition hover:border-ice hover:text-ice"
+        >
+          {t('detail.edit') as string}
+        </a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { initLooks } from '@/scripts/looks';
+  initLooks();
+</script>

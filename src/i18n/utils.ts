@@ -8,6 +8,22 @@ export function getLangFromUrl(url: URL): Lang {
   return defaultLang;
 }
 
+/**
+ * Parámetros para las rutas `[...lang]`: el idioma por defecto va sin prefijo
+ * (`param: undefined` → `/`), el resto con el suyo (`/en/`, `/pt/`, `/ja/`).
+ */
+export function localeParams(): { lang: Lang; param: string | undefined }[] {
+  return (Object.keys(languages) as Lang[]).map((lang) => ({
+    lang,
+    param: lang === defaultLang ? undefined : lang,
+  }));
+}
+
+/** Prefijo de URL de un idioma: '' para el idioma por defecto, '/en' para el resto. */
+export function localePrefix(lang: Lang): string {
+  return lang === defaultLang ? '' : `/${lang}`;
+}
+
 export function useTranslations(lang: Lang) {
   const dictionary = ui[lang] ?? ui[defaultLang];
   function t(key: keyof typeof ui[typeof defaultLang]): any {

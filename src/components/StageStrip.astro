@@ -1,0 +1,118 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+
+interface Props {
+  stages: CollectionEntry<'stages'>[];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { stages } = Astro.props;
+---
+
+<div class="mt-4 border-t border-white/10 pt-4">
+  <p class="title-slant mb-2 text-center text-xs tracking-widest text-white/40">
+    {t('modal.browse') as string}
+  </p>
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      id="stage-strip-prev"
+      aria-label={t('modal.prev') as string}
+      class="flex h-10 w-10 shrink-0 items-center justify-center text-[0px] text-ice drop-shadow-[0_0_8px_rgba(34,211,238,0.4)] transition hover:scale-110 hover:text-white"
+    >
+      <svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+      ‹
+    </button>
+
+    <div id="stage-strip" class="strip-track flex-1 overflow-x-auto">
+      <div class="flex gap-2 px-1 py-1">
+        {
+          stages.map((s) => (
+            <button
+              type="button"
+              data-strip-slug={s.id}
+              data-name={s.data.name.toLowerCase()}
+              data-series={s.data.series}
+              data-hype={s.data.hype}
+              data-year={s.data.firstAppearance.year}
+              aria-pressed="false"
+              class="strip-tile shrink-0"
+              style={`--v-accent:${s.data.accent}`}
+              title={s.data.name}
+            >
+              <span class="strip-tile-inner" style={`background:linear-gradient(160deg, ${s.data.accent}33, #150a2b 70%)`}>
+                {s.data.scene && <img src={s.data.scene} alt="" loading="lazy" decoding="async" />}
+              </span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="stage-strip-next"
+      aria-label={t('modal.next') as string}
+      class="flex h-10 w-10 shrink-0 items-center justify-center text-[0px] text-ice drop-shadow-[0_0_8px_rgba(34,211,238,0.4)] transition hover:scale-110 hover:text-white"
+    >
+      <svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+      ›
+    </button>
+  </div>
+</div>
+
+<style>
+  .strip-track {
+    cursor: grab;
+    /* Oculta la scrollbar: se arrastra o se navega con la rueda/flechas/dedo. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .strip-track:active {
+    cursor: grabbing;
+  }
+  .strip-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .strip-tile {
+    --ring: color-mix(in srgb, var(--v-accent) 45%, #0b0616);
+    position: relative;
+    width: 72px;
+    height: 54px;
+    border-radius: 0.5rem;
+    background: var(--ring);
+    border: 2px solid var(--ring);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .strip-tile[aria-pressed='true'],
+  .strip-tile:hover {
+    --ring: var(--v-accent);
+    z-index: 2;
+  }
+
+  .strip-tile-inner {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+  .strip-tile-inner img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(0.45) brightness(0.7);
+    transition: filter 0.18s ease;
+  }
+  .strip-tile[aria-pressed='true'] .strip-tile-inner img,
+  .strip-tile:hover .strip-tile-inner img {
+    filter: none;
+  }
+</style>

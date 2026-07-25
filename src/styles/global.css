@@ -55,23 +55,113 @@
   text-transform: uppercase;
 }
 
+@layer components {
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 8px rgba(34, 211, 238, 0.75),
+      0 0 22px rgba(34, 211, 238, 0.45),
+      0 3px 0 rgba(11, 6, 22, 0.5);
+  }
+
+  .hero-chevron {
+    color: var(--color-ice);
+    font-size: 0.9em;
+    text-shadow:
+      0 0 8px rgba(34, 211, 238, 0.95),
+      0 0 18px rgba(34, 211, 238, 0.65);
+  }
+
+  .filter-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.22s ease;
+  }
+
+  .filter-disclosure[data-open='true'] .filter-content {
+    max-height: 520px;
+    opacity: 1;
+  }
+
+  .name-toggle-track {
+    display: inline-flex;
+    width: 2.25rem;
+    height: 1.25rem;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(34, 211, 238, 0.5);
+    background: rgba(11, 6, 22, 0.8);
+    padding: 0.125rem;
+    transition: background 0.2s ease;
+  }
+
+  .name-toggle-track span {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(0);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .name-toggle:has(input:checked) .name-toggle-track {
+    background: var(--color-ice);
+  }
+
+  .name-toggle:has(input:checked) .name-toggle-track span {
+    background: #fff;
+    transform: translateX(1rem);
+  }
+
+  .hex-name {
+    opacity: 1;
+    transition: opacity 0.22s ease;
+  }
+
+  .hive.names-hidden .hex-name {
+    opacity: 0;
+  }
+
+  .filter-chevron {
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: transform 0.35s ease, color 0.2s ease;
+  }
+
+  .filter-disclosure[data-open='true'] .filter-chevron {
+    transform: rotate(180deg);
+  }
+}
+
 /* ---------------------------------------------------------------
    Panal de hexágonos (estilo "All Fighters" de la web oficial).
    Hexágono de punta arriba: alto = ancho * 1.1547.
-   Las filas se solapan un 25% y las filas pares se desplazan medio
-   hexágono. El número de columnas es fijo por breakpoint para poder
-   señalar las filas con :nth-child; por eso el filtrado reordena
-   nodos en vez de ocultarlos.
+
+   En mobile las columnas las calcula el propio grid con `auto-fill`
+   según el ancho real del contenedor (nada de breakpoints fijos), y
+   el desfase de cada fila lo aplica JS (layoutHive en roster.ts)
+   midiendo la posición real de cada celda tras el layout — así se
+   acomoda solo sin importar cuántas columnas quepan.
+
+   En desktop (sm+) el número de columnas es fijo por breakpoint (se
+   veía mejor distribuido) y el desfase lo pone CSS con :nth-child;
+   roster.ts detecta el ancho y deja de tocar --shift por JS ahí.
 --------------------------------------------------------------- */
 .hive {
-  --cols: 4;
-  --hex-w: clamp(74px, 20vw, 120px);
+  --hive-max-cols: 3;
+  --hex-w: clamp(62px, 28vw, 92px);
   --hex-h: calc(var(--hex-w) * 1.1547);
-  --hex-gap: 8px;
+  --hex-gap: 10px;
   /* Color macizo del hueco entre hexágonos (lo pinta .hex-cell::before). */
-  --hex-gap-fill: #37146e;
+  --hex-gap-fill: #2c0755;
   display: grid;
-  grid-template-columns: repeat(var(--cols), var(--hex-w));
+  grid-template-columns: repeat(var(--hive-max-cols), var(--hex-w));
   /* Fila = 75% del alto del hexágono: así las filas engranan solas
      sin márgenes negativos (que aplastarían la celda del grid).
      El extra de `--hex-gap * 0.866` (sen 60°) deja el mismo hueco
@@ -89,53 +179,24 @@
   align-self: start;
 }
 
-/* cols = 4 -> desplaza medio hexágono los hijos 5-8, 13-16, ... */
-.hive > :is(:nth-child(8n + 5), :nth-child(8n + 6), :nth-child(8n + 7), :nth-child(8n + 8)) {
-  --shift: calc(50% + var(--hex-gap) / 2);
-}
-
 @media (min-width: 640px) {
   .hive {
-    --cols: 6;
-    --hex-w: clamp(76px, 13vw, 112px);
+    --hive-max-cols: 4;
+    --hex-w: clamp(84px, 16vw, 126px);
   }
-  .hive > :nth-child(n) {
-    --shift: 0px;
-  }
-  .hive
-    > :is(
-      :nth-child(12n + 7),
-      :nth-child(12n + 8),
-      :nth-child(12n + 9),
-      :nth-child(12n + 10),
-      :nth-child(12n + 11),
-      :nth-child(12n + 12)
-    ) {
-    --shift: calc(50% + var(--hex-gap) / 2);
+}
+
+@media (min-width: 768px) {
+  .hive {
+    --hive-max-cols: 5;
+    --hex-w: clamp(98px, 12vw, 148px);
   }
 }
 
 @media (min-width: 1024px) {
   .hive {
-    --cols: 9;
-    --hex-w: clamp(82px, 9vw, 118px);
-  }
-  .hive > :nth-child(n) {
-    --shift: 0px;
-  }
-  .hive
-    > :is(
-      :nth-child(18n + 10),
-      :nth-child(18n + 11),
-      :nth-child(18n + 12),
-      :nth-child(18n + 13),
-      :nth-child(18n + 14),
-      :nth-child(18n + 15),
-      :nth-child(18n + 16),
-      :nth-child(18n + 17),
-      :nth-child(18n + 18)
-    ) {
-    --shift: calc(50% + var(--hex-gap) / 2);
+    --hive-max-cols: 7;
+    --hex-w: clamp(112px, 10vw, 160px);
   }
 }
 
@@ -149,7 +210,7 @@
   /* Cuánto sobresale el relleno del hueco por cada lado. Debe pasar de
      medio `--hex-gap` para que el de dos celdas vecinas se solape y no
      quede una costura sin pintar. */
-  --hex-bleed: 7px;
+  --hex-bleed: 6px;
   position: relative;
   display: block;
   transform: translateX(var(--shift, 0px)) scale(var(--hex-scale, 1));
@@ -175,17 +236,24 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: #a855f7;
+  background: #7a2fd1;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  filter: drop-shadow(0 0 2px rgba(122, 47, 209, 0.55));
   transition: background 0.18s ease;
 }
 
 .hex-cell:hover,
 .hex-cell:focus-visible {
   filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 12px color-mix(in srgb, var(--color-ice) 70%, transparent));
-  --hex-scale: 1.06;
+  --hex-scale: 1;
   z-index: 5;
   outline: none;
+}
+
+.hex-cell:active {
+  filter: brightness(1.16) saturate(1.2) drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
+  --hex-scale: 1;
+  z-index: 6;
 }
 
 .hex-cell:hover::after,
@@ -193,14 +261,44 @@
   background: var(--color-ice);
 }
 
+.hex-cell:active::after {
+  background: #ef4444;
+  filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.8));
+}
+
 .hex-inner {
   position: absolute;
-  inset: 2px;
+  inset: 4px;
   /* Por encima del relleno y del borde, que también van posicionados. */
   z-index: 2;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   background: var(--color-abyss);
   overflow: hidden;
+  transition: inset 0.22s ease;
+}
+
+.hex-cell:hover .hex-inner,
+.hex-cell:focus-visible .hex-inner {
+  inset: 4px;
+}
+
+.hex-cell:active .hex-inner {
+  inset: 6px;
+}
+
+.hex-inner img {
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 0.3s ease;
+}
+
+.hex-cell:hover .hex-inner img,
+.hex-cell:focus-visible .hex-inner img {
+  transform: scale(1.15);
+}
+
+.hex-cell:active .hex-inner img {
+  transform: scale(1.15);
 }
 
 /* Recorte diagonal tipo "glitch" del panel de personaje */

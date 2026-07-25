@@ -1,0 +1,27 @@
+{
+  "name": "Torneo de Champa",
+  "name_en": "Champa's Tournament",
+  "name_pt": "Torneio de Champa",
+  "name_ja": "シャンパのトーナメント",
+  "series": "Dragon Ball Super",
+  "saga": "Universo 6",
+  "saga_en": "Universe 6",
+  "saga_pt": "Universo 6",
+  "saga_ja": "第6宇宙編",
+  "firstAppearance": {
+    "year": 2016,
+    "work": "Dragon Ball Super, ep. 32",
+    "work_en": "Dragon Ball Super, ep. 32",
+    "work_pt": "Dragon Ball Super, ep. 32",
+    "work_ja": "ドラゴンボール超 第32話",
+    "medium": "Anime"
+  },
+  "description": "El astro sin atmósfera donde se enfrentaron los equipos del Universo 6 y Universo 7. Plataformas de piedra suspendidas sobre un abismo galáctico, con un cielo teñido de púrpura y estrellas de fondo.",
+  "description_en": "The atmosphere-less celestial body where Universe 6 and Universe 7 teams faced off. Stone platforms suspended over a galactic abyss, with a purple-tinted sky and stars in the background.",
+  "description_pt": "O astro sem atmosfera onde as equipes do Universo 6 e Universo 7 se enfrentaram. Plataformas de pedra suspensas sobre um abismo galáctico, com um céu tingido de púrpura e estrelas ao fundo.",
+  "description_ja": "第6宇宙と第7宇宙のチームが対戦した大気のない天体。銀河の深淵の上に吊り下げられた石のプラットフォームで、紫に染まった空と背景の星が広がる。",
+  "hype": 4,
+  "accent": "#ea580c",
+  "scene": "/fighters/torneo-champa-scene.webp",
+  "tags": ["torneo", "universo 6", "dbs"]
+}

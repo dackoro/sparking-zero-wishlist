@@ -1,0 +1,56 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import StagePanel from '@/components/StagePanel.astro';
+import { useTranslations, localeParams, localize } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+export async function getStaticPaths() {
+  const stages = await getCollection('stages');
+  return localeParams().flatMap(({ lang, param }) =>
+    stages.map((stage) => ({
+      params: { lang: param, slug: stage.id },
+      props: { stage, lang },
+    })),
+  );
+}
+
+interface Props {
+  stage: CollectionEntry<'stages'>;
+  lang: Lang;
+}
+
+const { stage, lang } = Astro.props;
+const t = useTranslations(lang);
+const d = stage.data;
+
+const name = localize(d, 'name', lang) ?? (d.name as string) ?? '';
+const title = name;
+const description = localize(d, 'description', lang) ?? (d.description as string) ?? '';
+const prefix = lang === 'es' ? '' : `/${lang}`;
+---
+
+<Base title={title} description={description}>
+  <div class="mx-auto flex min-h-[100dvh] max-w-5xl px-4 py-10">
+    <div class="w-full">
+      <nav class="mb-5 text-xs text-white/50" aria-label="breadcrumb">
+        <a href={`${prefix}/`} class="transition hover:text-ice">{t('detail.breadcrumb') as string}</a>
+        <span class="mx-2 text-white/25">/</span>
+        <a href={`${prefix}/stages/`} class="transition hover:text-ice">{t('nav.stages') as string}</a>
+        <span class="mx-2 text-white/25">/</span>
+        <span class="text-white/70">{name}</span>
+      </nav>
+
+      <StagePanel stage={stage} standalone />
+
+      <div class="mt-8">
+        <a
+          href={`${prefix}/stages/`}
+          class="rounded-md border border-neon/50 px-4 py-2 text-sm text-white/80 transition hover:border-ice hover:text-ice"
+        >
+          {t('detail.back') as string}
+        </a>
+      </div>
+    </div>
+  </div>
+</Base>

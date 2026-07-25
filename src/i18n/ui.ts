@@ -2,6 +2,7 @@ export const languages = {
   es: 'Español',
   en: 'English',
   pt: 'Português',
+  ja: '日本語',
 } as const;
 
 export type Lang = keyof typeof languages;
@@ -15,6 +16,7 @@ export const ui = {
     'nav.stages': 'Escenarios',
     'nav.contribute': 'Contribuir',
     'nav.addFighter': 'Añadir personaje',
+    'nav.menu': 'Menú',
 
     // Language switcher
     'lang.label': 'Idioma',
@@ -22,7 +24,7 @@ export const ui = {
     // Hero
     'hero.title': 'Los que faltan',
     'hero.description':
-      'El roster de <strong class="text-white">Sparking! ZERO</strong> es enorme, pero todavía deja fuera a medio Dragon Ball. Esta es la lista de deseos de la comunidad: personajes que nos gustaría ver como DLC, ordenables por saga, por año en que los vimos por primera vez o por cuánto los pide la gente. Al abrir una ficha verás también los <strong class="text-white">trajes y variantes</strong> que faltan.',
+      'El roster de <strong class="text-white">Sparking! ZERO</strong> es enorme, pero todavía deja fuera a muchos personajes de Dragon Ball. Esta es una lista de deseos hecha por la comunidad: personajes que nos gustaría que se consideraran para futuros DLC, ordenables por saga, por año de primera aparición o por cuánto los pide la gente. Al abrir una ficha verás también los <strong class="text-white">trajes y variantes</strong> que faltan.',
 
     // Stats
     'stats.fighters': 'Personajes propuestos',
@@ -48,6 +50,9 @@ export const ui = {
     'filter.status': 'Estado',
     'filter.allStatuses': 'Todos',
     'filter.clear': 'Limpiar',
+    'filter.toggle': 'Filtros',
+    'filter.showNames': 'Mostrar nombres',
+    'filter.hideNames': 'Ocultar nombres',
     'filter.countOf': ({ total }: { total: number }) =>
       ` de ${total} personajes en la lista de deseos.`,
 
@@ -74,7 +79,7 @@ export const ui = {
     'panel.work': 'Obra',
     'panel.role': 'Rol',
     'panel.outfits': 'Trajes',
-    'panel.defaultLook': 'Look por defecto',
+    'panel.defaultLook': 'Forma base',
     'panel.noVariants':
       'Nadie ha propuesto variantes todavía. ¿Te sabes alguna? Añádela por pull request.',
 
@@ -173,6 +178,7 @@ export const ui = {
     'nav.stages': 'Stages',
     'nav.contribute': 'Contribute',
     'nav.addFighter': 'Add fighter',
+    'nav.menu': 'Menu',
 
     // Language switcher
     'lang.label': 'Language',
@@ -180,7 +186,7 @@ export const ui = {
     // Hero
     'hero.title': 'The Missing Ones',
     'hero.description':
-      'The <strong class="text-white">Sparking! ZERO</strong> roster is huge, but it still leaves out half of Dragon Ball. This is the community wishlist: characters we\'d love to see as DLC, sortable by saga, by the year we first saw them, or by how much fans want them. Open a profile to also see the <strong class="text-white">outfits and variants</strong> that are missing.',
+      'The <strong class="text-white">Sparking! ZERO</strong> roster is huge, but it still leaves out many Dragon Ball characters. This is a community-made wishlist: characters we\'d love to see considered for future DLC, sortable by saga, first appearance year, or how strongly fans want them. Open a profile to also see the <strong class="text-white">outfits and variants</strong> that are missing.',
 
     // Stats
     'stats.fighters': 'Proposed fighters',
@@ -206,6 +212,9 @@ export const ui = {
     'filter.status': 'Status',
     'filter.allStatuses': 'All',
     'filter.clear': 'Clear',
+    'filter.toggle': 'Filters',
+    'filter.showNames': 'Show names',
+    'filter.hideNames': 'Hide names',
     'filter.countOf': ({ total }: { total: number }) =>
       ` of ${total} characters on the wishlist.`,
 
@@ -233,7 +242,7 @@ export const ui = {
     'panel.work': 'Work',
     'panel.role': 'Role',
     'panel.outfits': 'Outfits',
-    'panel.defaultLook': 'Default look',
+    'panel.defaultLook': 'Base form',
     'panel.noVariants':
       'No one has proposed variants yet. Know any? Add them via pull request.',
 
@@ -307,7 +316,7 @@ export const ui = {
     'stages.heading': 'The Missing Stages',
     'stages.description': 'Iconic Dragon Ball stages that have not yet made it to <strong class="text-white">Sparking! ZERO</strong>. Sortable by saga and year.',
     'stages.empty': 'No stages match those filters.',
-    'stages.hint': 'Tap any card to view the full details.',
+    'stages.hint': '',
     'stages.breadcrumb': 'Stages',
     'stages.back': '← Back to stages',
     'stages.detailTitle': (name: string) => `${name} — Sparking! ZERO stage wishlist`,
@@ -333,6 +342,7 @@ export const ui = {
     'nav.stages': 'Cenários',
     'nav.contribute': 'Contribuir',
     'nav.addFighter': 'Adicionar personagem',
+    'nav.menu': 'Menu',
 
     // Language switcher
     'lang.label': 'Idioma',
@@ -340,7 +350,7 @@ export const ui = {
     // Hero
     'hero.title': 'Os que faltam',
     'hero.description':
-      'O elenco de <strong class="text-white">Sparking! ZERO</strong> é enorme, mas ainda deixa metade de Dragon Ball de fora. Esta é a lista de desejos da comunidade: personagens que gostaríamos de ver como DLC, ordenáveis por saga, por ano de estreia ou por quanto os fãs pedem. Ao abrir uma ficha você verá também os <strong class="text-white">trajes e variantes</strong> que faltam.',
+      'O elenco de <strong class="text-white">Sparking! ZERO</strong> é enorme, mas ainda deixa muitos personagens de Dragon Ball de fora. Esta é uma lista de desejos feita pela comunidade: personagens que gostaríamos de ver considerados para futuros DLC, ordenáveis por saga, ano de primeira aparição ou pela força do pedido dos fãs. Ao abrir uma ficha, você verá também os <strong class="text-white">trajes e variantes</strong> que faltam.',
 
     // Stats
     'stats.fighters': 'Personagens propostos',
@@ -366,6 +376,9 @@ export const ui = {
     'filter.status': 'Estado',
     'filter.allStatuses': 'Todos',
     'filter.clear': 'Limpar',
+    'filter.toggle': 'Filtros',
+    'filter.showNames': 'Mostrar nomes',
+    'filter.hideNames': 'Ocultar nomes',
     'filter.countOf': ({ total }: { total: number }) =>
       ` de ${total} personagens na lista de desejos.`,
 
@@ -393,7 +406,7 @@ export const ui = {
     'panel.work': 'Obra',
     'panel.role': 'Papel',
     'panel.outfits': 'Trajes',
-    'panel.defaultLook': 'Visual padrão',
+    'panel.defaultLook': 'Forma base',
     'panel.noVariants':
       'Ninguém propôs variantes ainda. Conhece alguma? Adicione via pull request.',
 
@@ -467,7 +480,7 @@ export const ui = {
     'stages.heading': 'Os cenários que faltam',
     'stages.description': 'Cenários icônicos de Dragon Ball que ainda não chegaram ao <strong class="text-white">Sparking! ZERO</strong>. Ordenáveis por saga e ano.',
     'stages.empty': 'Nenhum cenário corresponde aos filtros.',
-    'stages.hint': 'Toque em qualquer card para ver os detalhes.',
+    'stages.hint': '',
     'stages.breadcrumb': 'Cenários',
     'stages.back': '← Voltar aos cenários',
     'stages.detailTitle': (name: string) => `${name} — Cenário da wishlist do Sparking! ZERO`,
@@ -484,6 +497,169 @@ export const ui = {
     'meta.indexDescription': (count: number) =>
       `Lista de desejos feita por fãs: ${count} personagens de Dragon Ball que ainda não estão no Sparking! ZERO, com sua saga, ano de estreia e os trajes que também faltam.`,
     'meta.jsonLdName': 'Personagens que faltam no DRAGON BALL: Sparking! ZERO',
+  },
+
+  ja: {
+    // Nav
+    'nav.roster': '希望キャラクター',
+    'nav.filters': 'フィルター',
+    'nav.stages': 'ステージ',
+    'nav.contribute': '貢献する',
+    'nav.addFighter': '追加',
+    'nav.menu': 'メニュー',
+
+    // Language switcher
+    'lang.label': '言語',
+
+    // Hero
+    'hero.title': 'まだいないキャラ',
+    'hero.description':
+      '<strong class="text-white">Sparking! ZERO</strong>のロースターは巨大ですが、それでもドラゴンボールの多くのキャラクターが登場していません。これはコミュニティが作った希望リストです：今後のDLCとして検討してほしいキャラクターを、編や初登場年、ファンの期待度で並べ替えられます。プロフィールを開くと、不足している<strong class="text-white">衣装やバリエーション</strong>も確認できます。',
+
+    // Stats
+    'stats.fighters': '提案されたキャラクター',
+    'stats.variants': '衣装とバリエーション',
+
+    // Filter heading
+    'filter.heading': '全候補',
+
+    // Filter bar
+    'filter.search': '検索',
+    'filter.searchPlaceholder': '名前または編…',
+    'filter.series': 'シリーズ',
+    'filter.allSeries': 'すべて',
+    'filter.role': '役割',
+    'filter.anyRole': 'すべて',
+    'filter.sort': '並べ替え',
+    'filter.sortYearAsc': '初登場（古い順）',
+    'filter.sortYearDesc': '初登場（新しい順）',
+    'filter.sortSeries': 'シリーズ',
+    'filter.sortNameAsc': '名前（A-Z）',
+    'filter.saga': '編',
+    'filter.allSagas': 'すべての編',
+    'filter.status': '状態',
+    'filter.allStatuses': 'すべて',
+    'filter.clear': 'クリア',
+    'filter.toggle': 'フィルター',
+    'filter.showNames': '名前を表示',
+    'filter.hideNames': '名前を隠す',
+    'filter.countOf': ({ total }: { total: number }) =>
+      `願い事リストの${total}キャラクター中`,
+
+    'filter.typeCharacters': 'キャラクター',
+    'filter.typeOutfits': '衣装',
+    'outfitTile.from': (parent: string) => `${parent}の`,
+    'hive.outfitCount': ({ shown, total }: { shown: number; total: number }) =>
+      `${total}件中${shown}件の未入手衣装。`,
+
+    // Hive
+    'hive.empty':
+      'フィルターに一致するキャラクターはありません。フィルターをクリアするか、自分で提案してみてください。',
+
+    // Modal
+    'modal.close': '閉じる',
+    'modal.prev': '前のキャラクター',
+    'modal.next': '次のキャラクター',
+    'modal.browse': 'キャラクターを見る',
+
+    // Fighter panel
+    'panel.series': 'シリーズ',
+    'panel.saga': '編',
+    'panel.firstAppearance': '初登場',
+    'panel.work': '作品',
+    'panel.role': '役割',
+    'panel.outfits': '衣装',
+    'panel.defaultLook': '基本形態',
+    'panel.noVariants':
+      'まだ誰もバリエーションを提案していません。ご存知ですか？プルリクエストで追加してください。',
+
+    // Detail page
+    'detail.titleTemplate': (name: string) => `${name} — Sparking! ZERO 希望リスト`,
+    'detail.descriptionTemplate': (name: string, series: string, year: number, description: string) =>
+      `${name}（${series}、${year}年）：${description}`,
+    'detail.jsonLdHeadline': (name: string) => `${name} — Sparking! ZERO DLC候補`,
+    'detail.jsonLdCollection': 'Sparking! ZEROにいないキャラクター',
+    'detail.breadcrumb': '希望リスト',
+    'detail.back': '← 一覧に戻る',
+    'detail.edit': 'このエントリーを編集',
+
+    // Contribute page
+    'contribute.title':
+      '希望リストにキャラクターを追加する方法',
+    'contribute.description':
+      'Sparking! ZEROに不足しているドラゴンボールのキャラクターを提案するガイド：src/content/fightersにJSONを作成し、プルリクエストを開きます。',
+    'contribute.heading': 'キャラクターを追加',
+    'contribute.intro':
+      '各キャラクターは<code class="rounded bg-white/10 px-1.5 py-0.5 text-ice">src/content/fighters/</code>内の独立したJSONファイルです。これにより、2つのプルリクエストが衝突することはなく、サイトは自動的に再生成されます。JSONがスキーマを通過しない場合、ビルドは失敗し、誰かがレビューする前にPRで確認できます。',
+
+    'contribute.steps': '1. 手順',
+    'contribute.step1':
+      'リポジトリをフォークし、ブランチを作成します（例：<code class="text-ice">add/pikkon</code>）。',
+    'contribute.step2':
+      '<code class="text-ice">src/content/fighters/&lt;slug&gt;.json</code>を作成します — 小文字とハイフンを使用したファイル名がキャラクターのURLになります。',
+    'contribute.step3':
+      '独自のアートワークがある場合は、WebP形式で<code class="text-ice">public/fighters/</code>に配置します。ない場合は空白のままにしてください：キャラクターのアクセントカラーのプレースホルダーが表示されます。',
+    'contribute.step4':
+      '<code class="text-ice">npm run build</code>を実行してスキーマを検証します。',
+    'contribute.step5':
+      'データの出典を説明してプルリクエストを開きます。',
+
+    'contribute.rules': '2. ルール',
+    'contribute.rule1':
+      'ゲームに<strong class="text-white">まだいない</strong>キャラクターのみ。',
+    'contribute.rule2':
+      'キャラクターがDLCになった場合、削除せずに<code class="text-ice">status</code>を「Ya es DLC」に変更してください。',
+    'contribute.sectionTitle': '3. キャラクターか衣装か',
+    'contribute.sectionDesc':
+      '<code class="text-ice">section</code>フィールドは、エントリーが表示されるビジュアルグループを定義します：<code>fighters</code>（キャラクター、上部）または<code>outfits</code>（衣装、下部）。キャラクターが既にゲームにいてスキンのみが不足している場合は、<code class="text-ice">"section": "outfits"</code>を使用します。六角形コンポーネントはまったく同じで、描画されるパネルのみが変わります。',
+
+    'contribute.variantsTitle': '各バリエーションの画像',
+    'contribute.variantsDesc':
+      '衣装ピッカーはバリエーションごとに1つの六角形を描画し、それぞれに独自の写真が付いています — ホームのハニカムと同じです。画像は<code class="text-ice">variants[].portrait</code>から取得され、省略された場合は<code class="text-ice">variants[].image</code>にフォールバックし、どちらもない場合は六角形はフラットのままです。デフォルトの衣装（最初のもの）はキャラクター自身の<code class="text-ice">portrait</code>を使用するため、ハニカムに既に表示されているものと同じ顔になります。六角形をクリックすると、左側のレンダー（<code>image</code>）とヘッダーの背景（<code>scene</code>）の両方が同時に切り替わるため、各バリエーションの3つのフィールドすべてを埋める価値があります。',
+
+    'contribute.fields': '4. フィールド',
+    'contribute.fieldsHeader': ['フィールド', '必須', '説明'],
+    'contribute.example': '5. 例：新しいキャラクター',
+    'contribute.exampleOutfit': '6. 例：衣装またはバリエーション',
+
+    // Footer
+    'footer.nonprofit': 'ファンプロジェクト、非営利。',
+    'footer.disclaimer':
+      'ドラゴンボールおよびDRAGON BALL: Sparking! ZEROは、Bird Studio / 集英社、東映アニメーション、およびバンダイナムコエンターテインメントの商標です。このサイトはそれらと提携しておらず、承認もされていません：コミュニティによって作成された希望リストです。',
+    'footer.opensource':
+      'コードとデータはオープンソースです。誰か不足していますか？プルリクエストでプロフィールを開いてください。',
+
+    // HexTile
+    'hexTile.new': '新',
+
+    // FighterArt
+    'fighterArt.renderOf': (name: string) => `${name}のレンダー`,
+    'fighterArt.pendingArt': (name: string) => `${name}のアート未定`,
+
+    // Stages
+    'nav.stages': 'ステージ',
+    'stages.metaTitle': 'Sparking! ZEROにないステージ — コミュニティ希望リスト',
+    'stages.metaDesc': (count: number) => `ステージ希望リスト：まだSparking! ZEROにないドラゴンボールのステージ${count}件。`,
+    'stages.heading': 'まだないステージ',
+    'stages.description': 'まだ<strong class="text-white">Sparking! ZERO</strong>に登場していないドラゴンボールの象徴的なステージ。編と年で並べ替え可能。',
+    'stages.empty': 'フィルターに一致するステージはありません。',
+    'stages.hint': '',
+    'stages.breadcrumb': 'ステージ',
+    'stages.back': '← ステージ一覧に戻る',
+    'stages.detailTitle': (name: string) => `${name} — Sparking! ZERO ステージ希望リスト`,
+    'stages.detailDesc': (name: string, series: string, year: number, description: string) =>
+      `${name}（${series}、${year}年）：${description}`,
+    'stages.jsonLdName': 'DRAGON BALL: Sparking! ZEROにないステージ',
+
+    // OG
+    'og.siteName': 'DBSZ 希望リスト',
+
+    // Index meta
+    'meta.indexTitle':
+      'Sparking! ZEROにないキャラクター — コミュニティ希望リスト',
+    'meta.indexDescription': (count: number) =>
+      `ファン作成の希望リスト：まだSparking! ZEROにいないドラゴンボールのキャラクター${count}体、編や初登場年、不足している衣装付き。`,
+    'meta.jsonLdName': 'DRAGON BALL: Sparking! ZEROにないキャラクター',
   },
 } as const;
 
@@ -638,5 +814,53 @@ export const enumLabels: Record<Lang, Record<string, string>> = {
     'tags': 'Tags livres em minúsculas.',
     'sí': 'sim',
     'no': 'não',
+  },
+  ja: {
+    'Dragon Ball': 'ドラゴンボール',
+    'Dragon Ball Z': 'ドラゴンボールZ',
+    'Dragon Ball GT': 'ドラゴンボールGT',
+    'Dragon Ball Super': 'ドラゴンボール超',
+    'Películas': '映画',
+    'Especiales de TV': 'TVスペシャル',
+    'Spin-off': 'スピンオフ',
+    'Protagonista': '主人公',
+    'Antagonista': '敵役',
+    'Secundario': '準主要',
+    'Apoyo': '脇役',
+    'Relleno': 'フィラー',
+    'Cameo': 'カメオ',
+    'Wishlist': '希望',
+    'Anunciado': '発表済み',
+    'Ya es DLC': 'DLC化済み',
+    'Manga': '漫画',
+    'Anime': 'アニメ',
+    'Película': '映画',
+    'Videojuego': 'ゲーム',
+    'name': 'コミュニティで知られているスペイン語名。',
+    'nameJa': '日本語の正式名称。',
+    'series': 'いずれか：ドラゴンボール · ドラゴンボールZ · ドラゴンボールGT · ドラゴンボール超 · 映画 · TVスペシャル · スピンオフ',
+    'saga': '初登場する編またはアーク。',
+    'firstAppearance.year': '初登場年（1984-2030）。',
+    'firstAppearance.work': '具体的な作品：巻、話、または映画。',
+    'firstAppearance.medium': 'いずれか：漫画 · アニメ · 映画 · ゲーム',
+    'role': 'いずれか：主人公 · 敵役 · 準主要 · 脇役 · フィラー · カメオ',
+    'status': 'いずれか：希望 · 発表済み · DLC化済み。デフォルトは「希望」。',
+    'section': 'いずれか：fighters · outfits。「fighters」= キャラクターパネル、「outfits」= 衣装パネル（既にゲームにいるキャラクターのスキン/形態用）。デフォルトは「fighters」。',
+    'accent': 'プロフィールを彩る6桁の16進数カラー。例：#22c55e',
+    'description': '1〜2文での説明（最低20文字）。',
+    'variants': '不足している衣装や形態。それぞれに独自の画像があります。',
+    'variants[].name': 'バリエーション名。例：「魔人形態」',
+    'variants[].source': 'バリエーションの出典：映画、編、ゲームなど。',
+    'variants[].description': 'ベースキャラクターとの違いを1〜2文で。',
+    'variants[].image': '背景透過のバリエーション全身レンダー。',
+    'variants[].portrait': 'ピッカー内の六角形用のバリエーションの顔。ない場合はimageを使用。',
+    'variants[].scene': 'そのバリエーション選択時に表示されるヘッダー背景。',
+    'variants[].accent': 'バリエーション専用の6桁の16進数カラー。例：#db2777',
+    'render': '/public/fighters以下のパス。ない場合はプレースホルダーが表示されます。',
+    'portrait': 'キャラクターの顔：ホームのハニカムと衣装の六角形に表示されます。',
+    'scene': 'プロフィール右側の背景画像。',
+    'tags': '小文字の自由タグ。',
+    'sí': 'はい',
+    'no': 'いいえ',
   },
 };
