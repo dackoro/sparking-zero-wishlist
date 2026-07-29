@@ -6,6 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://dbsz-wishlist.pages.dev',
+  // El auditor de imágenes del toolbar vuelve a solicitar todos los <img>
+  // cuando el modal cambia. No forma parte del sitio publicado y distorsiona
+  // las mediciones de red durante el desarrollo.
+  devToolbar: {
+    enabled: false,
+  },
   integrations: [
     sitemap({
       changefreq: 'weekly',

@@ -7,6 +7,8 @@ interface Props {
   image?: string;
   class?: string;
   eager?: boolean;
+  width?: number;
+  height?: number;
   /** `contain` respeta el render completo; `cover` llena la celda sin dejar huecos. */
   fit?: 'contain' | 'cover';
 }
@@ -14,7 +16,16 @@ interface Props {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { name, accent, image, class: className = '', eager = false, fit = 'contain' } = Astro.props;
+const {
+  name,
+  accent,
+  image,
+  class: className = '',
+  eager = false,
+  width,
+  height,
+  fit = 'contain',
+} = Astro.props;
 
 const initials = name
   .replace(/[^\p{L}\s]/gu, '')
@@ -28,10 +39,13 @@ const initials = name
 {
   image ? (
     <img
-      src={image}
+      src={eager ? image : undefined}
+      data-src={eager ? undefined : image}
       alt={(t('fighterArt.renderOf') as (name: string) => string)(name)}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
+      width={width}
+      height={height}
       class={`h-full w-full ${fit === 'cover' ? 'object-cover object-top' : 'object-contain'} ${className}`}
     />
   ) : (

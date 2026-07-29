@@ -179,6 +179,10 @@ const alternates = (Object.keys(languages) as Lang[]).map((code) => ({
     </header>
 
     <script>
+      import { initLazyMedia } from '@/scripts/lazy-media';
+
+      initLazyMedia();
+
       const toggle = document.getElementById('nav-toggle');
       const menu = document.getElementById('nav-menu');
       const iconOpen = document.getElementById('nav-icon-open');

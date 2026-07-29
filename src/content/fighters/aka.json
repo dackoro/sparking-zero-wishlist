@@ -1,0 +1,30 @@
+{
+  "name": "Aka",
+  "name_en": "Aka",
+  "name_pt": "Aka",
+  "name_ja": "アカ",
+  "nameJa": "アカ",
+  "series": "Especiales de TV",
+  "saga": "El regreso de Son Goku y sus amigos!",
+  "saga_en": "Yo! The Return of Son Goku and His Friends!!",
+  "saga_pt": "O Retorno de Son Goku e seus Amigos!",
+  "saga_ja": "オッス！帰ってきた孫悟空と仲間たち！！",
+  "firstAppearance": {
+    "year": 2008,
+    "work": "OVA: ¡Yo! El regreso de Son Goku y sus amigos!!",
+    "work_en": "OVA: Yo! The Return of Son Goku and His Friends!!",
+    "work_pt": "OVA: O Retorno de Son Goku e seus Amigos!!",
+    "work_ja": "OVA：オッス！帰ってきた孫悟空と仲間たち！！",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "accent": "#7209b7",
+  "description": "Fusión de los hermanos Abo y Kado, creada mediante su técnica de combinación. Tras transformarse, se enfrenta a Gotenks y a los demás guerreros. Goku neutraliza su Onda Wahaha de máxima potencia con un Kamehameha y lo derrota de un golpe.",
+  "description_en": "Fusion of the brothers Abo and Kado, created through their combination technique. After transforming, he faces Gotenks and the other warriors. Goku neutralizes his Full Power Wahaha Wave with a Kamehameha and knocks him out with a single punch.",
+  "description_pt": "Fusão dos irmãos Abo e Kado, criada por meio de sua técnica especial de fusão. Após se transformar, enfrenta Gotenks e os demais guerreiros. Goku neutraliza sua Onda Wahaha de Potência Máxima com um Kamehameha e o derrota com um único golpe.",
+  "description_ja": "兄弟のアボとカドが特殊な合体技で生み出した融合体。変身後、ゴテンクスや他の戦士たちと戦う。悟空がかめはめ波でフルパワー・ワハハ・ウェーブを無効化し、一撃でアカを倒した。",
+  "portrait": "/fighters/aka-portrait.webp",
+  "render": "/fighters/aka.webp",
+  "scene": "/fighters/aka-scene.webp",
+  "tags": ["fision", "villano", "tarble", "ova", "fusion", "beebay"]
+}

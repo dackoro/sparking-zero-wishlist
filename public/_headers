@@ -1,0 +1,11 @@
+# Los nombres de estos archivos son estables, no llevan hash. Un día elimina
+# revalidaciones durante visitas repetidas sin congelar una imagen antigua
+# durante meses después de un despliegue.
+/fighters/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/ui/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/dbsz-logo.webp
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

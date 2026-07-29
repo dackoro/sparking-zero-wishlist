@@ -1,0 +1,30 @@
+{
+  "name": "Abo",
+  "name_en": "Abo",
+  "name_pt": "Abo",
+  "name_ja": "アボ",
+  "nameJa": "アボ",
+  "series": "Especiales de TV",
+  "saga": "El regreso de Son Goku y sus amigos!",
+  "saga_en": "Yo! The Return of Son Goku and His Friends!!",
+  "saga_pt": "O Retorno de Son Goku e seus Amigos!",
+  "saga_ja": "オッス！帰ってきた孫悟空と仲間たち！！",
+  "firstAppearance": {
+    "year": 2008,
+    "work": "OVA: ¡Yo! El regreso de Son Goku y sus amigos!!",
+    "work_en": "OVA: Yo! The Return of Son Goku and His Friends!!",
+    "work_pt": "OVA: O Retorno de Son Goku e seus Amigos!!",
+    "work_ja": "OVA：オッス！帰ってきた孫悟空と仲間たち！！",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "accent": "#d62828",
+  "description": "Soldado remanente de la Fuerza de Freezer y hermano mayor de Kado. Persigue a Tarble junto con él hasta la Tierra. De piel rojiza y carácter impulsivo, puede combinarse con Kado para crear a Aka.",
+  "description_en": "Remnant soldier of the Frieza Force and older brother of Kado. He pursues Tarble alongside him to Earth. Red-skinned and impulsive, he can combine with Kado to create Aka.",
+  "description_pt": "Soldado remanescente da Força Freeza e irmão mais velho de Kado. Persegue Tarble com ele até a Terra. De pele avermelhada e personalidade impulsiva, pode se combinar com Kado para criar Aka.",
+  "description_ja": "フリーザ軍の残党兵で、カドの兄。カドと共にターブルを地球まで追跡する。赤い肌と衝動的な性格を持ち、カドと合体してアカになることができる。",
+  "portrait": "/fighters/avo-portrait.webp",
+  "render": "/fighters/avo.webp",
+  "scene": "/fighters/avo-scene.webp",
+  "tags": ["mutante", "villano", "tarble", "ova", "gemelo", "beebay"]
+}

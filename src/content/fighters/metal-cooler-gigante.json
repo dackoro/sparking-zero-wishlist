@@ -1,0 +1,30 @@
+{
+  "name": "Metal Cooler Gigante",
+  "name_en": "Giant Metal Cooler",
+  "name_pt": "Metal Cooler Gigante",
+  "name_ja": "巨大メタルクウラ",
+  "nameJa": "巨大メタルクウラ",
+  "series": "Películas",
+  "saga": "Cooler",
+  "saga_en": "Cooler",
+  "saga_pt": "Cooler",
+  "saga_ja": "クウラ",
+  "firstAppearance": {
+    "year": 1992,
+    "work": "Película: El regreso de Cooler",
+    "work_en": "Movie: The Return of Cooler",
+    "work_pt": "Filme: O Retorno de Cooler",
+    "work_ja": "映画：激突!! 100億パワーの戦士たち",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "accent": "#9ca3af",
+  "description": "Manifestación colosal de Metal Cooler vinculada al núcleo de la Gran Estrella Gete. La estrella puede crear copias metálicas de Cooler, absorber energía y reparar los cuerpos dañados. Goku y Vegeta derrotan al núcleo al sobrecargar el sistema con su energía.",
+  "description_en": "A colossal manifestation of Metal Cooler linked to the Big Gete Star's core. The star can create metal copies of Cooler, absorb energy, and repair damaged bodies. Goku and Vegeta defeat the core by overloading the system with their energy.",
+  "description_pt": "Manifestação colossal do Metal Cooler ligada ao núcleo da Grande Estrela Gete. A estrela pode criar cópias metálicas de Cooler, absorver energia e reparar corpos danificados. Goku e Vegeta derrotam o núcleo ao sobrecarregar o sistema com sua energia.",
+  "description_ja": "ビッグゲテスターのコアと結びついたメタルクウラの巨大な形態。星はクウラのメタルボディを複製し、エネルギーを吸収して損傷した体を修復できる。悟空とベジータがエネルギーでシステムを過負荷にしてコアを倒す。",
+  "portrait": "/fighters/metal-cooler-gigante-portrait.webp",
+  "render": "/fighters/metal-cooler-gigante.webp",
+  "scene": "/fighters/metal-cooler-gigante-scene.webp",
+  "tags": ["gigante", "robot", "villano", "cooler", "metal", "big-gete-star"]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Androide 14",
+  "name_en": "Android 14",
+  "name_pt": "Androide 14",
+  "name_ja": "人造人間14号",
+  "nameJa": "人造人間14号",
+  "series": "Películas",
+  "saga": "Super Androide 13!",
+  "saga_en": "Super Android 13!",
+  "saga_pt": "Super Androide 13!",
+  "saga_ja": "超人造人間13号！",
+  "firstAppearance": {
+    "year": 1992,
+    "work": "Película: Super Androide 13!",
+    "work_en": "Movie: Super Android 13!",
+    "work_pt": "Filme: Super Androide 13!",
+    "work_ja": "映画：超人造人間13号！",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "accent": "#5c3d2e",
+  "description": "Androide creado por la supercomputadora del Dr. Gero para asesinar a Goku. Está conectado a la supercomputadora y combate en perfecta sincronía con el Androide 15, pudiendo ambos analizar y anticipar los movimientos de sus rivales. Es grande, callado y extremadamente fuerte, con un overol marrón y un sombrero de aspecto vaquero. Tras ser destruido por Trunks, sus datos de combate y su reactor son absorbidos por Android 13.",
+  "description_en": "Android created by Dr. Gero's supercomputer to assassinate Goku. He is linked to the supercomputer and fights in perfect sync with Android 15, allowing them to analyze and anticipate their opponents' moves. Large, quiet, and extremely strong, with a brown jumpsuit and a cowboy-style hat. After Trunks destroys him, Android 13 absorbs his combat data and reactor.",
+  "description_pt": "Androide criado pelo supercomputador do Dr. Gero para assassinar Goku. Está conectado ao supercomputador e luta em perfeita sincronia com o Androide 15, permitindo que ambos analisem e antecipem os movimentos dos adversários. Grande, quieto e extremamente forte, com um macacão marrom e um chapéu de aparência caubói. Depois de ser destruído por Trunks, seus dados de combate e seu reator são absorvidos pelo Androide 13.",
+  "description_ja": "Dr.ゲロのスーパーコンピューターが悟空を暗殺するために作り出した人造人間。スーパーコンピューターとつながっており、15号と完璧に連携して相手の動きを分析・予測できる。大柄で無口、極めて強力で、茶色のつなぎとカウボーイ風の帽子を身につけている。トランクスに破壊された後、戦闘データと動力炉を13号に吸収された。",
+  "portrait": "/fighters/androide-14-portrait.webp",
+  "render": "/fighters/androide-14.webp",
+  "scene": "/fighters/androide-14-scene.webp",
+  "tags": ["androide", "villano", "pelicula", "doctor-gero", "cowboy"]
+}

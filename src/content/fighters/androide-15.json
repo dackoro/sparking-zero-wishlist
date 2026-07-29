@@ -1,0 +1,30 @@
+{
+  "name": "Androide 15",
+  "name_en": "Android 15",
+  "name_pt": "Androide 15",
+  "name_ja": "人造人間15号",
+  "nameJa": "人造人間15号",
+  "series": "Películas",
+  "saga": "Super Androide 13!",
+  "saga_en": "Super Android 13!",
+  "saga_pt": "Super Androide 13!",
+  "saga_ja": "超人造人間13号！",
+  "firstAppearance": {
+    "year": 1992,
+    "work": "Película: Super Androide 13!",
+    "work_en": "Movie: Super Android 13!",
+    "work_pt": "Filme: Super Androide 13!",
+    "work_ja": "映画：超人造人間13号！",
+    "medium": "Película"
+  },
+  "role": "Antagonista",
+  "accent": "#c94c6d",
+  "description": "Androide creado por la supercomputadora del Dr. Gero para asesinar a Goku. De estatura baja, aspecto punk y personalidad burlona, viste tirantes verdes, sombrero negro y gafas de sol. Puede analizar y anticipar los movimientos de sus rivales, y dispara ráfagas de ki con los dedos. Vegeta lo elimina atravesándole el pecho con su brazo.",
+  "description_en": "Android created by Dr. Gero's supercomputer to assassinate Goku. Short, punk-looking, and mocking, he wears green suspenders, a black hat, and sunglasses. He can analyze and anticipate his opponents' moves and fires ki blasts from his fingers. Vegeta kills him by driving his arm through his chest.",
+  "description_pt": "Androide criado pelo supercomputador do Dr. Gero para assassinar Goku. De baixa estatura, visual punk e personalidade zombeteira, veste suspensórios verdes, chapéu preto e óculos escuros. Pode analisar e antecipar os movimentos dos adversários e dispara rajadas de ki pelos dedos. Vegeta o elimina atravessando seu peito com o braço.",
+  "description_ja": "Dr.ゲロのスーパーコンピューターが悟空を暗殺するために作り出した人造人間。小柄でパンクな外見と人をからかう性格で、緑のサスペンダー、黒い帽子、サングラスを着用している。相手の動きを分析・予測でき、指先から気弾を放つ。ベジータに腕で胸を貫かれて倒された。",
+  "portrait": "/fighters/androide-15-portrait.webp",
+  "render": "/fighters/androide-15.webp",
+  "scene": "/fighters/androide-15-scene.webp",
+  "tags": ["androide", "villano", "pelicula", "doctor-gero", "punk"]
+}

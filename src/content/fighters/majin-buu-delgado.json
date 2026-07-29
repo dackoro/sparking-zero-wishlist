@@ -1,0 +1,31 @@
+{
+  "name": "Majin Buu",
+  "name_en": "Majin Buu",
+  "name_pt": "Majin Boo",
+  "name_ja": "魔人ブウ",
+  "nameJa": "魔人ブウ",
+  "section": "outfits",
+  "series": "Dragon Ball Super",
+  "saga": "Torneo del Poder",
+  "saga_en": "Tournament of Power",
+  "saga_pt": "Torneio do Poder",
+  "saga_ja": "力の大会",
+  "firstAppearance": {
+    "year": 2017,
+    "work": "Dragon Ball Super, ep. 85",
+    "work_en": "Dragon Ball Super, ep. 85",
+    "work_pt": "Dragon Ball Super, ep. 85",
+    "work_ja": "ドラゴンボール超 第85話",
+    "medium": "Anime"
+  },
+  "role": "Secundario",
+  "accent": "#ec4899",
+  "description": "Variante de Majin Buu tras entrenar intensamente con Mr. Satán para el Torneo del Poder. El entrenamiento transformó su cuerpo rechoncho en una versión delgada y musculosa, pero conservó su personalidad infantil. Más tarde cayó en un sueño profundo y no pudo participar en el torneo.",
+  "description_en": "Variant of Majin Buu after intense training with Mr. Satan for the Tournament of Power. The training transformed his chubby body into a slim, muscular form while keeping his childlike personality. Buu later fell into a deep sleep and missed the tournament.",
+  "description_pt": "Variante do Majin Boo após treinar intensamente com Mr. Satan para o Torneio do Poder. O treinamento transformou seu corpo rechonchudo em uma versão magra e musculosa, mas ele manteve sua personalidade infantil. Mais tarde, caiu em um sono profundo e não pôde participar do torneio.",
+  "description_ja": "力の大会に向けてミスター・サタンと厳しい修行を行った後の魔人ブウのバリエーション。修行によって丸々とした体が細身で筋肉質な姿に変わったが、子供のような性格は変わらなかった。その後、ブウは深い眠りに落ちて大会に参加できなかった。",
+  "portrait": "/fighters/majin-buu-delgado-portrait.webp",
+  "render": "/fighters/majin-buu-delgado.webp",
+  "scene": "/fighters/majin-buu-delgado-scene.webp",
+  "tags": ["buu", "skin", "magia", "dbs", "torneo-del-poder", "delgado"]
+}

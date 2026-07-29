@@ -87,6 +87,104 @@ export function initRoster() {
   let stripBtns = strip ? Array.from(strip.querySelectorAll<HTMLButtonElement>('[data-strip-slug]')) : [];
   const prevBtn = document.getElementById('fighter-strip-prev');
   const nextBtn = document.getElementById('fighter-strip-next');
+  const preloadCache = new Map<string, Promise<void>>();
+  const criticalMediaCache = new Map<string, string[]>();
+
+  function criticalMediaFor(slug: string) {
+    const cached = criticalMediaCache.get(slug);
+    if (cached) return cached;
+
+    const tpl = document.querySelector<HTMLTemplateElement>(`template[data-panel-for="${slug}"]`);
+    const scene = tpl?.content.querySelector<HTMLElement>('[data-look="0"][data-bg-src]')?.dataset.bgSrc;
+    const render = tpl?.content
+      .querySelector<HTMLImageElement>('[data-look="0"] img[src]')
+      ?.getAttribute('src');
+    const urls = [scene, render]
+      .filter((url): url is string => Boolean(url))
+      .map((url) => new URL(url, location.href).href);
+
+    criticalMediaCache.set(slug, urls);
+    return urls;
+  }
+
+  function preloadUrl(url: string, priority: 'high' | 'low') {
+    const cached = preloadCache.get(url);
+    if (cached) return cached;
+
+    const pending = new Promise<void>((resolve) => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.fetchPriority = priority;
+      image.onload = image.onerror = () => resolve();
+      image.src = url;
+    });
+    preloadCache.set(url, pending);
+    return pending;
+  }
+
+  function preloadPanel(slug: string, priority: 'high' | 'low' = 'high') {
+    return Promise.all(criticalMediaFor(slug).map((url) => preloadUrl(url, priority)));
+  }
+
+  const preloadFromEvent = (event: Event) => {
+    const target = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-slug], [data-strip-slug]');
+    const slug = target?.dataset.slug ?? target?.dataset.stripSlug;
+    if (slug) void preloadPanel(slug);
+  };
+
+  // En escritorio normalmente hay tiempo entre apuntar y hacer clic; en
+  // teclado/táctil iniciamos la descarga en el primer gesto disponible.
+  for (const container of [hive, hiveOutfitsEl, strip]) {
+    container?.addEventListener('pointerover', preloadFromEvent, { passive: true });
+    container?.addEventListener('pointerdown', preloadFromEvent, { passive: true });
+    container?.addEventListener('focusin', preloadFromEvent);
+  }
+
+  type NavigatorWithConnection = Navigator & {
+    connection?: { saveData?: boolean; effectiveType?: string };
+  };
+  const connection = (navigator as NavigatorWithConnection).connection;
+  const allowsSpeculation = !connection?.saveData && !connection?.effectiveType?.includes('2g');
+
+  if (allowsSpeculation && 'IntersectionObserver' in window) {
+    let budget = window.innerWidth >= 1024 ? 8 : 4;
+    const idle = (callback: () => void) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout: 1200 });
+      } else {
+        window.setTimeout(callback, 250);
+      }
+    };
+
+    const visibleObserver = new IntersectionObserver(
+      (entries) => {
+        const viewportCenter = window.innerHeight / 2;
+        const candidates = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              Math.abs(a.boundingClientRect.top + a.boundingClientRect.height / 2 - viewportCenter) -
+              Math.abs(b.boundingClientRect.top + b.boundingClientRect.height / 2 - viewportCenter),
+          )
+          .slice(0, budget);
+
+        if (candidates.length === 0) return;
+        budget -= candidates.length;
+        candidates.forEach((entry) => visibleObserver.unobserve(entry.target));
+        idle(() => {
+          for (const entry of candidates) {
+            const slug = (entry.target as HTMLElement).dataset.slug;
+            if (slug) void preloadPanel(slug, 'low');
+          }
+        });
+        if (budget <= 0) visibleObserver.disconnect();
+      },
+      { rootMargin: '150px 0px', threshold: 0.25 },
+    );
+
+    const outfitTiles = hiveOutfitsEl?.querySelectorAll<HTMLElement>('[data-hex]') ?? [];
+    [...tiles, ...outfitTiles].forEach((tile) => visibleObserver.observe(tile));
+  }
 
   function applyStripOrder() {
     if (!strip || !stripTrack || stripBtns.length === 0) return;
@@ -133,14 +231,42 @@ export function initRoster() {
   const content = document.getElementById('fighter-modal-content')!;
   const home = location.pathname;
   let lastFocus: HTMLElement | null = null;
+  const panelCache = new Map<string, HTMLElement>();
+  let activePanel: HTMLElement | null = null;
+
+  function getPanel(slug: string) {
+    const cached = panelCache.get(slug);
+    if (cached) return cached;
+
+    const tpl = document.querySelector<HTMLTemplateElement>(`template[data-panel-for="${slug}"]`);
+    const panel = tpl?.content.firstElementChild?.cloneNode(true);
+    if (!(panel instanceof HTMLElement)) return null;
+
+    // El fondo crítico se activa sin esperar otro ciclo del IntersectionObserver.
+    const background = panel.querySelector<HTMLElement>('[data-look="0"][data-bg-src]');
+    if (background?.dataset.bgSrc) {
+      background.style.backgroundImage = `url("${background.dataset.bgSrc.replaceAll('"', '\\"')}")`;
+      delete background.dataset.bgSrc;
+    }
+
+    panel.hidden = true;
+    content.append(panel);
+    panelCache.set(slug, panel);
+    return panel;
+  }
 
   function open(slug: string, push = true) {
-    const tpl = document.querySelector<HTMLTemplateElement>(`template[data-panel-for="${slug}"]`);
-    if (!tpl) return;
+    void preloadPanel(slug);
+    const panel = getPanel(slug);
+    if (!panel) return;
 
     const wasOpen = !modal!.hidden;
     lastFocus = wasOpen ? lastFocus : (document.activeElement as HTMLElement);
-    content.replaceChildren(tpl.content.cloneNode(true));
+    if (activePanel !== panel) {
+      if (activePanel) activePanel.hidden = true;
+      panel.hidden = false;
+      activePanel = panel;
+    }
     modal!.hidden = false;
     document.documentElement.style.overflow = 'hidden';
     if (!wasOpen) modal!.querySelector<HTMLButtonElement>('[data-close]')?.focus();
@@ -150,12 +276,22 @@ export function initRoster() {
       ?? hiveOutfitsEl?.querySelector<HTMLElement>(`[data-hex][data-slug="${slug}"]`);
     currentSection = tile?.dataset.section ?? 'fighters';
     syncStrip(slug);
+
+    const visibleStrip = stripBtns.filter((btn) => !btn.hidden);
+    const current = visibleStrip.findIndex((btn) => btn.dataset.stripSlug === slug);
+    if (current !== -1 && visibleStrip.length > 1) {
+      const previous = visibleStrip[(current - 1 + visibleStrip.length) % visibleStrip.length];
+      const next = visibleStrip[(current + 1) % visibleStrip.length];
+      window.setTimeout(() => {
+        void preloadPanel(previous.dataset.stripSlug!, 'low');
+        void preloadPanel(next.dataset.stripSlug!, 'low');
+      }, 150);
+    }
   }
 
   function close(pop = true) {
     if (modal!.hidden) return;
     modal!.hidden = true;
-    content.replaceChildren();
     document.documentElement.style.overflow = '';
     lastFocus?.focus();
     if (pop && history.state?.slug) history.replaceState(null, '', home);

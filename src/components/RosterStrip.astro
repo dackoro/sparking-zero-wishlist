@@ -42,7 +42,14 @@ const { fighters } = Astro.props;
               title={f.data.name}
             >
               <span class="strip-hex-inner">
-                <img src={f.data.portrait ?? f.data.render} alt="" loading="lazy" decoding="async" />
+                <img
+                  data-src={f.data.portrait ?? f.data.render}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="300"
+                />
               </span>
             </button>
           ))

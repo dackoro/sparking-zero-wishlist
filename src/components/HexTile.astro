@@ -35,7 +35,14 @@ const name = localize(d, 'name', lang as Lang) ?? (d.name as string);
 >
   <span class="hex-inner" style={`background:linear-gradient(165deg, ${d.accent}55, #150a2b 60%)`}>
     <span class="absolute inset-0">
-      <FighterArt name={d.name} accent={d.accent} image={d.portrait ?? d.render} fit="cover" />
+      <FighterArt
+        name={d.name}
+        accent={d.accent}
+        image={d.portrait ?? d.render}
+        fit="cover"
+        width={300}
+        height={300}
+      />
     </span>
 
     <span

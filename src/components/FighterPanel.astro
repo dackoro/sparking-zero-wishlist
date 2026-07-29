@@ -67,7 +67,7 @@ const meta = [
       looks.map((look, i) => (
         <div
           class="absolute inset-0 bg-cover bg-center"
-          style={`background-image:url(${look.scene ?? newsBg.src})`}
+          data-bg-src={look.scene ?? newsBg.src}
           aria-hidden="true"
           data-look={i}
           hidden={i !== 0}
@@ -83,6 +83,10 @@ const meta = [
       aria-hidden="true"
       class="pointer-events-none absolute inset-0 h-full w-full select-none"
       style="object-fit:fill"
+      loading="lazy"
+      decoding="async"
+      width="2072"
+      height="1166"
     />
 
     {/* Render transparente sobre el panel morado */}
@@ -158,7 +162,19 @@ const meta = [
                   title={look.name}
                 >
                   <span class="variant-hex-inner">
-                    {look.portrait && <img src={look.portrait} alt="" aria-hidden="true" loading="lazy" decoding="async" />}
+                    {
+                      look.portrait && (
+                        <img
+                          data-src={look.portrait}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          decoding="async"
+                          width="300"
+                          height="300"
+                        />
+                      )
+                    }
                     <span class="variant-hex-label">
                       <span class="block text-[10px] leading-tight font-bold uppercase">{look.name}</span>
                       {look.source && <span class="block text-[9px] leading-none opacity-70">{look.source}</span>}
